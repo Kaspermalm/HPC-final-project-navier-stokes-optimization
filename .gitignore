@@ -1,0 +1,19 @@
+# Virtual environments
+.venv/
+venv/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Profiling binary files
+*.stats
+*.lprof
+
+# Generated images
+*.png
+
+# OS files
+Thumbs.db
+.DS_Store
