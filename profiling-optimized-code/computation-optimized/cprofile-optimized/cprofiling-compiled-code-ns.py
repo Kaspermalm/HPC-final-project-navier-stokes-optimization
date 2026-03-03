@@ -5,6 +5,16 @@ import matplotlib.pyplot as plt
 import cProfile
 import pstats # For analyzing the profiling results
 
+# Importing pyfftw, calling the compiled FFTW C library underneath for faster FFTs
+"""FFTW works by creating an optimized "plan" for a specific array size the first time.
+Without caching, it re-plans every call (slow). pyfftw.interfaces.cache.enable() stores plans so
+subsequent calls with the same size are fast. The function is called 1000 times in the loop with
+the same size N=400 arrays, so caching is crucial for performance."""
+
+import pyfftw
+pyfftw.interfaces.cache.enable() # Enable pyfftw's internal caching of FFTW plans for faster repeated FFTs
+fft = pyfftw.interfaces.numpy_fft
+
 # Importing sys to redirect stdout to a file for profiling output
 import sys
 
@@ -23,44 +33,44 @@ div(v) = 0
 
 def poisson_solve(rho, kSq_inv):
     """solve the Poisson equation, given source field rho"""
-    V_hat = -(np.fft.fftn(rho)) * kSq_inv
-    V = np.real(np.fft.ifftn(V_hat))
+    V_hat = -(fft.fftn(rho)) * kSq_inv
+    V = np.real(fft.ifftn(V_hat))
     return V
 
 
 def diffusion_solve(v, dt, nu, kSq):
     """solve the diffusion equation over a timestep dt, given viscosity nu"""
-    v_hat = (np.fft.fftn(v)) / (1.0 + dt * nu * kSq)
-    v = np.real(np.fft.ifftn(v_hat))
+    v_hat = (fft.fftn(v)) / (1.0 + dt * nu * kSq)
+    v = np.real(fft.ifftn(v_hat))
     return v
 
 
 def grad(v, kx, ky):
     """return gradient of v"""
-    v_hat = np.fft.fftn(v)
-    dvx = np.real(np.fft.ifftn(1j * kx * v_hat))
-    dvy = np.real(np.fft.ifftn(1j * ky * v_hat))
+    v_hat = fft.fftn(v)
+    dvx = np.real(fft.ifftn(1j * kx * v_hat))
+    dvy = np.real(fft.ifftn(1j * ky * v_hat))
     return dvx, dvy
 
 
 def div(vx, vy, kx, ky):
     """return divergence of (vx,vy)"""
-    dvx_x = np.real(np.fft.ifftn(1j * kx * np.fft.fftn(vx)))
-    dvy_y = np.real(np.fft.ifftn(1j * ky * np.fft.fftn(vy)))
+    dvx_x = np.real(fft.ifftn(1j * kx * fft.fftn(vx)))
+    dvy_y = np.real(fft.ifftn(1j * ky * fft.fftn(vy)))
     return dvx_x + dvy_y
 
 
 def curl(vx, vy, kx, ky):
     """return curl of (vx,vy)"""
-    dvx_y = np.real(np.fft.ifftn(1j * ky * np.fft.fftn(vx)))
-    dvy_x = np.real(np.fft.ifftn(1j * kx * np.fft.fftn(vy)))
+    dvx_y = np.real(fft.ifftn(1j * ky * fft.fftn(vx)))
+    dvy_x = np.real(fft.ifftn(1j * kx * fft.fftn(vy)))
     return dvy_x - dvx_y
 
 
 def apply_dealias(f, dealias):
     """apply 2/3 rule dealias to field f"""
-    f_hat = dealias * np.fft.fftn(f)
-    return np.real(np.fft.ifftn(f_hat))
+    f_hat = dealias * fft.fftn(f)
+    return np.real(fft.ifftn(f_hat))
 
 
 def main():
@@ -177,8 +187,8 @@ if __name__ == "__main__":
     profiler.run("main()")
 
     # Save binary stats file
-    profiler.dump_stats("cprofiling-ns.stats")
+    profiler.dump_stats("profiling-optimized-code/computation-optimized/cprofile-optimized/cprofiling-compiled-code-ns.stats")
 
-    with open("cprofiling-ns.txt", "w") as f:
+    with open("profiling-optimized-code/computation-optimized/cprofile-optimized/cprofiling-compiled-code-ns.txt", "w") as f:
         p = pstats.Stats(profiler, stream=f) # Saving to file instead of terminal
         p.strip_dirs().sort_stats("cumtime").print_stats() # Sorting cumtime to the file

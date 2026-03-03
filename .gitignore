@@ -2,18 +2,25 @@
 .venv/
 venv/
 
-# Python
+# Python cache
 __pycache__/
 *.pyc
 *.pyo
 
-# Profiling binary files
+# Profiling output
 *.stats
 *.lprof
+*.dat
 
-# Generated images
+# Images
 *.png
+
+# pytest
+.pytest_cache/
 
 # OS files
 Thumbs.db
 .DS_Store
+
+# Exclude test folder
+tests_implementerade_med_hjälp/

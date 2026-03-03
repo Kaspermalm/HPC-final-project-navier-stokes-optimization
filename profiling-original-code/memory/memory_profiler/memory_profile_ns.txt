@@ -1,0 +1,82 @@
+0.001
+0.002
+0.003
+0.004
+0.005
+0.006
+0.007
+0.008
+0.009000000000000001
+0.010000000000000002
+Filename: profiling-original-code/memory/memory_profiler/memory_profiling-ns.py
+
+Line #    Mem usage    Increment  Occurrences   Line Contents
+=============================================================
+    17  170.867 MiB 1669.074 MiB          10   @profile
+    18                                         def poisson_solve(rho, kSq_inv):
+    19                                             """solve the Poisson equation, given source field rho"""
+    20  170.867 MiB  -12.340 MiB          10       V_hat = -(np.fft.fftn(rho)) * kSq_inv
+    21  170.867 MiB  -12.340 MiB          10       V = np.real(np.fft.ifftn(V_hat))
+    22  170.867 MiB  -12.340 MiB          10       return V
+
+
+Filename: profiling-original-code/memory/memory_profiler/memory_profiling-ns.py
+
+Line #    Mem usage    Increment  Occurrences   Line Contents
+=============================================================
+    25  170.898 MiB 1683.461 MiB          20   @profile
+    26                                         def diffusion_solve(v, dt, nu, kSq):
+    27                                             """solve the diffusion equation over a timestep dt, given viscosity nu"""
+    28  170.898 MiB   -3.020 MiB          20       v_hat = (np.fft.fftn(v)) / (1.0 + dt * nu * kSq)
+    29  170.898 MiB    1.840 MiB          20       v = np.real(np.fft.ifftn(v_hat))
+    30  170.898 MiB   -0.641 MiB          20       return v
+
+
+Filename: profiling-original-code/memory/memory_profiler/memory_profiling-ns.py
+
+Line #    Mem usage    Increment  Occurrences   Line Contents
+=============================================================
+    32  170.898 MiB 3319.211 MiB          30   @profile
+    33                                         def grad(v, kx, ky):
+    34                                             """return gradient of v"""
+    35  170.898 MiB   -5.547 MiB          30       v_hat = np.fft.fftn(v)
+    36  170.898 MiB   -3.051 MiB          30       dvx = np.real(np.fft.ifftn(1j * kx * v_hat))
+    37  170.898 MiB    9.137 MiB          30       dvy = np.real(np.fft.ifftn(1j * ky * v_hat))
+    38  170.898 MiB   -5.641 MiB          30       return dvx, dvy
+
+
+Filename: profiling-original-code/memory/memory_profiler/memory_profiling-ns.py
+
+Line #    Mem usage    Increment  Occurrences   Line Contents
+=============================================================
+    40  170.867 MiB 1660.500 MiB          10   @profile
+    41                                         def div(vx, vy, kx, ky):
+    42                                             """return divergence of (vx,vy)"""
+    43  170.867 MiB  -12.340 MiB          10       dvx_x = np.real(np.fft.ifftn(1j * kx * np.fft.fftn(vx)))
+    44  170.867 MiB   -7.457 MiB          10       dvy_y = np.real(np.fft.ifftn(1j * ky * np.fft.fftn(vy)))
+    45  170.867 MiB  -12.340 MiB          10       return dvx_x + dvy_y
+
+
+Filename: profiling-original-code/memory/memory_profiler/memory_profiling-ns.py
+
+Line #    Mem usage    Increment  Occurrences   Line Contents
+=============================================================
+    47  170.898 MiB 1691.145 MiB          10   @profile
+    48                                         def curl(vx, vy, kx, ky):
+    49                                             """return curl of (vx,vy)"""
+    50  170.898 MiB   -0.266 MiB          10       dvx_y = np.real(np.fft.ifftn(1j * ky * np.fft.fftn(vx)))
+    51  170.898 MiB    4.562 MiB          10       dvy_x = np.real(np.fft.ifftn(1j * kx * np.fft.fftn(vy)))
+    52  170.898 MiB   -0.320 MiB          10       return dvy_x - dvx_y
+
+
+Filename: profiling-original-code/memory/memory_profiler/memory_profiling-ns.py
+
+Line #    Mem usage    Increment  Occurrences   Line Contents
+=============================================================
+    54  169.590 MiB 1620.016 MiB          20   @profile
+    55                                         def apply_dealias(f, dealias):
+    56                                             """apply 2/3 rule dealias to field f"""
+    57  170.840 MiB  -22.980 MiB          20       f_hat = dealias * np.fft.fftn(f)
+    58  170.867 MiB  -19.582 MiB          20       return np.real(np.fft.ifftn(f_hat))
+
+
