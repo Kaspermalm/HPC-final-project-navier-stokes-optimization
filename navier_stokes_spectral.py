@@ -66,7 +66,7 @@ def main():
     dt = 0.001  # timestep
     tOut = 0.01  # draw frequency
     nu = 0.001  # viscosity
-    plotRealTime = True  # switch on for plotting as the simulation goes along
+    plotRealTime = False  # switch on for plotting as the simulation goes along
 
     # Domain [0,1] x [0,1]
     L = 1
@@ -131,7 +131,7 @@ def main():
 
         # update time
         t += dt
-        print(t)
+        # print(t)
 
         # plot in real time
         plotThisTurn = False
@@ -150,7 +150,7 @@ def main():
             outputCount += 1
 
     # Save figure
-    plt.savefig("navier-stokes-spectral.png", dpi=240)
+    plt.savefig("navier_stokes_spectral.png", dpi=240)
     plt.show()
 
     return 0
