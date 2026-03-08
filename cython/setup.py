@@ -8,7 +8,13 @@ extensions = [
         sources=["cython/navier_stokes_spectral_c.pyx"],
         include_dirs=[np.get_include()],
         extra_compile_args=["-O3", "-ffast-math", "-march=native"],
-    )
+    ),
+    Extension(
+        name="navier_stokes_spectral_c",
+        sources=["cython/navier_stokes_spectral_c.pyx"],
+        include_dirs=[np.get_include()],
+        extra_compile_args=["-O3", "-ffast-math", "-march=native"],
+    ),
 ]
 
 

@@ -10,6 +10,8 @@ import matplotlib.pyplot as plt
 
 import pyfftw
 pyfftw.interfaces.cache.enable()
+fftn = pyfftw.interfaces.numpy_fft.fftn
+ifftn = pyfftw.interfaces.numpy_fft.ifftn
 
 cimport numpy as cnp
 
@@ -35,8 +37,8 @@ cdef inline cnp.ndarray[cnp.float64_t, ndim=2] poisson_solve(
     cdef cnp.ndarray[cnp.complex128_t, ndim=2] V_hat
     cdef cnp.ndarray[cnp.float64_t, ndim=2] V
 
-    V_hat = -(fft.fftn(rho)) * kSq_inv
-    V = np.real(fft.ifftn(V_hat))
+    V_hat = -(fftn(rho)) * kSq_inv
+    V = np.real(ifftn(V_hat))
     return V
 
 
@@ -51,8 +53,8 @@ cdef inline cnp.ndarray[cnp.float64_t, ndim=2] diffusion_solve(
     cdef cnp.ndarray[cnp.complex128_t, ndim=2] v_hat
     cdef cnp.ndarray[cnp.float64_t, ndim=2] v_new
 
-    v_hat = (fft.fftn(v)) / (1.0 + dt * nu * kSq)
-    v_new = np.real(fft.ifftn(v_hat))
+    v_hat = (fftn(v)) / (1.0 + dt * nu * kSq)
+    v_new = np.real(ifftn(v_hat))
     return v_new
 
 
@@ -66,9 +68,9 @@ cdef inline tuple grad(
     cdef cnp.ndarray[cnp.complex128_t, ndim=2] v_hat
     cdef cnp.ndarray[cnp.float64_t, ndim=2] dvx, dvy
 
-    v_hat = fft.fftn(v)
-    dvx = np.real(fft.ifftn(1j * kx * v_hat))
-    dvy = np.real(fft.ifftn(1j * ky * v_hat))
+    v_hat = fftn(v)
+    dvx = np.real(ifftn(1j * kx * v_hat))
+    dvy = np.real(ifftn(1j * ky * v_hat))
     return dvx, dvy
 
 
@@ -82,8 +84,8 @@ cdef inline cnp.ndarray[cnp.float64_t, ndim=2] div(
 
     cdef cnp.ndarray[cnp.float64_t, ndim=2] dvx_x, dvy_y
 
-    dvx_x = np.real(fft.ifftn(1j * kx * fft.fftn(vx)))
-    dvy_y = np.real(fft.ifftn(1j * ky * fft.fftn(vy)))
+    dvx_x = np.real(ifftn(1j * kx * fftn(vx)))
+    dvy_y = np.real(ifftn(1j * ky * fftn(vy)))
     return dvx_x + dvy_y
 
 
@@ -97,8 +99,8 @@ cdef inline cnp.ndarray[cnp.float64_t, ndim=2] curl(
 
     cdef cnp.ndarray[cnp.float64_t, ndim=2] dvx_y, dvy_x
 
-    dvx_y = np.real(fft.ifftn(1j * ky * fft.fftn(vx)))
-    dvy_x = np.real(fft.ifftn(1j * kx * fft.fftn(vy)))
+    dvx_y = np.real(ifftn(1j * ky * fftn(vx)))
+    dvy_x = np.real(ifftn(1j * kx * fftn(vy)))
     return dvy_x - dvx_y
 
 
@@ -110,8 +112,8 @@ cdef inline cnp.ndarray[cnp.float64_t, ndim=2] apply_dealias(
 
     cdef cnp.ndarray[cnp.complex128_t, ndim=2] f_hat
 
-    f_hat = dealias * fft.fftn(f)
-    return np.real(fft.ifftn(f_hat))
+    f_hat = dealias * fftn(f)
+    return np.real(ifftn(f_hat))
 
 
 cpdef main():
@@ -151,8 +153,8 @@ cpdef main():
 
     kmax = np.max(klin)
     kx, ky = np.meshgrid(klin, klin)
-    kx = fft.ifftshift(kx)
-    ky = fft.ifftshift(ky)
+    kx = np.fft.ifftshift(kx)
+    ky = np.fft.ifftshift(ky)
     kSq = kx**2 + ky**2
     kSq_inv = 1.0 / kSq
     kSq_inv[kSq == 0] = 1
