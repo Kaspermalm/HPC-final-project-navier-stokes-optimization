@@ -1,5 +1,6 @@
 from functools import wraps
 from timeit import default_timer as timer
+import numpy as np
 
 
 # Timing for iterate_gauss_seidel
@@ -14,3 +15,6 @@ def wtime(fn):
 
     measure_time.timings = []
     return measure_time
+
+def size_vector(num_steps):
+    return 2**np.arange(3, num_steps + 3)

@@ -1,5 +1,11 @@
 import numpy as np
+import matplotlib
+matplotlib.use('Agg')
 import matplotlib.pyplot as plt
+import cProfile
+import pstats
+import io
+import sys
 
 """
 Create Your Own Navier-Stokes Spectral Method Simulation (With Python)
@@ -52,11 +58,10 @@ def apply_dealias(f, dealias):
     return dealias * f_hat
 
 
-def main():
+def main(N=400):
     """Navier-Stokes Simulation"""
 
     # Simulation parameters
-    N = 400  # Spatial resolution
     t = 0  # current time of the simulation
     tEnd = 1  # time at which simulation ends
     dt = 0.001  # timestep
@@ -166,12 +171,19 @@ def main():
             plt.pause(0.001)
             outputCount += 1
 
-    # Save figure
-    plt.savefig("navier_stokes_spectral.png", dpi=240)
-    plt.show()
+    # Save figure (disabled for benchmarking)
+    # plt.savefig("navier_stokes_spectral.png", dpi=240)
+    # plt.show()
 
     return 0
 
 
 if __name__ == "__main__":
-    main()
+    N = int(sys.argv[1]) if len(sys.argv) > 1 else 400
+
+    profiler = cProfile.Profile()
+    profiler.run(f"main({N})")
+
+    stream = io.StringIO()
+    ps = pstats.Stats(profiler, stream=stream)
+    print(ps.total_tt)

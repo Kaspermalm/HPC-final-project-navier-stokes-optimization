@@ -67,7 +67,7 @@ def main():
 
     # Changed for testing:
     #tEnd = 1  # time at which simulation ends
-    tEnd = 0.01  # time at which simulation ends
+    tEnd = 1  # time at which simulation ends
 
     dt = 0.001  # timestep
     tOut = 0.01  # draw frequency

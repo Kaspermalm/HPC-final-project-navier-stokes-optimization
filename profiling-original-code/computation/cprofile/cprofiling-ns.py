@@ -4,9 +4,12 @@ import matplotlib.pyplot as plt
 # Importing cProfile and for the profiling
 import cProfile
 import pstats # For analyzing the profiling results
+import io
 
 # Importing sys to redirect stdout to a file for profiling output
 import sys
+
+from utils.timings import wtime
 
 """
 Create Your Own Navier-Stokes Spectral Method Simulation (With Python)
@@ -62,17 +65,16 @@ def apply_dealias(f, dealias):
     f_hat = dealias * np.fft.fftn(f)
     return np.real(np.fft.ifftn(f_hat))
 
-
-def main():
+@wtime
+def main(N=400):
     """Navier-Stokes Simulation"""
 
     # Simulation parameters
-    N = 400  # Spatial resolution
     t = 0  # current time of the simulation
 
     # Changed for testing:
     #tEnd = 1  # time at which simulation ends
-    tEnd = 0.01  # time at which simulation ends
+    tEnd = 1  # time at which simulation ends
 
     dt = 0.001  # timestep
     tOut = 0.01  # draw frequency
@@ -144,7 +146,7 @@ def main():
 
         # update time
         t += dt
-        print(t)
+        # print(t)
 
         # plot in real time (disabled for profiling) ###
         """
@@ -172,13 +174,13 @@ def main():
 
 
 if __name__ == "__main__":
+    N = int(sys.argv[1]) if len(sys.argv) > 1 else 400
+
     # Running main with cProfile
     profiler = cProfile.Profile()
-    profiler.run("main()")
+    profiler.run(f"main({N})")
 
-    # Save binary stats file
-    profiler.dump_stats("profiling-original-code/computation/cprofile/cprofiling-ns.stats")
-
-    with open("profiling-original-code/computation/cprofile/cprofiling-ns.txt", "w") as f:
-        p = pstats.Stats(profiler, stream=f) # Saving to file instead of terminal
-        p.strip_dirs().sort_stats("cumtime").print_stats() # Sorting cumtime to the file
+    # Extract and print total time (for benchmark capture)
+    stream = io.StringIO()
+    ps = pstats.Stats(profiler, stream=stream)
+    print(ps.total_tt)

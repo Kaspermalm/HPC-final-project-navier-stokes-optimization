@@ -4,6 +4,7 @@ import matplotlib.pyplot as plt
 # Importing cProfile and for the profiling
 import cProfile
 import pstats # For analyzing the profiling results
+import io
 
 # Importing pyfftw, calling the compiled FFTW C library underneath for faster FFTs
 """FFTW works by creating an optimized "plan" for a specific array size the first time.
@@ -73,16 +74,15 @@ def apply_dealias(f, dealias):
     return np.real(fft.ifftn(f_hat))
 
 
-def main():
+def main(N=400):
     """Navier-Stokes Simulation"""
 
     # Simulation parameters
-    N = 400  # Spatial resolution
     t = 0  # current time of the simulation
 
     # Changed for testing:
     #tEnd = 1  # time at which simulation ends
-    tEnd = 0.01  # time at which simulation ends
+    tEnd = 1  # time at which simulation ends
 
     dt = 0.001  # timestep
     tOut = 0.01  # draw frequency
@@ -154,7 +154,7 @@ def main():
 
         # update time
         t += dt
-        print(t)
+        # print(t)
 
         # plot in real time (disabled for profiling) ###
         """
@@ -182,13 +182,13 @@ def main():
 
 
 if __name__ == "__main__":
+    N = int(sys.argv[1]) if len(sys.argv) > 1 else 400
+
     # Running main with cProfile
     profiler = cProfile.Profile()
-    profiler.run("main()")
+    profiler.run(f"main({N})")
 
-    # Save binary stats file
-    profiler.dump_stats("profiling-optimized-code/computation-optimized/cprofile-optimized/cprofiling-compiled-code-ns.stats")
-
-    with open("profiling-optimized-code/computation-optimized/cprofile-optimized/cprofiling-compiled-code-ns.txt", "w") as f:
-        p = pstats.Stats(profiler, stream=f) # Saving to file instead of terminal
-        p.strip_dirs().sort_stats("cumtime").print_stats() # Sorting cumtime to the file
+    # Extract and print total time (for benchmark capture)
+    stream = io.StringIO()
+    ps = pstats.Stats(profiler, stream=stream)
+    print(ps.total_tt)
