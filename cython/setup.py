@@ -7,11 +7,13 @@ extensions = [
         name="navier_stokes_spectral_c",
         sources=["cython/navier_stokes_spectral_c.pyx"],
         include_dirs=[np.get_include()],
-        extra_compile_args=["-O3", "-ffast-math", "-march=native"],
+        extra_compile_args=["-O", "-ffast-math", "-march=native"],
     ),
     Extension(
-        name="navier_stokes_spectral_c",
-        sources=["cython/navier_stokes_spectral_c.pyx"],
+        name="navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real",
+        sources=[
+            "cython/navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx"
+        ],
         include_dirs=[np.get_include()],
         extra_compile_args=["-O3", "-ffast-math", "-march=native"],
     ),

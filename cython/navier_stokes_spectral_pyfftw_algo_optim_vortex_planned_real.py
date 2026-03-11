@@ -20,6 +20,7 @@ div(v) = 0
 try:
     profile
 except NameError:
+
     def profile(func):
         return func
 
@@ -53,9 +54,7 @@ def div(vx_hat, vy_hat, ikx, iky):
 @profile
 def curl(vx_hat, vy_hat, ikx, iky, diff_hat, work_hat, wz, ifft_wz):
     """return curl of (vx,vy)"""
-    np.multiply(ikx, vy_hat, out=diff_hat)
-    np.multiply(iky, vx_hat, out=work_hat)
-    np.subtract(diff_hat, work_hat, out=diff_hat)
+    diff_hat[:] = ikx * vy_hat - iky * vx_hat
     ifft_wz()
     return wz.real
 
@@ -188,26 +187,17 @@ def main(N=400):
         rhs_x_hat = apply_dealias(rhs_x_hat, dealias, fft_rhs_x)
         rhs_y_hat = apply_dealias(rhs_y_hat, dealias, fft_rhs_y)
 
-        np.multiply(rhs_x_hat, dt, out=work_hat)
-        np.add(vx_hat, work_hat, out=vx_hat)
-        np.multiply(rhs_y_hat, dt, out=work_hat)
-        np.add(vy_hat, work_hat, out=vy_hat)
+        vx_hat += dt * rhs_x_hat
+        vy_hat += dt * rhs_y_hat
 
         # Poisson solve for pressure
 
-        np.multiply(ikx, rhs_x_hat, out=div_rhs_hat)
-        np.multiply(iky, rhs_y_hat, out=work_hat)
-        np.add(div_rhs_hat, work_hat, out=div_rhs_hat)
-        np.multiply(div_rhs_hat, kSq_inv, out=P_hat)
-        P_hat *= -1.0
+        div_rhs_hat[:] = div(rhs_x_hat, rhs_y_hat, ikx, iky)
+        P_hat[:] = poisson_solve(div_rhs_hat, kSq_inv)
 
         #
-        np.multiply(ikx, P_hat, out=work_hat)
-        np.multiply(work_hat, dt, out=work_hat)
-        np.subtract(vx_hat, work_hat, out=vx_hat)
-        np.multiply(iky, P_hat, out=work_hat)
-        np.multiply(work_hat, dt, out=work_hat)
-        np.subtract(vy_hat, work_hat, out=vy_hat)
+        vx_hat -= dt * ikx * P_hat
+        vy_hat -= dt * iky * P_hat
 
         # Diffusion solve
         # diffusion_solve(vx_hat, vy_hat, diffuse_denom) # removed to keep inline
