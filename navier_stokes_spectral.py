@@ -1,5 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
+import h5py
 
 """
 Create Your Own Navier-Stokes Spectral Method Simulation (With Python)
@@ -12,7 +13,7 @@ v_t + (v.nabla) v = nu * nabla^2 v + nabla P
 div(v) = 0
 
 """
-
+SAVE_TO_FILE = False
 
 def poisson_solve(rho, kSq_inv):
     """solve the Poisson equation, given source field rho"""
@@ -100,6 +101,7 @@ def main(N=400):
 
     # Main Loop
     for i in range(Nt):
+        wz = curl(vx, vy, kx, ky)
         # Advection: rhs = -(v.grad)v
         dvx_x, dvx_y = grad(vx, kx, ky)
         dvy_x, dvy_y = grad(vy, kx, ky)
@@ -127,7 +129,7 @@ def main(N=400):
         vy = diffusion_solve(vy, dt, nu, kSq)
 
         # vorticity (for plotting)
-        wz = curl(vx, vy, kx, ky)
+        #wz = curl(vx, vy, kx, ky)
 
         # update time
         t += dt
@@ -153,8 +155,13 @@ def main(N=400):
     # Save figure
     #plt.savefig("navier_stokes_spectral.png", dpi=240)
     #plt.show()
-
-    return 0
+    # Save data
+    if SAVE_TO_FILE:
+        with h5py.File("benchmark_data.hdf5", 'w') as f:
+            f["/true_data/wz"] = wz
+            f["/true_data/vx"] = vx
+            f["/true_data/vy"] = vy
+    return wz, vx, vy
 
 
 if __name__ == "__main__":

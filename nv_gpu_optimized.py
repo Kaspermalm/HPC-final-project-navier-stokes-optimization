@@ -166,8 +166,9 @@ def main(N=400):
     # Save figure
     #plt.savefig("navier_stokes_spectral.png", dpi=240)
     #plt.show()
+    #wz = curl(vx, vy, kx, ky)
 
-    return
+    return wz.cpu().numpy(), vx.cpu().numpy(), vy.cpu().numpy()
 
 
 if __name__ == "__main__":
