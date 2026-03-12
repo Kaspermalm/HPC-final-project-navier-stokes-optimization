@@ -11,7 +11,7 @@
             "/opt/homebrew/Caskroom/miniforge/base/envs/HPC/lib/python3.14/site-packages/numpy/_core/include/numpy/ufuncobject.h"
         ],
         "extra_compile_args": [
-            "-O",
+            "-O3",
             "-ffast-math",
             "-march=native"
         ],
@@ -2190,6 +2190,12 @@ static CYTHON_INLINE void __Pyx_SafeReleaseBuffer(Py_buffer* info);
 static Py_ssize_t __Pyx_minusones[] = { -1, -1, -1, -1, -1, -1, -1, -1 };
 static Py_ssize_t __Pyx_zeros[] = { 0, 0, 0, 0, 0, 0, 0, 0 };
 
+/* ExtTypeTest.proto */
+static CYTHON_INLINE int __Pyx_TypeTest(PyObject *obj, PyTypeObject *type);
+
+/* BufferFallbackError.proto */
+static void __Pyx_RaiseBufferFallbackError(void);
+
 /* PyObjectGetAttrStrNoError.proto (used by GetBuiltinName) */
 static CYTHON_INLINE PyObject* __Pyx_PyObject_GetAttrStrNoError(PyObject* obj, PyObject* attr_name);
 
@@ -2260,12 +2266,6 @@ static int __Pyx_VectorcallBuilder_AddArgStr(const char *key, PyObject *value, P
 #define __Pyx_VectorcallBuilder_AddArg(key, value, builder, args, n) PyDict_SetItem(builder, key, value)
 #define __Pyx_VectorcallBuilder_AddArgStr(key, value, builder, args, n) PyDict_SetItemString(builder, key, value)
 #endif
-
-/* ExtTypeTest.proto */
-static CYTHON_INLINE int __Pyx_TypeTest(PyObject *obj, PyTypeObject *type);
-
-/* BufferFallbackError.proto */
-static void __Pyx_RaiseBufferFallbackError(void);
 
 /* GetItemInt.proto */
 #define __Pyx_GetItemInt(o, i, type, is_signed, to_py_func, is_list, wraparound, boundscheck, has_gil, unsafe_shared)\
@@ -2888,7 +2888,7 @@ int __pyx_module_is_main_navier_stokes_spectral_pyfftw_algo_optim_vortex_planned
 static PyObject *__pyx_pf_60navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real_profile(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_func); /* proto */
 static PyObject *__pyx_pf_60navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real_2poisson_solve(CYTHON_UNUSED PyObject *__pyx_self, PyArrayObject *__pyx_v_rho_hat, PyArrayObject *__pyx_v_kSq_inv); /* proto */
 static PyObject *__pyx_pf_60navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real_4div(CYTHON_UNUSED PyObject *__pyx_self, PyArrayObject *__pyx_v_vx_hat, PyArrayObject *__pyx_v_vy_hat, PyArrayObject *__pyx_v_ikx, PyArrayObject *__pyx_v_iky); /* proto */
-static PyObject *__pyx_pf_60navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real_6curl(CYTHON_UNUSED PyObject *__pyx_self, PyArrayObject *__pyx_v_vx_hat, PyArrayObject *__pyx_v_vy_hat, PyArrayObject *__pyx_v_ikx, PyArrayObject *__pyx_v_iky, PyArrayObject *__pyx_v_diff_hat, PyArrayObject *__pyx_v_work_hat, PyArrayObject *__pyx_v_wz, PyObject *__pyx_v_ifft_wz); /* proto */
+static PyObject *__pyx_pf_60navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real_6curl(CYTHON_UNUSED PyObject *__pyx_self, PyArrayObject *__pyx_v_vx_hat, PyArrayObject *__pyx_v_vy_hat, PyArrayObject *__pyx_v_ikx, PyArrayObject *__pyx_v_iky, PyArrayObject *__pyx_v_diff_hat, CYTHON_UNUSED PyArrayObject *__pyx_v_work_hat, PyArrayObject *__pyx_v_wz, PyObject *__pyx_v_ifft_wz); /* proto */
 static PyObject *__pyx_pf_60navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real_8apply_dealias(CYTHON_UNUSED PyObject *__pyx_self, PyArrayObject *__pyx_v_f_hat, PyArrayObject *__pyx_v_dealias, PyObject *__pyx_v_fft_f); /* proto */
 static PyObject *__pyx_pf_60navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real_10main(CYTHON_UNUSED PyObject *__pyx_self, int __pyx_v_N); /* proto */
 /* #### Code section: late_includes ### */
@@ -2933,7 +2933,7 @@ typedef struct {
   PyObject *__pyx_slice[1];
   PyObject *__pyx_tuple[3];
   PyObject *__pyx_codeobj_tab[6];
-  PyObject *__pyx_string_tab[123];
+  PyObject *__pyx_string_tab[119];
   PyObject *__pyx_number_tab[6];
 /* #### Code section: module_state_contents ### */
 /* CommonTypesMetaclass.module_state_decls */
@@ -2992,112 +2992,108 @@ static __pyx_mstatetype * const __pyx_mstate_global = &__pyx_mstate_global_stati
 #define __pyx_n_u_P_hat __pyx_string_tab[14]
 #define __pyx_n_u_Pyx_PyDict_NextRef __pyx_string_tab[15]
 #define __pyx_n_u_abs __pyx_string_tab[16]
-#define __pyx_n_u_add __pyx_string_tab[17]
-#define __pyx_n_u_apply_dealias __pyx_string_tab[18]
-#define __pyx_n_u_asyncio_coroutines __pyx_string_tab[19]
-#define __pyx_n_u_axes __pyx_string_tab[20]
-#define __pyx_n_u_ceil __pyx_string_tab[21]
-#define __pyx_n_u_class_getitem __pyx_string_tab[22]
-#define __pyx_n_u_cline_in_traceback __pyx_string_tab[23]
-#define __pyx_n_u_complex128 __pyx_string_tab[24]
-#define __pyx_n_u_curl __pyx_string_tab[25]
-#define __pyx_n_u_d __pyx_string_tab[26]
-#define __pyx_n_u_dealias __pyx_string_tab[27]
-#define __pyx_n_u_diff_hat __pyx_string_tab[28]
-#define __pyx_n_u_diffuse_denom __pyx_string_tab[29]
-#define __pyx_n_u_direction __pyx_string_tab[30]
-#define __pyx_n_u_div __pyx_string_tab[31]
-#define __pyx_n_u_div_rhs_hat __pyx_string_tab[32]
-#define __pyx_n_u_dt __pyx_string_tab[33]
-#define __pyx_n_u_dtype __pyx_string_tab[34]
-#define __pyx_n_u_dx __pyx_string_tab[35]
-#define __pyx_n_u_empty_aligned __pyx_string_tab[36]
-#define __pyx_n_u_f_hat __pyx_string_tab[37]
-#define __pyx_n_u_fft __pyx_string_tab[38]
-#define __pyx_n_u_fft_f __pyx_string_tab[39]
-#define __pyx_n_u_fft_rhs_x __pyx_string_tab[40]
-#define __pyx_n_u_fft_rhs_y __pyx_string_tab[41]
-#define __pyx_n_u_fft_vx __pyx_string_tab[42]
-#define __pyx_n_u_fft_vy __pyx_string_tab[43]
-#define __pyx_n_u_fftfreq __pyx_string_tab[44]
-#define __pyx_n_u_float64 __pyx_string_tab[45]
-#define __pyx_n_u_func __pyx_string_tab[46]
-#define __pyx_n_u_func_2 __pyx_string_tab[47]
-#define __pyx_n_u_i __pyx_string_tab[48]
-#define __pyx_n_u_ifft_vx __pyx_string_tab[49]
-#define __pyx_n_u_ifft_vy __pyx_string_tab[50]
-#define __pyx_n_u_ifft_wz __pyx_string_tab[51]
-#define __pyx_n_u_ikx __pyx_string_tab[52]
-#define __pyx_n_u_iky __pyx_string_tab[53]
-#define __pyx_n_u_is_coroutine __pyx_string_tab[54]
-#define __pyx_n_u_items __pyx_string_tab[55]
-#define __pyx_n_u_kSq __pyx_string_tab[56]
-#define __pyx_n_u_kSq_inv __pyx_string_tab[57]
-#define __pyx_n_u_kmax __pyx_string_tab[58]
-#define __pyx_n_u_kx __pyx_string_tab[59]
-#define __pyx_n_u_ky __pyx_string_tab[60]
-#define __pyx_n_u_linspace __pyx_string_tab[61]
-#define __pyx_n_u_main __pyx_string_tab[62]
-#define __pyx_n_u_main_2 __pyx_string_tab[63]
-#define __pyx_n_u_mask __pyx_string_tab[64]
-#define __pyx_n_u_matplotlib_pyplot __pyx_string_tab[65]
-#define __pyx_n_u_max __pyx_string_tab[66]
-#define __pyx_n_u_meshgrid __pyx_string_tab[67]
-#define __pyx_n_u_module __pyx_string_tab[68]
-#define __pyx_n_u_multiply __pyx_string_tab[69]
-#define __pyx_n_u_name __pyx_string_tab[70]
-#define __pyx_n_u_navier_stokes_spectral_pyfftw_al __pyx_string_tab[71]
-#define __pyx_n_u_normalise_idft __pyx_string_tab[72]
-#define __pyx_n_u_np __pyx_string_tab[73]
-#define __pyx_n_u_nu __pyx_string_tab[74]
-#define __pyx_n_u_num __pyx_string_tab[75]
-#define __pyx_n_u_numpy __pyx_string_tab[76]
-#define __pyx_n_u_out __pyx_string_tab[77]
-#define __pyx_n_u_outputCount __pyx_string_tab[78]
-#define __pyx_n_u_pi __pyx_string_tab[79]
-#define __pyx_n_u_plotRealTime __pyx_string_tab[80]
-#define __pyx_n_u_plotThisTurn __pyx_string_tab[81]
-#define __pyx_n_u_plt __pyx_string_tab[82]
-#define __pyx_n_u_poisson_solve __pyx_string_tab[83]
-#define __pyx_n_u_pop __pyx_string_tab[84]
-#define __pyx_n_u_profile __pyx_string_tab[85]
-#define __pyx_n_u_pyfftw __pyx_string_tab[86]
-#define __pyx_n_u_pyplot __pyx_string_tab[87]
-#define __pyx_n_u_qualname __pyx_string_tab[88]
-#define __pyx_n_u_real __pyx_string_tab[89]
-#define __pyx_n_u_rfftfreq __pyx_string_tab[90]
-#define __pyx_n_u_rho_hat __pyx_string_tab[91]
-#define __pyx_n_u_rhs_x __pyx_string_tab[92]
-#define __pyx_n_u_rhs_x_hat __pyx_string_tab[93]
-#define __pyx_n_u_rhs_y __pyx_string_tab[94]
-#define __pyx_n_u_rhs_y_hat __pyx_string_tab[95]
-#define __pyx_n_u_set_name __pyx_string_tab[96]
-#define __pyx_n_u_setdefault __pyx_string_tab[97]
-#define __pyx_n_u_sin __pyx_string_tab[98]
-#define __pyx_n_u_subtract __pyx_string_tab[99]
-#define __pyx_n_u_t __pyx_string_tab[100]
-#define __pyx_n_u_tEnd __pyx_string_tab[101]
-#define __pyx_n_u_tOut __pyx_string_tab[102]
-#define __pyx_n_u_test __pyx_string_tab[103]
-#define __pyx_n_u_values __pyx_string_tab[104]
-#define __pyx_n_u_vx __pyx_string_tab[105]
-#define __pyx_n_u_vx_hat __pyx_string_tab[106]
-#define __pyx_n_u_vx_hat_ifft __pyx_string_tab[107]
-#define __pyx_n_u_vy __pyx_string_tab[108]
-#define __pyx_n_u_vy_hat __pyx_string_tab[109]
-#define __pyx_n_u_vy_hat_ifft __pyx_string_tab[110]
-#define __pyx_n_u_work_hat __pyx_string_tab[111]
-#define __pyx_n_u_wz __pyx_string_tab[112]
-#define __pyx_n_u_xlin __pyx_string_tab[113]
-#define __pyx_n_u_xx __pyx_string_tab[114]
-#define __pyx_n_u_yy __pyx_string_tab[115]
-#define __pyx_n_u_zeros_like __pyx_string_tab[116]
-#define __pyx_kp_b_iso88591_1HBa __pyx_string_tab[117]
-#define __pyx_kp_b_iso88591_4r_b __pyx_string_tab[118]
-#define __pyx_kp_b_iso88591_A_q __pyx_string_tab[119]
-#define __pyx_kp_b_iso88591_A_q_Q_q_Q_Q_b_2Rq_A_1_V_3d_PQ_V __pyx_string_tab[120]
-#define __pyx_kp_b_iso88591_Q_1 __pyx_string_tab[121]
-#define __pyx_kp_b_iso88591_iq_XT_iq_XT_iq_D_1_2Q __pyx_string_tab[122]
+#define __pyx_n_u_apply_dealias __pyx_string_tab[17]
+#define __pyx_n_u_asyncio_coroutines __pyx_string_tab[18]
+#define __pyx_n_u_axes __pyx_string_tab[19]
+#define __pyx_n_u_ceil __pyx_string_tab[20]
+#define __pyx_n_u_class_getitem __pyx_string_tab[21]
+#define __pyx_n_u_cline_in_traceback __pyx_string_tab[22]
+#define __pyx_n_u_complex128 __pyx_string_tab[23]
+#define __pyx_n_u_curl __pyx_string_tab[24]
+#define __pyx_n_u_d __pyx_string_tab[25]
+#define __pyx_n_u_dealias __pyx_string_tab[26]
+#define __pyx_n_u_diff_hat __pyx_string_tab[27]
+#define __pyx_n_u_diffuse_denom __pyx_string_tab[28]
+#define __pyx_n_u_direction __pyx_string_tab[29]
+#define __pyx_n_u_div __pyx_string_tab[30]
+#define __pyx_n_u_div_rhs_hat __pyx_string_tab[31]
+#define __pyx_n_u_dt __pyx_string_tab[32]
+#define __pyx_n_u_dtype __pyx_string_tab[33]
+#define __pyx_n_u_dx __pyx_string_tab[34]
+#define __pyx_n_u_empty_aligned __pyx_string_tab[35]
+#define __pyx_n_u_f_hat __pyx_string_tab[36]
+#define __pyx_n_u_fft __pyx_string_tab[37]
+#define __pyx_n_u_fft_f __pyx_string_tab[38]
+#define __pyx_n_u_fft_rhs_x __pyx_string_tab[39]
+#define __pyx_n_u_fft_rhs_y __pyx_string_tab[40]
+#define __pyx_n_u_fft_vx __pyx_string_tab[41]
+#define __pyx_n_u_fft_vy __pyx_string_tab[42]
+#define __pyx_n_u_fftfreq __pyx_string_tab[43]
+#define __pyx_n_u_float64 __pyx_string_tab[44]
+#define __pyx_n_u_func __pyx_string_tab[45]
+#define __pyx_n_u_func_2 __pyx_string_tab[46]
+#define __pyx_n_u_i __pyx_string_tab[47]
+#define __pyx_n_u_ifft_vx __pyx_string_tab[48]
+#define __pyx_n_u_ifft_vy __pyx_string_tab[49]
+#define __pyx_n_u_ifft_wz __pyx_string_tab[50]
+#define __pyx_n_u_ikx __pyx_string_tab[51]
+#define __pyx_n_u_iky __pyx_string_tab[52]
+#define __pyx_n_u_is_coroutine __pyx_string_tab[53]
+#define __pyx_n_u_items __pyx_string_tab[54]
+#define __pyx_n_u_kSq __pyx_string_tab[55]
+#define __pyx_n_u_kSq_inv __pyx_string_tab[56]
+#define __pyx_n_u_kmax __pyx_string_tab[57]
+#define __pyx_n_u_kx __pyx_string_tab[58]
+#define __pyx_n_u_ky __pyx_string_tab[59]
+#define __pyx_n_u_linspace __pyx_string_tab[60]
+#define __pyx_n_u_main __pyx_string_tab[61]
+#define __pyx_n_u_main_2 __pyx_string_tab[62]
+#define __pyx_n_u_mask __pyx_string_tab[63]
+#define __pyx_n_u_matplotlib_pyplot __pyx_string_tab[64]
+#define __pyx_n_u_max __pyx_string_tab[65]
+#define __pyx_n_u_meshgrid __pyx_string_tab[66]
+#define __pyx_n_u_module __pyx_string_tab[67]
+#define __pyx_n_u_name __pyx_string_tab[68]
+#define __pyx_n_u_navier_stokes_spectral_pyfftw_al __pyx_string_tab[69]
+#define __pyx_n_u_normalise_idft __pyx_string_tab[70]
+#define __pyx_n_u_np __pyx_string_tab[71]
+#define __pyx_n_u_nu __pyx_string_tab[72]
+#define __pyx_n_u_num __pyx_string_tab[73]
+#define __pyx_n_u_numpy __pyx_string_tab[74]
+#define __pyx_n_u_outputCount __pyx_string_tab[75]
+#define __pyx_n_u_pi __pyx_string_tab[76]
+#define __pyx_n_u_plotRealTime __pyx_string_tab[77]
+#define __pyx_n_u_plotThisTurn __pyx_string_tab[78]
+#define __pyx_n_u_plt __pyx_string_tab[79]
+#define __pyx_n_u_poisson_solve __pyx_string_tab[80]
+#define __pyx_n_u_pop __pyx_string_tab[81]
+#define __pyx_n_u_profile __pyx_string_tab[82]
+#define __pyx_n_u_pyfftw __pyx_string_tab[83]
+#define __pyx_n_u_pyplot __pyx_string_tab[84]
+#define __pyx_n_u_qualname __pyx_string_tab[85]
+#define __pyx_n_u_real __pyx_string_tab[86]
+#define __pyx_n_u_rfftfreq __pyx_string_tab[87]
+#define __pyx_n_u_rho_hat __pyx_string_tab[88]
+#define __pyx_n_u_rhs_x __pyx_string_tab[89]
+#define __pyx_n_u_rhs_x_hat __pyx_string_tab[90]
+#define __pyx_n_u_rhs_y __pyx_string_tab[91]
+#define __pyx_n_u_rhs_y_hat __pyx_string_tab[92]
+#define __pyx_n_u_set_name __pyx_string_tab[93]
+#define __pyx_n_u_setdefault __pyx_string_tab[94]
+#define __pyx_n_u_sin __pyx_string_tab[95]
+#define __pyx_n_u_t __pyx_string_tab[96]
+#define __pyx_n_u_tEnd __pyx_string_tab[97]
+#define __pyx_n_u_tOut __pyx_string_tab[98]
+#define __pyx_n_u_test __pyx_string_tab[99]
+#define __pyx_n_u_values __pyx_string_tab[100]
+#define __pyx_n_u_vx __pyx_string_tab[101]
+#define __pyx_n_u_vx_hat __pyx_string_tab[102]
+#define __pyx_n_u_vx_hat_ifft __pyx_string_tab[103]
+#define __pyx_n_u_vy __pyx_string_tab[104]
+#define __pyx_n_u_vy_hat __pyx_string_tab[105]
+#define __pyx_n_u_vy_hat_ifft __pyx_string_tab[106]
+#define __pyx_n_u_work_hat __pyx_string_tab[107]
+#define __pyx_n_u_wz __pyx_string_tab[108]
+#define __pyx_n_u_xlin __pyx_string_tab[109]
+#define __pyx_n_u_xx __pyx_string_tab[110]
+#define __pyx_n_u_yy __pyx_string_tab[111]
+#define __pyx_n_u_zeros_like __pyx_string_tab[112]
+#define __pyx_kp_b_iso88591_1HBa __pyx_string_tab[113]
+#define __pyx_kp_b_iso88591_4r_b __pyx_string_tab[114]
+#define __pyx_kp_b_iso88591_A_q __pyx_string_tab[115]
+#define __pyx_kp_b_iso88591_A_q_Q_q_Q_Q_b_2Rq_A_1_V_3d_PQ_V __pyx_string_tab[116]
+#define __pyx_kp_b_iso88591_F_b_r_Rq_1_2Q __pyx_string_tab[117]
+#define __pyx_kp_b_iso88591_Q_1 __pyx_string_tab[118]
 #define __pyx_float_0_0 __pyx_number_tab[0]
 #define __pyx_float_1_0 __pyx_number_tab[1]
 #define __pyx_float_2_0 __pyx_number_tab[2]
@@ -3137,7 +3133,7 @@ static CYTHON_SMALL_CODE int __pyx_m_clear(PyObject *m) {
   for (int i=0; i<1; ++i) { Py_CLEAR(clear_module_state->__pyx_slice[i]); }
   for (int i=0; i<3; ++i) { Py_CLEAR(clear_module_state->__pyx_tuple[i]); }
   for (int i=0; i<6; ++i) { Py_CLEAR(clear_module_state->__pyx_codeobj_tab[i]); }
-  for (int i=0; i<123; ++i) { Py_CLEAR(clear_module_state->__pyx_string_tab[i]); }
+  for (int i=0; i<119; ++i) { Py_CLEAR(clear_module_state->__pyx_string_tab[i]); }
   for (int i=0; i<6; ++i) { Py_CLEAR(clear_module_state->__pyx_number_tab[i]); }
 /* #### Code section: module_state_clear_contents ### */
 /* CommonTypesMetaclass.module_state_clear */
@@ -3180,7 +3176,7 @@ static CYTHON_SMALL_CODE int __pyx_m_traverse(PyObject *m, visitproc visit, void
   for (int i=0; i<1; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_slice[i]); }
   for (int i=0; i<3; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_tuple[i]); }
   for (int i=0; i<6; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_codeobj_tab[i]); }
-  for (int i=0; i<123; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_string_tab[i]); }
+  for (int i=0; i<119; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_string_tab[i]); }
   for (int i=0; i<6; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_number_tab[i]); }
 /* #### Code section: module_state_traverse_contents ### */
 /* CommonTypesMetaclass.module_state_traverse */
@@ -5505,7 +5501,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   PyArrayObject *__pyx_v_ikx = 0;
   PyArrayObject *__pyx_v_iky = 0;
   PyArrayObject *__pyx_v_diff_hat = 0;
-  PyArrayObject *__pyx_v_work_hat = 0;
+  CYTHON_UNUSED PyArrayObject *__pyx_v_work_hat = 0;
   PyArrayObject *__pyx_v_wz = 0;
   PyObject *__pyx_v_ifft_wz = 0;
   #if !CYTHON_METH_FASTCALL
@@ -5641,7 +5637,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_60navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real_6curl(CYTHON_UNUSED PyObject *__pyx_self, PyArrayObject *__pyx_v_vx_hat, PyArrayObject *__pyx_v_vy_hat, PyArrayObject *__pyx_v_ikx, PyArrayObject *__pyx_v_iky, PyArrayObject *__pyx_v_diff_hat, PyArrayObject *__pyx_v_work_hat, PyArrayObject *__pyx_v_wz, PyObject *__pyx_v_ifft_wz) {
+static PyObject *__pyx_pf_60navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real_6curl(CYTHON_UNUSED PyObject *__pyx_self, PyArrayObject *__pyx_v_vx_hat, PyArrayObject *__pyx_v_vy_hat, PyArrayObject *__pyx_v_ikx, PyArrayObject *__pyx_v_iky, PyArrayObject *__pyx_v_diff_hat, CYTHON_UNUSED PyArrayObject *__pyx_v_work_hat, PyArrayObject *__pyx_v_wz, PyObject *__pyx_v_ifft_wz) {
   __Pyx_LocalBuf_ND __pyx_pybuffernd_diff_hat;
   __Pyx_Buffer __pyx_pybuffer_diff_hat;
   __Pyx_LocalBuf_ND __pyx_pybuffernd_ikx;
@@ -5661,8 +5657,7 @@ static PyObject *__pyx_pf_60navier_stokes_spectral_pyfftw_algo_optim_vortex_plan
   PyObject *__pyx_t_1 = NULL;
   PyObject *__pyx_t_2 = NULL;
   PyObject *__pyx_t_3 = NULL;
-  PyObject *__pyx_t_4 = NULL;
-  size_t __pyx_t_5;
+  size_t __pyx_t_4;
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
@@ -5734,164 +5729,65 @@ static PyObject *__pyx_pf_60navier_stokes_spectral_pyfftw_algo_optim_vortex_plan
   /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":86
  * ):
  *     """return curl of (vx,vy)"""
- *     np.multiply(ikx, vy_hat, out=diff_hat)             # <<<<<<<<<<<<<<
- *     np.multiply(iky, vx_hat, out=work_hat)
- *     np.subtract(diff_hat, work_hat, out=diff_hat)
-*/
-  __pyx_t_2 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 86, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_multiply); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 86, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_5 = 1;
-  #if CYTHON_UNPACK_METHODS
-  if (unlikely(PyMethod_Check(__pyx_t_4))) {
-    __pyx_t_2 = PyMethod_GET_SELF(__pyx_t_4);
-    assert(__pyx_t_2);
-    PyObject* __pyx__function = PyMethod_GET_FUNCTION(__pyx_t_4);
-    __Pyx_INCREF(__pyx_t_2);
-    __Pyx_INCREF(__pyx__function);
-    __Pyx_DECREF_SET(__pyx_t_4, __pyx__function);
-    __pyx_t_5 = 0;
-  }
-  #endif
-  {
-    PyObject *__pyx_callargs[3 + ((CYTHON_VECTORCALL) ? 1 : 0)] = {__pyx_t_2, ((PyObject *)__pyx_v_ikx), ((PyObject *)__pyx_v_vy_hat)};
-    __pyx_t_3 = __Pyx_MakeVectorcallBuilderKwds(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 86, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_3);
-    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_out, ((PyObject *)__pyx_v_diff_hat), __pyx_t_3, __pyx_callargs+3, 0) < (0)) __PYX_ERR(0, 86, __pyx_L1_error)
-    __pyx_t_1 = __Pyx_Object_Vectorcall_CallFromBuilder((PyObject*)__pyx_t_4, __pyx_callargs+__pyx_t_5, (3-__pyx_t_5) | (__pyx_t_5*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET), __pyx_t_3);
-    __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 86, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_1);
-  }
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-
-  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":87
- *     """return curl of (vx,vy)"""
- *     np.multiply(ikx, vy_hat, out=diff_hat)
- *     np.multiply(iky, vx_hat, out=work_hat)             # <<<<<<<<<<<<<<
- *     np.subtract(diff_hat, work_hat, out=diff_hat)
- *     ifft_wz()
-*/
-  __pyx_t_4 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 87, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_multiply); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 87, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_5 = 1;
-  #if CYTHON_UNPACK_METHODS
-  if (unlikely(PyMethod_Check(__pyx_t_2))) {
-    __pyx_t_4 = PyMethod_GET_SELF(__pyx_t_2);
-    assert(__pyx_t_4);
-    PyObject* __pyx__function = PyMethod_GET_FUNCTION(__pyx_t_2);
-    __Pyx_INCREF(__pyx_t_4);
-    __Pyx_INCREF(__pyx__function);
-    __Pyx_DECREF_SET(__pyx_t_2, __pyx__function);
-    __pyx_t_5 = 0;
-  }
-  #endif
-  {
-    PyObject *__pyx_callargs[3 + ((CYTHON_VECTORCALL) ? 1 : 0)] = {__pyx_t_4, ((PyObject *)__pyx_v_iky), ((PyObject *)__pyx_v_vx_hat)};
-    __pyx_t_3 = __Pyx_MakeVectorcallBuilderKwds(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 87, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_3);
-    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_out, ((PyObject *)__pyx_v_work_hat), __pyx_t_3, __pyx_callargs+3, 0) < (0)) __PYX_ERR(0, 87, __pyx_L1_error)
-    __pyx_t_1 = __Pyx_Object_Vectorcall_CallFromBuilder((PyObject*)__pyx_t_2, __pyx_callargs+__pyx_t_5, (3-__pyx_t_5) | (__pyx_t_5*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET), __pyx_t_3);
-    __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 87, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_1);
-  }
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-
-  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":88
- *     np.multiply(ikx, vy_hat, out=diff_hat)
- *     np.multiply(iky, vx_hat, out=work_hat)
- *     np.subtract(diff_hat, work_hat, out=diff_hat)             # <<<<<<<<<<<<<<
+ *     diff_hat[:] = ikx * vy_hat - iky * vx_hat             # <<<<<<<<<<<<<<
  *     ifft_wz()
  *     return wz.real
 */
-  __pyx_t_2 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 88, __pyx_L1_error)
+  __pyx_t_1 = PyNumber_Multiply(((PyObject *)__pyx_v_ikx), ((PyObject *)__pyx_v_vy_hat)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 86, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_2 = PyNumber_Multiply(((PyObject *)__pyx_v_iky), ((PyObject *)__pyx_v_vx_hat)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 86, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_t_3 = PyNumber_Subtract(__pyx_t_1, __pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 86, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_subtract); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 88, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_5 = 1;
-  #if CYTHON_UNPACK_METHODS
-  if (unlikely(PyMethod_Check(__pyx_t_4))) {
-    __pyx_t_2 = PyMethod_GET_SELF(__pyx_t_4);
-    assert(__pyx_t_2);
-    PyObject* __pyx__function = PyMethod_GET_FUNCTION(__pyx_t_4);
-    __Pyx_INCREF(__pyx_t_2);
-    __Pyx_INCREF(__pyx__function);
-    __Pyx_DECREF_SET(__pyx_t_4, __pyx__function);
-    __pyx_t_5 = 0;
-  }
-  #endif
-  {
-    PyObject *__pyx_callargs[3 + ((CYTHON_VECTORCALL) ? 1 : 0)] = {__pyx_t_2, ((PyObject *)__pyx_v_diff_hat), ((PyObject *)__pyx_v_work_hat)};
-    __pyx_t_3 = __Pyx_MakeVectorcallBuilderKwds(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 88, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_3);
-    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_out, ((PyObject *)__pyx_v_diff_hat), __pyx_t_3, __pyx_callargs+3, 0) < (0)) __PYX_ERR(0, 88, __pyx_L1_error)
-    __pyx_t_1 = __Pyx_Object_Vectorcall_CallFromBuilder((PyObject*)__pyx_t_4, __pyx_callargs+__pyx_t_5, (3-__pyx_t_5) | (__pyx_t_5*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET), __pyx_t_3);
-    __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 88, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_1);
-  }
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  if (unlikely((PyObject_SetItem(((PyObject *)__pyx_v_diff_hat), __pyx_mstate_global->__pyx_slice[0], __pyx_t_3) < 0))) __PYX_ERR(0, 86, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":89
- *     np.multiply(iky, vx_hat, out=work_hat)
- *     np.subtract(diff_hat, work_hat, out=diff_hat)
+  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":87
+ *     """return curl of (vx,vy)"""
+ *     diff_hat[:] = ikx * vy_hat - iky * vx_hat
  *     ifft_wz()             # <<<<<<<<<<<<<<
  *     return wz.real
  * 
 */
-  __pyx_t_4 = NULL;
+  __pyx_t_2 = NULL;
   __Pyx_INCREF(__pyx_v_ifft_wz);
-  __pyx_t_3 = __pyx_v_ifft_wz; 
-  __pyx_t_5 = 1;
+  __pyx_t_1 = __pyx_v_ifft_wz; 
+  __pyx_t_4 = 1;
   #if CYTHON_UNPACK_METHODS
-  if (unlikely(PyMethod_Check(__pyx_t_3))) {
-    __pyx_t_4 = PyMethod_GET_SELF(__pyx_t_3);
-    assert(__pyx_t_4);
-    PyObject* __pyx__function = PyMethod_GET_FUNCTION(__pyx_t_3);
-    __Pyx_INCREF(__pyx_t_4);
+  if (unlikely(PyMethod_Check(__pyx_t_1))) {
+    __pyx_t_2 = PyMethod_GET_SELF(__pyx_t_1);
+    assert(__pyx_t_2);
+    PyObject* __pyx__function = PyMethod_GET_FUNCTION(__pyx_t_1);
+    __Pyx_INCREF(__pyx_t_2);
     __Pyx_INCREF(__pyx__function);
-    __Pyx_DECREF_SET(__pyx_t_3, __pyx__function);
-    __pyx_t_5 = 0;
+    __Pyx_DECREF_SET(__pyx_t_1, __pyx__function);
+    __pyx_t_4 = 0;
   }
   #endif
   {
-    PyObject *__pyx_callargs[2] = {__pyx_t_4, NULL};
-    __pyx_t_1 = __Pyx_PyObject_FastCall((PyObject*)__pyx_t_3, __pyx_callargs+__pyx_t_5, (1-__pyx_t_5) | (__pyx_t_5*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
-    __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 89, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_1);
+    PyObject *__pyx_callargs[2] = {__pyx_t_2, NULL};
+    __pyx_t_3 = __Pyx_PyObject_FastCall((PyObject*)__pyx_t_1, __pyx_callargs+__pyx_t_4, (1-__pyx_t_4) | (__pyx_t_4*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
+    __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
+    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+    if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 87, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_3);
   }
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":90
- *     np.subtract(diff_hat, work_hat, out=diff_hat)
+  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":88
+ *     diff_hat[:] = ikx * vy_hat - iky * vx_hat
  *     ifft_wz()
  *     return wz.real             # <<<<<<<<<<<<<<
  * 
  * 
 */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_wz), __pyx_mstate_global->__pyx_n_u_real); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 90, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __pyx_r = __pyx_t_1;
-  __pyx_t_1 = 0;
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_wz), __pyx_mstate_global->__pyx_n_u_real); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 88, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __pyx_r = __pyx_t_3;
+  __pyx_t_3 = 0;
   goto __pyx_L0;
 
   /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":74
@@ -5907,7 +5803,6 @@ static PyObject *__pyx_pf_60navier_stokes_spectral_pyfftw_algo_optim_vortex_plan
   __Pyx_XDECREF(__pyx_t_1);
   __Pyx_XDECREF(__pyx_t_2);
   __Pyx_XDECREF(__pyx_t_3);
-  __Pyx_XDECREF(__pyx_t_4);
   { PyObject *__pyx_type, *__pyx_value, *__pyx_tb;
     __Pyx_PyThreadState_declare
     __Pyx_PyThreadState_assign
@@ -5937,7 +5832,7 @@ static PyObject *__pyx_pf_60navier_stokes_spectral_pyfftw_algo_optim_vortex_plan
   return __pyx_r;
 }
 
-/* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":93
+/* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":91
  * 
  * 
  * @profile             # <<<<<<<<<<<<<<
@@ -5987,38 +5882,38 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_f_hat,&__pyx_mstate_global->__pyx_n_u_dealias,&__pyx_mstate_global->__pyx_n_u_fft_f,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 93, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 91, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  3:
         values[2] = __Pyx_ArgRef_FASTCALL(__pyx_args, 2);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 93, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 91, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  2:
         values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 93, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 91, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 93, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 91, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "apply_dealias", 0) < (0)) __PYX_ERR(0, 93, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "apply_dealias", 0) < (0)) __PYX_ERR(0, 91, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 3; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("apply_dealias", 1, 3, 3, i); __PYX_ERR(0, 93, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("apply_dealias", 1, 3, 3, i); __PYX_ERR(0, 91, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 3)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 93, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 91, __pyx_L3_error)
       values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 93, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 91, __pyx_L3_error)
       values[2] = __Pyx_ArgRef_FASTCALL(__pyx_args, 2);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 93, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 91, __pyx_L3_error)
     }
     __pyx_v_f_hat = ((PyArrayObject *)values[0]);
     __pyx_v_dealias = ((PyArrayObject *)values[1]);
@@ -6026,7 +5921,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("apply_dealias", 1, 3, 3, __pyx_nargs); __PYX_ERR(0, 93, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("apply_dealias", 1, 3, 3, __pyx_nargs); __PYX_ERR(0, 91, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -6037,8 +5932,8 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_f_hat), __pyx_mstate_global->__pyx_ptype_5numpy_ndarray, 1, "f_hat", 0))) __PYX_ERR(0, 95, __pyx_L1_error)
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_dealias), __pyx_mstate_global->__pyx_ptype_5numpy_ndarray, 1, "dealias", 0))) __PYX_ERR(0, 96, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_f_hat), __pyx_mstate_global->__pyx_ptype_5numpy_ndarray, 1, "f_hat", 0))) __PYX_ERR(0, 93, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_dealias), __pyx_mstate_global->__pyx_ptype_5numpy_ndarray, 1, "dealias", 0))) __PYX_ERR(0, 94, __pyx_L1_error)
   __pyx_r = __pyx_pf_60navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real_8apply_dealias(__pyx_self, __pyx_v_f_hat, __pyx_v_dealias, __pyx_v_fft_f);
 
   /* function exit code */
@@ -6088,16 +5983,16 @@ static PyObject *__pyx_pf_60navier_stokes_spectral_pyfftw_algo_optim_vortex_plan
   __pyx_pybuffernd_dealias.rcbuffer = &__pyx_pybuffer_dealias;
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
-    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_f_hat.rcbuffer->pybuffer, (PyObject*)__pyx_v_f_hat, &__Pyx_TypeInfo___pyx_t_double_complex, PyBUF_FORMAT| PyBUF_STRIDES, 2, 0, __pyx_stack) == -1)) __PYX_ERR(0, 93, __pyx_L1_error)
+    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_f_hat.rcbuffer->pybuffer, (PyObject*)__pyx_v_f_hat, &__Pyx_TypeInfo___pyx_t_double_complex, PyBUF_FORMAT| PyBUF_STRIDES, 2, 0, __pyx_stack) == -1)) __PYX_ERR(0, 91, __pyx_L1_error)
   }
   __pyx_pybuffernd_f_hat.diminfo[0].strides = __pyx_pybuffernd_f_hat.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_f_hat.diminfo[0].shape = __pyx_pybuffernd_f_hat.rcbuffer->pybuffer.shape[0]; __pyx_pybuffernd_f_hat.diminfo[1].strides = __pyx_pybuffernd_f_hat.rcbuffer->pybuffer.strides[1]; __pyx_pybuffernd_f_hat.diminfo[1].shape = __pyx_pybuffernd_f_hat.rcbuffer->pybuffer.shape[1];
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
-    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_dealias.rcbuffer->pybuffer, (PyObject*)__pyx_v_dealias, &__Pyx_TypeInfo_nn_npy_bool, PyBUF_FORMAT| PyBUF_STRIDES, 2, 0, __pyx_stack) == -1)) __PYX_ERR(0, 93, __pyx_L1_error)
+    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_dealias.rcbuffer->pybuffer, (PyObject*)__pyx_v_dealias, &__Pyx_TypeInfo_nn_npy_bool, PyBUF_FORMAT| PyBUF_STRIDES, 2, 0, __pyx_stack) == -1)) __PYX_ERR(0, 91, __pyx_L1_error)
   }
   __pyx_pybuffernd_dealias.diminfo[0].strides = __pyx_pybuffernd_dealias.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_dealias.diminfo[0].shape = __pyx_pybuffernd_dealias.rcbuffer->pybuffer.shape[0]; __pyx_pybuffernd_dealias.diminfo[1].strides = __pyx_pybuffernd_dealias.rcbuffer->pybuffer.strides[1]; __pyx_pybuffernd_dealias.diminfo[1].shape = __pyx_pybuffernd_dealias.rcbuffer->pybuffer.shape[1];
 
-  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":100
+  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":98
  * ):
  *     """apply 2/3 rule dealias to field f in Fourier space (via planned FFT)"""
  *     fft_f()             # <<<<<<<<<<<<<<
@@ -6124,21 +6019,21 @@ static PyObject *__pyx_pf_60navier_stokes_spectral_pyfftw_algo_optim_vortex_plan
     __pyx_t_1 = __Pyx_PyObject_FastCall((PyObject*)__pyx_t_3, __pyx_callargs+__pyx_t_4, (1-__pyx_t_4) | (__pyx_t_4*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
     __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 100, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 98, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
   }
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":101
+  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":99
  *     """apply 2/3 rule dealias to field f in Fourier space (via planned FFT)"""
  *     fft_f()
  *     f_hat *= dealias             # <<<<<<<<<<<<<<
  *     return f_hat
  * 
 */
-  __pyx_t_1 = PyNumber_InPlaceMultiply(((PyObject *)__pyx_v_f_hat), ((PyObject *)__pyx_v_dealias)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 101, __pyx_L1_error)
+  __pyx_t_1 = PyNumber_InPlaceMultiply(((PyObject *)__pyx_v_f_hat), ((PyObject *)__pyx_v_dealias)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 99, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (!(likely(((__pyx_t_1) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_1, __pyx_mstate_global->__pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 101, __pyx_L1_error)
+  if (!(likely(((__pyx_t_1) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_1, __pyx_mstate_global->__pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 99, __pyx_L1_error)
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
     __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_f_hat.rcbuffer->pybuffer);
@@ -6154,12 +6049,12 @@ static PyObject *__pyx_pf_60navier_stokes_spectral_pyfftw_algo_optim_vortex_plan
       __pyx_t_6 = __pyx_t_7 = __pyx_t_8 = 0;
     }
     __pyx_pybuffernd_f_hat.diminfo[0].strides = __pyx_pybuffernd_f_hat.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_f_hat.diminfo[0].shape = __pyx_pybuffernd_f_hat.rcbuffer->pybuffer.shape[0]; __pyx_pybuffernd_f_hat.diminfo[1].strides = __pyx_pybuffernd_f_hat.rcbuffer->pybuffer.strides[1]; __pyx_pybuffernd_f_hat.diminfo[1].shape = __pyx_pybuffernd_f_hat.rcbuffer->pybuffer.shape[1];
-    if (unlikely((__pyx_t_5 < 0))) __PYX_ERR(0, 101, __pyx_L1_error)
+    if (unlikely((__pyx_t_5 < 0))) __PYX_ERR(0, 99, __pyx_L1_error)
   }
   __Pyx_DECREF_SET(__pyx_v_f_hat, ((PyArrayObject *)__pyx_t_1));
   __pyx_t_1 = 0;
 
-  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":102
+  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":100
  *     fft_f()
  *     f_hat *= dealias
  *     return f_hat             # <<<<<<<<<<<<<<
@@ -6171,7 +6066,7 @@ static PyObject *__pyx_pf_60navier_stokes_spectral_pyfftw_algo_optim_vortex_plan
   __pyx_r = ((PyObject *)__pyx_v_f_hat);
   goto __pyx_L0;
 
-  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":93
+  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":91
  * 
  * 
  * @profile             # <<<<<<<<<<<<<<
@@ -6204,7 +6099,7 @@ static PyObject *__pyx_pf_60navier_stokes_spectral_pyfftw_algo_optim_vortex_plan
   return __pyx_r;
 }
 
-/* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":105
+/* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":103
  * 
  * 
  * @profile             # <<<<<<<<<<<<<<
@@ -6252,37 +6147,37 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_N,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 105, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 103, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 105, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 103, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "main", 0) < (0)) __PYX_ERR(0, 105, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "main", 0) < (0)) __PYX_ERR(0, 103, __pyx_L3_error)
     } else {
       switch (__pyx_nargs) {
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 105, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 103, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
     }
     if (values[0]) {
-      __pyx_v_N = __Pyx_PyLong_As_int(values[0]); if (unlikely((__pyx_v_N == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 106, __pyx_L3_error)
+      __pyx_v_N = __Pyx_PyLong_As_int(values[0]); if (unlikely((__pyx_v_N == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 104, __pyx_L3_error)
     } else {
       __pyx_v_N = ((int)((int)0x190));
     }
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("main", 0, 0, 1, __pyx_nargs); __PYX_ERR(0, 105, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("main", 0, 0, 1, __pyx_nargs); __PYX_ERR(0, 103, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -6545,7 +6440,7 @@ static PyObject *__pyx_pf_60navier_stokes_spectral_pyfftw_algo_optim_vortex_plan
   __pyx_pybuffernd_diffuse_denom.data = NULL;
   __pyx_pybuffernd_diffuse_denom.rcbuffer = &__pyx_pybuffer_diffuse_denom;
 
-  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":108
+  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":106
  * def main(int N=400):
  *     """Navier-Stokes Simulation"""
  *     cdef double t = 0.0  # current time of the simulation             # <<<<<<<<<<<<<<
@@ -6554,7 +6449,7 @@ static PyObject *__pyx_pf_60navier_stokes_spectral_pyfftw_algo_optim_vortex_plan
 */
   __pyx_v_t = 0.0;
 
-  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":109
+  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":107
  *     """Navier-Stokes Simulation"""
  *     cdef double t = 0.0  # current time of the simulation
  *     cdef double tEnd = 1.0  # time at which simulation ends             # <<<<<<<<<<<<<<
@@ -6563,7 +6458,7 @@ static PyObject *__pyx_pf_60navier_stokes_spectral_pyfftw_algo_optim_vortex_plan
 */
   __pyx_v_tEnd = 1.0;
 
-  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":110
+  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":108
  *     cdef double t = 0.0  # current time of the simulation
  *     cdef double tEnd = 1.0  # time at which simulation ends
  *     cdef double dt = 0.001  # timestep             # <<<<<<<<<<<<<<
@@ -6572,7 +6467,7 @@ static PyObject *__pyx_pf_60navier_stokes_spectral_pyfftw_algo_optim_vortex_plan
 */
   __pyx_v_dt = 0.001;
 
-  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":111
+  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":109
  *     cdef double tEnd = 1.0  # time at which simulation ends
  *     cdef double dt = 0.001  # timestep
  *     cdef double tOut = 0.01  # draw frequency             # <<<<<<<<<<<<<<
@@ -6581,7 +6476,7 @@ static PyObject *__pyx_pf_60navier_stokes_spectral_pyfftw_algo_optim_vortex_plan
 */
   __pyx_v_tOut = 0.01;
 
-  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":112
+  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":110
  *     cdef double dt = 0.001  # timestep
  *     cdef double tOut = 0.01  # draw frequency
  *     cdef double nu = 0.001  # viscosity             # <<<<<<<<<<<<<<
@@ -6590,7 +6485,7 @@ static PyObject *__pyx_pf_60navier_stokes_spectral_pyfftw_algo_optim_vortex_plan
 */
   __pyx_v_nu = 0.001;
 
-  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":113
+  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":111
  *     cdef double tOut = 0.01  # draw frequency
  *     cdef double nu = 0.001  # viscosity
  *     cdef bint plotRealTime = False  # switch on for plotting as the simulation goes along             # <<<<<<<<<<<<<<
@@ -6599,7 +6494,7 @@ static PyObject *__pyx_pf_60navier_stokes_spectral_pyfftw_algo_optim_vortex_plan
 */
   __pyx_v_plotRealTime = 0;
 
-  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":114
+  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":112
  *     cdef double nu = 0.001  # viscosity
  *     cdef bint plotRealTime = False  # switch on for plotting as the simulation goes along
  *     cdef int N_half = N // 2 + 1             # <<<<<<<<<<<<<<
@@ -6608,7 +6503,7 @@ static PyObject *__pyx_pf_60navier_stokes_spectral_pyfftw_algo_optim_vortex_plan
 */
   __pyx_v_N_half = ((__pyx_v_N / 2) + 1);
 
-  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":115
+  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":113
  *     cdef bint plotRealTime = False  # switch on for plotting as the simulation goes along
  *     cdef int N_half = N // 2 + 1
  *     cdef double L = 1.0             # <<<<<<<<<<<<<<
@@ -6617,7 +6512,7 @@ static PyObject *__pyx_pf_60navier_stokes_spectral_pyfftw_algo_optim_vortex_plan
 */
   __pyx_v_L = 1.0;
 
-  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":120
+  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":118
  *     cdef int Nt
  *     cdef int i
  *     cdef int outputCount = 1             # <<<<<<<<<<<<<<
@@ -6626,7 +6521,7 @@ static PyObject *__pyx_pf_60navier_stokes_spectral_pyfftw_algo_optim_vortex_plan
 */
   __pyx_v_outputCount = 1;
 
-  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":123
+  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":121
  *     cdef bint plotThisTurn
  * 
  *     cdef cnp.ndarray[float64_t, ndim=2] vx = pyfftw.empty_aligned((N, N), dtype="float64")             # <<<<<<<<<<<<<<
@@ -6634,21 +6529,21 @@ static PyObject *__pyx_pf_60navier_stokes_spectral_pyfftw_algo_optim_vortex_plan
  *     cdef cnp.ndarray[float64_t, ndim=2] wz = pyfftw.empty_aligned((N, N), dtype="float64")
 */
   __pyx_t_2 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_pyfftw); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 123, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_pyfftw); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 121, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_empty_aligned); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 123, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_empty_aligned); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 121, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_3 = __Pyx_PyLong_From_int(__pyx_v_N); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 123, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyLong_From_int(__pyx_v_N); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 121, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_5 = __Pyx_PyLong_From_int(__pyx_v_N); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 123, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyLong_From_int(__pyx_v_N); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 121, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_6 = PyTuple_New(2); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 123, __pyx_L1_error)
+  __pyx_t_6 = PyTuple_New(2); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 121, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
   __Pyx_GIVEREF(__pyx_t_3);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_6, 0, __pyx_t_3) != (0)) __PYX_ERR(0, 123, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_6, 0, __pyx_t_3) != (0)) __PYX_ERR(0, 121, __pyx_L1_error);
   __Pyx_GIVEREF(__pyx_t_5);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_6, 1, __pyx_t_5) != (0)) __PYX_ERR(0, 123, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_6, 1, __pyx_t_5) != (0)) __PYX_ERR(0, 121, __pyx_L1_error);
   __pyx_t_3 = 0;
   __pyx_t_5 = 0;
   __pyx_t_7 = 1;
@@ -6665,30 +6560,30 @@ static PyObject *__pyx_pf_60navier_stokes_spectral_pyfftw_algo_optim_vortex_plan
   #endif
   {
     PyObject *__pyx_callargs[2 + ((CYTHON_VECTORCALL) ? 1 : 0)] = {__pyx_t_2, __pyx_t_6};
-    __pyx_t_5 = __Pyx_MakeVectorcallBuilderKwds(1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 123, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_MakeVectorcallBuilderKwds(1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 121, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
-    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_dtype, __pyx_mstate_global->__pyx_n_u_float64, __pyx_t_5, __pyx_callargs+2, 0) < (0)) __PYX_ERR(0, 123, __pyx_L1_error)
+    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_dtype, __pyx_mstate_global->__pyx_n_u_float64, __pyx_t_5, __pyx_callargs+2, 0) < (0)) __PYX_ERR(0, 121, __pyx_L1_error)
     __pyx_t_1 = __Pyx_Object_Vectorcall_CallFromBuilder((PyObject*)__pyx_t_4, __pyx_callargs+__pyx_t_7, (2-__pyx_t_7) | (__pyx_t_7*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET), __pyx_t_5);
     __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 123, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 121, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
   }
-  if (!(likely(((__pyx_t_1) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_1, __pyx_mstate_global->__pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 123, __pyx_L1_error)
+  if (!(likely(((__pyx_t_1) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_1, __pyx_mstate_global->__pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 121, __pyx_L1_error)
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
     if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_vx.rcbuffer->pybuffer, (PyObject*)((PyArrayObject *)__pyx_t_1), &__Pyx_TypeInfo_nn___pyx_t_60navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real_float64_t, PyBUF_FORMAT| PyBUF_STRIDES, 2, 0, __pyx_stack) == -1)) {
       __pyx_v_vx = ((PyArrayObject *)Py_None); __Pyx_INCREF(Py_None); __pyx_pybuffernd_vx.rcbuffer->pybuffer.buf = NULL;
-      __PYX_ERR(0, 123, __pyx_L1_error)
+      __PYX_ERR(0, 121, __pyx_L1_error)
     } else {__pyx_pybuffernd_vx.diminfo[0].strides = __pyx_pybuffernd_vx.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_vx.diminfo[0].shape = __pyx_pybuffernd_vx.rcbuffer->pybuffer.shape[0]; __pyx_pybuffernd_vx.diminfo[1].strides = __pyx_pybuffernd_vx.rcbuffer->pybuffer.strides[1]; __pyx_pybuffernd_vx.diminfo[1].shape = __pyx_pybuffernd_vx.rcbuffer->pybuffer.shape[1];
     }
   }
   __pyx_v_vx = ((PyArrayObject *)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":124
+  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":122
  * 
  *     cdef cnp.ndarray[float64_t, ndim=2] vx = pyfftw.empty_aligned((N, N), dtype="float64")
  *     cdef cnp.ndarray[float64_t, ndim=2] vy = pyfftw.empty_aligned((N, N), dtype="float64")             # <<<<<<<<<<<<<<
@@ -6696,21 +6591,21 @@ static PyObject *__pyx_pf_60navier_stokes_spectral_pyfftw_algo_optim_vortex_plan
  *     cdef cnp.ndarray[float64_t, ndim=2] rhs_x = pyfftw.empty_aligned((N, N), dtype="float64")
 */
   __pyx_t_4 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_pyfftw); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 124, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_pyfftw); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 122, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_empty_aligned); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 124, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_empty_aligned); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 122, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  __pyx_t_5 = __Pyx_PyLong_From_int(__pyx_v_N); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 124, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyLong_From_int(__pyx_v_N); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 122, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_2 = __Pyx_PyLong_From_int(__pyx_v_N); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 124, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyLong_From_int(__pyx_v_N); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 122, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = PyTuple_New(2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 124, __pyx_L1_error)
+  __pyx_t_3 = PyTuple_New(2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 122, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_GIVEREF(__pyx_t_5);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_5) != (0)) __PYX_ERR(0, 124, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_5) != (0)) __PYX_ERR(0, 122, __pyx_L1_error);
   __Pyx_GIVEREF(__pyx_t_2);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_3, 1, __pyx_t_2) != (0)) __PYX_ERR(0, 124, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_3, 1, __pyx_t_2) != (0)) __PYX_ERR(0, 122, __pyx_L1_error);
   __pyx_t_5 = 0;
   __pyx_t_2 = 0;
   __pyx_t_7 = 1;
@@ -6727,30 +6622,30 @@ static PyObject *__pyx_pf_60navier_stokes_spectral_pyfftw_algo_optim_vortex_plan
   #endif
   {
     PyObject *__pyx_callargs[2 + ((CYTHON_VECTORCALL) ? 1 : 0)] = {__pyx_t_4, __pyx_t_3};
-    __pyx_t_2 = __Pyx_MakeVectorcallBuilderKwds(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 124, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_MakeVectorcallBuilderKwds(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 122, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_dtype, __pyx_mstate_global->__pyx_n_u_float64, __pyx_t_2, __pyx_callargs+2, 0) < (0)) __PYX_ERR(0, 124, __pyx_L1_error)
+    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_dtype, __pyx_mstate_global->__pyx_n_u_float64, __pyx_t_2, __pyx_callargs+2, 0) < (0)) __PYX_ERR(0, 122, __pyx_L1_error)
     __pyx_t_1 = __Pyx_Object_Vectorcall_CallFromBuilder((PyObject*)__pyx_t_6, __pyx_callargs+__pyx_t_7, (2-__pyx_t_7) | (__pyx_t_7*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET), __pyx_t_2);
     __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 124, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 122, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
   }
-  if (!(likely(((__pyx_t_1) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_1, __pyx_mstate_global->__pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 124, __pyx_L1_error)
+  if (!(likely(((__pyx_t_1) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_1, __pyx_mstate_global->__pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 122, __pyx_L1_error)
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
     if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_vy.rcbuffer->pybuffer, (PyObject*)((PyArrayObject *)__pyx_t_1), &__Pyx_TypeInfo_nn___pyx_t_60navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real_float64_t, PyBUF_FORMAT| PyBUF_STRIDES, 2, 0, __pyx_stack) == -1)) {
       __pyx_v_vy = ((PyArrayObject *)Py_None); __Pyx_INCREF(Py_None); __pyx_pybuffernd_vy.rcbuffer->pybuffer.buf = NULL;
-      __PYX_ERR(0, 124, __pyx_L1_error)
+      __PYX_ERR(0, 122, __pyx_L1_error)
     } else {__pyx_pybuffernd_vy.diminfo[0].strides = __pyx_pybuffernd_vy.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_vy.diminfo[0].shape = __pyx_pybuffernd_vy.rcbuffer->pybuffer.shape[0]; __pyx_pybuffernd_vy.diminfo[1].strides = __pyx_pybuffernd_vy.rcbuffer->pybuffer.strides[1]; __pyx_pybuffernd_vy.diminfo[1].shape = __pyx_pybuffernd_vy.rcbuffer->pybuffer.shape[1];
     }
   }
   __pyx_v_vy = ((PyArrayObject *)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":125
+  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":123
  *     cdef cnp.ndarray[float64_t, ndim=2] vx = pyfftw.empty_aligned((N, N), dtype="float64")
  *     cdef cnp.ndarray[float64_t, ndim=2] vy = pyfftw.empty_aligned((N, N), dtype="float64")
  *     cdef cnp.ndarray[float64_t, ndim=2] wz = pyfftw.empty_aligned((N, N), dtype="float64")             # <<<<<<<<<<<<<<
@@ -6758,21 +6653,21 @@ static PyObject *__pyx_pf_60navier_stokes_spectral_pyfftw_algo_optim_vortex_plan
  *     cdef cnp.ndarray[float64_t, ndim=2] rhs_y = pyfftw.empty_aligned((N, N), dtype="float64")
 */
   __pyx_t_6 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_pyfftw); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 125, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_pyfftw); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 123, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_empty_aligned); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 125, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_empty_aligned); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 123, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_PyLong_From_int(__pyx_v_N); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 125, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyLong_From_int(__pyx_v_N); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 123, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_4 = __Pyx_PyLong_From_int(__pyx_v_N); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 125, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyLong_From_int(__pyx_v_N); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 123, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_5 = PyTuple_New(2); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 125, __pyx_L1_error)
+  __pyx_t_5 = PyTuple_New(2); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 123, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_GIVEREF(__pyx_t_2);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_2) != (0)) __PYX_ERR(0, 125, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_2) != (0)) __PYX_ERR(0, 123, __pyx_L1_error);
   __Pyx_GIVEREF(__pyx_t_4);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_5, 1, __pyx_t_4) != (0)) __PYX_ERR(0, 125, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_5, 1, __pyx_t_4) != (0)) __PYX_ERR(0, 123, __pyx_L1_error);
   __pyx_t_2 = 0;
   __pyx_t_4 = 0;
   __pyx_t_7 = 1;
@@ -6789,30 +6684,30 @@ static PyObject *__pyx_pf_60navier_stokes_spectral_pyfftw_algo_optim_vortex_plan
   #endif
   {
     PyObject *__pyx_callargs[2 + ((CYTHON_VECTORCALL) ? 1 : 0)] = {__pyx_t_6, __pyx_t_5};
-    __pyx_t_4 = __Pyx_MakeVectorcallBuilderKwds(1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 125, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_MakeVectorcallBuilderKwds(1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 123, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
-    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_dtype, __pyx_mstate_global->__pyx_n_u_float64, __pyx_t_4, __pyx_callargs+2, 0) < (0)) __PYX_ERR(0, 125, __pyx_L1_error)
+    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_dtype, __pyx_mstate_global->__pyx_n_u_float64, __pyx_t_4, __pyx_callargs+2, 0) < (0)) __PYX_ERR(0, 123, __pyx_L1_error)
     __pyx_t_1 = __Pyx_Object_Vectorcall_CallFromBuilder((PyObject*)__pyx_t_3, __pyx_callargs+__pyx_t_7, (2-__pyx_t_7) | (__pyx_t_7*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET), __pyx_t_4);
     __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 125, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 123, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
   }
-  if (!(likely(((__pyx_t_1) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_1, __pyx_mstate_global->__pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 125, __pyx_L1_error)
+  if (!(likely(((__pyx_t_1) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_1, __pyx_mstate_global->__pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 123, __pyx_L1_error)
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
     if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_wz.rcbuffer->pybuffer, (PyObject*)((PyArrayObject *)__pyx_t_1), &__Pyx_TypeInfo_nn___pyx_t_60navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real_float64_t, PyBUF_FORMAT| PyBUF_STRIDES, 2, 0, __pyx_stack) == -1)) {
       __pyx_v_wz = ((PyArrayObject *)Py_None); __Pyx_INCREF(Py_None); __pyx_pybuffernd_wz.rcbuffer->pybuffer.buf = NULL;
-      __PYX_ERR(0, 125, __pyx_L1_error)
+      __PYX_ERR(0, 123, __pyx_L1_error)
     } else {__pyx_pybuffernd_wz.diminfo[0].strides = __pyx_pybuffernd_wz.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_wz.diminfo[0].shape = __pyx_pybuffernd_wz.rcbuffer->pybuffer.shape[0]; __pyx_pybuffernd_wz.diminfo[1].strides = __pyx_pybuffernd_wz.rcbuffer->pybuffer.strides[1]; __pyx_pybuffernd_wz.diminfo[1].shape = __pyx_pybuffernd_wz.rcbuffer->pybuffer.shape[1];
     }
   }
   __pyx_v_wz = ((PyArrayObject *)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":126
+  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":124
  *     cdef cnp.ndarray[float64_t, ndim=2] vy = pyfftw.empty_aligned((N, N), dtype="float64")
  *     cdef cnp.ndarray[float64_t, ndim=2] wz = pyfftw.empty_aligned((N, N), dtype="float64")
  *     cdef cnp.ndarray[float64_t, ndim=2] rhs_x = pyfftw.empty_aligned((N, N), dtype="float64")             # <<<<<<<<<<<<<<
@@ -6820,21 +6715,21 @@ static PyObject *__pyx_pf_60navier_stokes_spectral_pyfftw_algo_optim_vortex_plan
  * 
 */
   __pyx_t_3 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_pyfftw); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 126, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_pyfftw); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 124, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_empty_aligned); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 126, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_empty_aligned); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 124, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = __Pyx_PyLong_From_int(__pyx_v_N); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 126, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyLong_From_int(__pyx_v_N); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 124, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_6 = __Pyx_PyLong_From_int(__pyx_v_N); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 126, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyLong_From_int(__pyx_v_N); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 124, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
-  __pyx_t_2 = PyTuple_New(2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 126, __pyx_L1_error)
+  __pyx_t_2 = PyTuple_New(2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 124, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_GIVEREF(__pyx_t_4);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_4) != (0)) __PYX_ERR(0, 126, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_4) != (0)) __PYX_ERR(0, 124, __pyx_L1_error);
   __Pyx_GIVEREF(__pyx_t_6);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_2, 1, __pyx_t_6) != (0)) __PYX_ERR(0, 126, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_2, 1, __pyx_t_6) != (0)) __PYX_ERR(0, 124, __pyx_L1_error);
   __pyx_t_4 = 0;
   __pyx_t_6 = 0;
   __pyx_t_7 = 1;
@@ -6851,30 +6746,30 @@ static PyObject *__pyx_pf_60navier_stokes_spectral_pyfftw_algo_optim_vortex_plan
   #endif
   {
     PyObject *__pyx_callargs[2 + ((CYTHON_VECTORCALL) ? 1 : 0)] = {__pyx_t_3, __pyx_t_2};
-    __pyx_t_6 = __Pyx_MakeVectorcallBuilderKwds(1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 126, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_MakeVectorcallBuilderKwds(1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 124, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
-    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_dtype, __pyx_mstate_global->__pyx_n_u_float64, __pyx_t_6, __pyx_callargs+2, 0) < (0)) __PYX_ERR(0, 126, __pyx_L1_error)
+    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_dtype, __pyx_mstate_global->__pyx_n_u_float64, __pyx_t_6, __pyx_callargs+2, 0) < (0)) __PYX_ERR(0, 124, __pyx_L1_error)
     __pyx_t_1 = __Pyx_Object_Vectorcall_CallFromBuilder((PyObject*)__pyx_t_5, __pyx_callargs+__pyx_t_7, (2-__pyx_t_7) | (__pyx_t_7*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET), __pyx_t_6);
     __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 126, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 124, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
   }
-  if (!(likely(((__pyx_t_1) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_1, __pyx_mstate_global->__pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 126, __pyx_L1_error)
+  if (!(likely(((__pyx_t_1) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_1, __pyx_mstate_global->__pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 124, __pyx_L1_error)
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
     if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_rhs_x.rcbuffer->pybuffer, (PyObject*)((PyArrayObject *)__pyx_t_1), &__Pyx_TypeInfo_nn___pyx_t_60navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real_float64_t, PyBUF_FORMAT| PyBUF_STRIDES, 2, 0, __pyx_stack) == -1)) {
       __pyx_v_rhs_x = ((PyArrayObject *)Py_None); __Pyx_INCREF(Py_None); __pyx_pybuffernd_rhs_x.rcbuffer->pybuffer.buf = NULL;
-      __PYX_ERR(0, 126, __pyx_L1_error)
+      __PYX_ERR(0, 124, __pyx_L1_error)
     } else {__pyx_pybuffernd_rhs_x.diminfo[0].strides = __pyx_pybuffernd_rhs_x.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_rhs_x.diminfo[0].shape = __pyx_pybuffernd_rhs_x.rcbuffer->pybuffer.shape[0]; __pyx_pybuffernd_rhs_x.diminfo[1].strides = __pyx_pybuffernd_rhs_x.rcbuffer->pybuffer.strides[1]; __pyx_pybuffernd_rhs_x.diminfo[1].shape = __pyx_pybuffernd_rhs_x.rcbuffer->pybuffer.shape[1];
     }
   }
   __pyx_v_rhs_x = ((PyArrayObject *)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":127
+  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":125
  *     cdef cnp.ndarray[float64_t, ndim=2] wz = pyfftw.empty_aligned((N, N), dtype="float64")
  *     cdef cnp.ndarray[float64_t, ndim=2] rhs_x = pyfftw.empty_aligned((N, N), dtype="float64")
  *     cdef cnp.ndarray[float64_t, ndim=2] rhs_y = pyfftw.empty_aligned((N, N), dtype="float64")             # <<<<<<<<<<<<<<
@@ -6882,21 +6777,21 @@ static PyObject *__pyx_pf_60navier_stokes_spectral_pyfftw_algo_optim_vortex_plan
  *     cdef cnp.ndarray[complex128_t, ndim=2] vx_hat = pyfftw.empty_aligned(
 */
   __pyx_t_5 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_6, __pyx_mstate_global->__pyx_n_u_pyfftw); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 127, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_6, __pyx_mstate_global->__pyx_n_u_pyfftw); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 125, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_mstate_global->__pyx_n_u_empty_aligned); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 127, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_mstate_global->__pyx_n_u_empty_aligned); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 125, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-  __pyx_t_6 = __Pyx_PyLong_From_int(__pyx_v_N); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 127, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyLong_From_int(__pyx_v_N); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 125, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
-  __pyx_t_3 = __Pyx_PyLong_From_int(__pyx_v_N); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 127, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyLong_From_int(__pyx_v_N); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 125, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = PyTuple_New(2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 127, __pyx_L1_error)
+  __pyx_t_4 = PyTuple_New(2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 125, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_GIVEREF(__pyx_t_6);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_6) != (0)) __PYX_ERR(0, 127, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_6) != (0)) __PYX_ERR(0, 125, __pyx_L1_error);
   __Pyx_GIVEREF(__pyx_t_3);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 1, __pyx_t_3) != (0)) __PYX_ERR(0, 127, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 1, __pyx_t_3) != (0)) __PYX_ERR(0, 125, __pyx_L1_error);
   __pyx_t_6 = 0;
   __pyx_t_3 = 0;
   __pyx_t_7 = 1;
@@ -6913,30 +6808,30 @@ static PyObject *__pyx_pf_60navier_stokes_spectral_pyfftw_algo_optim_vortex_plan
   #endif
   {
     PyObject *__pyx_callargs[2 + ((CYTHON_VECTORCALL) ? 1 : 0)] = {__pyx_t_5, __pyx_t_4};
-    __pyx_t_3 = __Pyx_MakeVectorcallBuilderKwds(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 127, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_MakeVectorcallBuilderKwds(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 125, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_dtype, __pyx_mstate_global->__pyx_n_u_float64, __pyx_t_3, __pyx_callargs+2, 0) < (0)) __PYX_ERR(0, 127, __pyx_L1_error)
+    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_dtype, __pyx_mstate_global->__pyx_n_u_float64, __pyx_t_3, __pyx_callargs+2, 0) < (0)) __PYX_ERR(0, 125, __pyx_L1_error)
     __pyx_t_1 = __Pyx_Object_Vectorcall_CallFromBuilder((PyObject*)__pyx_t_2, __pyx_callargs+__pyx_t_7, (2-__pyx_t_7) | (__pyx_t_7*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET), __pyx_t_3);
     __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 127, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 125, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
   }
-  if (!(likely(((__pyx_t_1) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_1, __pyx_mstate_global->__pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 127, __pyx_L1_error)
+  if (!(likely(((__pyx_t_1) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_1, __pyx_mstate_global->__pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 125, __pyx_L1_error)
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
     if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_rhs_y.rcbuffer->pybuffer, (PyObject*)((PyArrayObject *)__pyx_t_1), &__Pyx_TypeInfo_nn___pyx_t_60navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real_float64_t, PyBUF_FORMAT| PyBUF_STRIDES, 2, 0, __pyx_stack) == -1)) {
       __pyx_v_rhs_y = ((PyArrayObject *)Py_None); __Pyx_INCREF(Py_None); __pyx_pybuffernd_rhs_y.rcbuffer->pybuffer.buf = NULL;
-      __PYX_ERR(0, 127, __pyx_L1_error)
+      __PYX_ERR(0, 125, __pyx_L1_error)
     } else {__pyx_pybuffernd_rhs_y.diminfo[0].strides = __pyx_pybuffernd_rhs_y.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_rhs_y.diminfo[0].shape = __pyx_pybuffernd_rhs_y.rcbuffer->pybuffer.shape[0]; __pyx_pybuffernd_rhs_y.diminfo[1].strides = __pyx_pybuffernd_rhs_y.rcbuffer->pybuffer.strides[1]; __pyx_pybuffernd_rhs_y.diminfo[1].shape = __pyx_pybuffernd_rhs_y.rcbuffer->pybuffer.shape[1];
     }
   }
   __pyx_v_rhs_y = ((PyArrayObject *)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":129
+  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":127
  *     cdef cnp.ndarray[float64_t, ndim=2] rhs_y = pyfftw.empty_aligned((N, N), dtype="float64")
  * 
  *     cdef cnp.ndarray[complex128_t, ndim=2] vx_hat = pyfftw.empty_aligned(             # <<<<<<<<<<<<<<
@@ -6944,29 +6839,29 @@ static PyObject *__pyx_pf_60navier_stokes_spectral_pyfftw_algo_optim_vortex_plan
  *     )
 */
   __pyx_t_2 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_pyfftw); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 129, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_pyfftw); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 127, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_empty_aligned); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 129, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_empty_aligned); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 127, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":130
+  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":128
  * 
  *     cdef cnp.ndarray[complex128_t, ndim=2] vx_hat = pyfftw.empty_aligned(
  *         (N, N_half), dtype="complex128"             # <<<<<<<<<<<<<<
  *     )
  *     cdef cnp.ndarray[complex128_t, ndim=2] vy_hat = pyfftw.empty_aligned(
 */
-  __pyx_t_3 = __Pyx_PyLong_From_int(__pyx_v_N); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 130, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyLong_From_int(__pyx_v_N); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 128, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_5 = __Pyx_PyLong_From_int(__pyx_v_N_half); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 130, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyLong_From_int(__pyx_v_N_half); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 128, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_6 = PyTuple_New(2); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 130, __pyx_L1_error)
+  __pyx_t_6 = PyTuple_New(2); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 128, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
   __Pyx_GIVEREF(__pyx_t_3);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_6, 0, __pyx_t_3) != (0)) __PYX_ERR(0, 130, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_6, 0, __pyx_t_3) != (0)) __PYX_ERR(0, 128, __pyx_L1_error);
   __Pyx_GIVEREF(__pyx_t_5);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_6, 1, __pyx_t_5) != (0)) __PYX_ERR(0, 130, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_6, 1, __pyx_t_5) != (0)) __PYX_ERR(0, 128, __pyx_L1_error);
   __pyx_t_3 = 0;
   __pyx_t_5 = 0;
   __pyx_t_7 = 1;
@@ -6983,38 +6878,38 @@ static PyObject *__pyx_pf_60navier_stokes_spectral_pyfftw_algo_optim_vortex_plan
   #endif
   {
     PyObject *__pyx_callargs[2 + ((CYTHON_VECTORCALL) ? 1 : 0)] = {__pyx_t_2, __pyx_t_6};
-    __pyx_t_5 = __Pyx_MakeVectorcallBuilderKwds(1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 129, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_MakeVectorcallBuilderKwds(1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 127, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
-    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_dtype, __pyx_mstate_global->__pyx_n_u_complex128, __pyx_t_5, __pyx_callargs+2, 0) < (0)) __PYX_ERR(0, 129, __pyx_L1_error)
+    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_dtype, __pyx_mstate_global->__pyx_n_u_complex128, __pyx_t_5, __pyx_callargs+2, 0) < (0)) __PYX_ERR(0, 127, __pyx_L1_error)
     __pyx_t_1 = __Pyx_Object_Vectorcall_CallFromBuilder((PyObject*)__pyx_t_4, __pyx_callargs+__pyx_t_7, (2-__pyx_t_7) | (__pyx_t_7*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET), __pyx_t_5);
     __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 129, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 127, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
   }
 
-  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":129
+  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":127
  *     cdef cnp.ndarray[float64_t, ndim=2] rhs_y = pyfftw.empty_aligned((N, N), dtype="float64")
  * 
  *     cdef cnp.ndarray[complex128_t, ndim=2] vx_hat = pyfftw.empty_aligned(             # <<<<<<<<<<<<<<
  *         (N, N_half), dtype="complex128"
  *     )
 */
-  if (!(likely(((__pyx_t_1) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_1, __pyx_mstate_global->__pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 129, __pyx_L1_error)
+  if (!(likely(((__pyx_t_1) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_1, __pyx_mstate_global->__pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 127, __pyx_L1_error)
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
     if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_vx_hat.rcbuffer->pybuffer, (PyObject*)((PyArrayObject *)__pyx_t_1), &__Pyx_TypeInfo___pyx_t_double_complex, PyBUF_FORMAT| PyBUF_STRIDES, 2, 0, __pyx_stack) == -1)) {
       __pyx_v_vx_hat = ((PyArrayObject *)Py_None); __Pyx_INCREF(Py_None); __pyx_pybuffernd_vx_hat.rcbuffer->pybuffer.buf = NULL;
-      __PYX_ERR(0, 129, __pyx_L1_error)
+      __PYX_ERR(0, 127, __pyx_L1_error)
     } else {__pyx_pybuffernd_vx_hat.diminfo[0].strides = __pyx_pybuffernd_vx_hat.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_vx_hat.diminfo[0].shape = __pyx_pybuffernd_vx_hat.rcbuffer->pybuffer.shape[0]; __pyx_pybuffernd_vx_hat.diminfo[1].strides = __pyx_pybuffernd_vx_hat.rcbuffer->pybuffer.strides[1]; __pyx_pybuffernd_vx_hat.diminfo[1].shape = __pyx_pybuffernd_vx_hat.rcbuffer->pybuffer.shape[1];
     }
   }
   __pyx_v_vx_hat = ((PyArrayObject *)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":132
+  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":130
  *         (N, N_half), dtype="complex128"
  *     )
  *     cdef cnp.ndarray[complex128_t, ndim=2] vy_hat = pyfftw.empty_aligned(             # <<<<<<<<<<<<<<
@@ -7022,29 +6917,29 @@ static PyObject *__pyx_pf_60navier_stokes_spectral_pyfftw_algo_optim_vortex_plan
  *     )
 */
   __pyx_t_4 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_pyfftw); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 132, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_pyfftw); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 130, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_empty_aligned); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 132, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_empty_aligned); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 130, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":133
+  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":131
  *     )
  *     cdef cnp.ndarray[complex128_t, ndim=2] vy_hat = pyfftw.empty_aligned(
  *         (N, N_half), dtype="complex128"             # <<<<<<<<<<<<<<
  *     )
  *     cdef cnp.ndarray[complex128_t, ndim=2] rhs_x_hat = pyfftw.empty_aligned(
 */
-  __pyx_t_5 = __Pyx_PyLong_From_int(__pyx_v_N); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 133, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyLong_From_int(__pyx_v_N); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 131, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_2 = __Pyx_PyLong_From_int(__pyx_v_N_half); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 133, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyLong_From_int(__pyx_v_N_half); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 131, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = PyTuple_New(2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 133, __pyx_L1_error)
+  __pyx_t_3 = PyTuple_New(2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 131, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_GIVEREF(__pyx_t_5);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_5) != (0)) __PYX_ERR(0, 133, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_5) != (0)) __PYX_ERR(0, 131, __pyx_L1_error);
   __Pyx_GIVEREF(__pyx_t_2);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_3, 1, __pyx_t_2) != (0)) __PYX_ERR(0, 133, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_3, 1, __pyx_t_2) != (0)) __PYX_ERR(0, 131, __pyx_L1_error);
   __pyx_t_5 = 0;
   __pyx_t_2 = 0;
   __pyx_t_7 = 1;
@@ -7061,38 +6956,38 @@ static PyObject *__pyx_pf_60navier_stokes_spectral_pyfftw_algo_optim_vortex_plan
   #endif
   {
     PyObject *__pyx_callargs[2 + ((CYTHON_VECTORCALL) ? 1 : 0)] = {__pyx_t_4, __pyx_t_3};
-    __pyx_t_2 = __Pyx_MakeVectorcallBuilderKwds(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 132, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_MakeVectorcallBuilderKwds(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 130, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_dtype, __pyx_mstate_global->__pyx_n_u_complex128, __pyx_t_2, __pyx_callargs+2, 0) < (0)) __PYX_ERR(0, 132, __pyx_L1_error)
+    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_dtype, __pyx_mstate_global->__pyx_n_u_complex128, __pyx_t_2, __pyx_callargs+2, 0) < (0)) __PYX_ERR(0, 130, __pyx_L1_error)
     __pyx_t_1 = __Pyx_Object_Vectorcall_CallFromBuilder((PyObject*)__pyx_t_6, __pyx_callargs+__pyx_t_7, (2-__pyx_t_7) | (__pyx_t_7*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET), __pyx_t_2);
     __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 132, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 130, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
   }
 
-  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":132
+  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":130
  *         (N, N_half), dtype="complex128"
  *     )
  *     cdef cnp.ndarray[complex128_t, ndim=2] vy_hat = pyfftw.empty_aligned(             # <<<<<<<<<<<<<<
  *         (N, N_half), dtype="complex128"
  *     )
 */
-  if (!(likely(((__pyx_t_1) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_1, __pyx_mstate_global->__pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 132, __pyx_L1_error)
+  if (!(likely(((__pyx_t_1) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_1, __pyx_mstate_global->__pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 130, __pyx_L1_error)
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
     if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_vy_hat.rcbuffer->pybuffer, (PyObject*)((PyArrayObject *)__pyx_t_1), &__Pyx_TypeInfo___pyx_t_double_complex, PyBUF_FORMAT| PyBUF_STRIDES, 2, 0, __pyx_stack) == -1)) {
       __pyx_v_vy_hat = ((PyArrayObject *)Py_None); __Pyx_INCREF(Py_None); __pyx_pybuffernd_vy_hat.rcbuffer->pybuffer.buf = NULL;
-      __PYX_ERR(0, 132, __pyx_L1_error)
+      __PYX_ERR(0, 130, __pyx_L1_error)
     } else {__pyx_pybuffernd_vy_hat.diminfo[0].strides = __pyx_pybuffernd_vy_hat.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_vy_hat.diminfo[0].shape = __pyx_pybuffernd_vy_hat.rcbuffer->pybuffer.shape[0]; __pyx_pybuffernd_vy_hat.diminfo[1].strides = __pyx_pybuffernd_vy_hat.rcbuffer->pybuffer.strides[1]; __pyx_pybuffernd_vy_hat.diminfo[1].shape = __pyx_pybuffernd_vy_hat.rcbuffer->pybuffer.shape[1];
     }
   }
   __pyx_v_vy_hat = ((PyArrayObject *)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":135
+  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":133
  *         (N, N_half), dtype="complex128"
  *     )
  *     cdef cnp.ndarray[complex128_t, ndim=2] rhs_x_hat = pyfftw.empty_aligned(             # <<<<<<<<<<<<<<
@@ -7100,29 +6995,29 @@ static PyObject *__pyx_pf_60navier_stokes_spectral_pyfftw_algo_optim_vortex_plan
  *     )
 */
   __pyx_t_6 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_pyfftw); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 135, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_pyfftw); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 133, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_empty_aligned); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 135, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_empty_aligned); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 133, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":136
+  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":134
  *     )
  *     cdef cnp.ndarray[complex128_t, ndim=2] rhs_x_hat = pyfftw.empty_aligned(
  *         (N, N_half), dtype="complex128"             # <<<<<<<<<<<<<<
  *     )
  *     cdef cnp.ndarray[complex128_t, ndim=2] rhs_y_hat = pyfftw.empty_aligned(
 */
-  __pyx_t_2 = __Pyx_PyLong_From_int(__pyx_v_N); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 136, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyLong_From_int(__pyx_v_N); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 134, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_4 = __Pyx_PyLong_From_int(__pyx_v_N_half); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 136, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyLong_From_int(__pyx_v_N_half); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 134, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_5 = PyTuple_New(2); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 136, __pyx_L1_error)
+  __pyx_t_5 = PyTuple_New(2); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 134, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_GIVEREF(__pyx_t_2);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_2) != (0)) __PYX_ERR(0, 136, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_2) != (0)) __PYX_ERR(0, 134, __pyx_L1_error);
   __Pyx_GIVEREF(__pyx_t_4);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_5, 1, __pyx_t_4) != (0)) __PYX_ERR(0, 136, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_5, 1, __pyx_t_4) != (0)) __PYX_ERR(0, 134, __pyx_L1_error);
   __pyx_t_2 = 0;
   __pyx_t_4 = 0;
   __pyx_t_7 = 1;
@@ -7139,38 +7034,38 @@ static PyObject *__pyx_pf_60navier_stokes_spectral_pyfftw_algo_optim_vortex_plan
   #endif
   {
     PyObject *__pyx_callargs[2 + ((CYTHON_VECTORCALL) ? 1 : 0)] = {__pyx_t_6, __pyx_t_5};
-    __pyx_t_4 = __Pyx_MakeVectorcallBuilderKwds(1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 135, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_MakeVectorcallBuilderKwds(1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 133, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
-    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_dtype, __pyx_mstate_global->__pyx_n_u_complex128, __pyx_t_4, __pyx_callargs+2, 0) < (0)) __PYX_ERR(0, 135, __pyx_L1_error)
+    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_dtype, __pyx_mstate_global->__pyx_n_u_complex128, __pyx_t_4, __pyx_callargs+2, 0) < (0)) __PYX_ERR(0, 133, __pyx_L1_error)
     __pyx_t_1 = __Pyx_Object_Vectorcall_CallFromBuilder((PyObject*)__pyx_t_3, __pyx_callargs+__pyx_t_7, (2-__pyx_t_7) | (__pyx_t_7*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET), __pyx_t_4);
     __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 135, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 133, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
   }
 
-  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":135
+  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":133
  *         (N, N_half), dtype="complex128"
  *     )
  *     cdef cnp.ndarray[complex128_t, ndim=2] rhs_x_hat = pyfftw.empty_aligned(             # <<<<<<<<<<<<<<
  *         (N, N_half), dtype="complex128"
  *     )
 */
-  if (!(likely(((__pyx_t_1) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_1, __pyx_mstate_global->__pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 135, __pyx_L1_error)
+  if (!(likely(((__pyx_t_1) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_1, __pyx_mstate_global->__pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 133, __pyx_L1_error)
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
     if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_rhs_x_hat.rcbuffer->pybuffer, (PyObject*)((PyArrayObject *)__pyx_t_1), &__Pyx_TypeInfo___pyx_t_double_complex, PyBUF_FORMAT| PyBUF_STRIDES, 2, 0, __pyx_stack) == -1)) {
       __pyx_v_rhs_x_hat = ((PyArrayObject *)Py_None); __Pyx_INCREF(Py_None); __pyx_pybuffernd_rhs_x_hat.rcbuffer->pybuffer.buf = NULL;
-      __PYX_ERR(0, 135, __pyx_L1_error)
+      __PYX_ERR(0, 133, __pyx_L1_error)
     } else {__pyx_pybuffernd_rhs_x_hat.diminfo[0].strides = __pyx_pybuffernd_rhs_x_hat.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_rhs_x_hat.diminfo[0].shape = __pyx_pybuffernd_rhs_x_hat.rcbuffer->pybuffer.shape[0]; __pyx_pybuffernd_rhs_x_hat.diminfo[1].strides = __pyx_pybuffernd_rhs_x_hat.rcbuffer->pybuffer.strides[1]; __pyx_pybuffernd_rhs_x_hat.diminfo[1].shape = __pyx_pybuffernd_rhs_x_hat.rcbuffer->pybuffer.shape[1];
     }
   }
   __pyx_v_rhs_x_hat = ((PyArrayObject *)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":138
+  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":136
  *         (N, N_half), dtype="complex128"
  *     )
  *     cdef cnp.ndarray[complex128_t, ndim=2] rhs_y_hat = pyfftw.empty_aligned(             # <<<<<<<<<<<<<<
@@ -7178,29 +7073,29 @@ static PyObject *__pyx_pf_60navier_stokes_spectral_pyfftw_algo_optim_vortex_plan
  *     )
 */
   __pyx_t_3 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_pyfftw); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 138, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_pyfftw); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 136, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_empty_aligned); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 138, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_empty_aligned); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 136, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":139
+  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":137
  *     )
  *     cdef cnp.ndarray[complex128_t, ndim=2] rhs_y_hat = pyfftw.empty_aligned(
  *         (N, N_half), dtype="complex128"             # <<<<<<<<<<<<<<
  *     )
  *     cdef cnp.ndarray[complex128_t, ndim=2] diff_hat = pyfftw.empty_aligned(
 */
-  __pyx_t_4 = __Pyx_PyLong_From_int(__pyx_v_N); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 139, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyLong_From_int(__pyx_v_N); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 137, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_6 = __Pyx_PyLong_From_int(__pyx_v_N_half); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 139, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyLong_From_int(__pyx_v_N_half); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 137, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
-  __pyx_t_2 = PyTuple_New(2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 139, __pyx_L1_error)
+  __pyx_t_2 = PyTuple_New(2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 137, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_GIVEREF(__pyx_t_4);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_4) != (0)) __PYX_ERR(0, 139, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_4) != (0)) __PYX_ERR(0, 137, __pyx_L1_error);
   __Pyx_GIVEREF(__pyx_t_6);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_2, 1, __pyx_t_6) != (0)) __PYX_ERR(0, 139, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_2, 1, __pyx_t_6) != (0)) __PYX_ERR(0, 137, __pyx_L1_error);
   __pyx_t_4 = 0;
   __pyx_t_6 = 0;
   __pyx_t_7 = 1;
@@ -7217,38 +7112,38 @@ static PyObject *__pyx_pf_60navier_stokes_spectral_pyfftw_algo_optim_vortex_plan
   #endif
   {
     PyObject *__pyx_callargs[2 + ((CYTHON_VECTORCALL) ? 1 : 0)] = {__pyx_t_3, __pyx_t_2};
-    __pyx_t_6 = __Pyx_MakeVectorcallBuilderKwds(1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 138, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_MakeVectorcallBuilderKwds(1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 136, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
-    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_dtype, __pyx_mstate_global->__pyx_n_u_complex128, __pyx_t_6, __pyx_callargs+2, 0) < (0)) __PYX_ERR(0, 138, __pyx_L1_error)
+    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_dtype, __pyx_mstate_global->__pyx_n_u_complex128, __pyx_t_6, __pyx_callargs+2, 0) < (0)) __PYX_ERR(0, 136, __pyx_L1_error)
     __pyx_t_1 = __Pyx_Object_Vectorcall_CallFromBuilder((PyObject*)__pyx_t_5, __pyx_callargs+__pyx_t_7, (2-__pyx_t_7) | (__pyx_t_7*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET), __pyx_t_6);
     __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 138, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 136, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
   }
 
-  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":138
+  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":136
  *         (N, N_half), dtype="complex128"
  *     )
  *     cdef cnp.ndarray[complex128_t, ndim=2] rhs_y_hat = pyfftw.empty_aligned(             # <<<<<<<<<<<<<<
  *         (N, N_half), dtype="complex128"
  *     )
 */
-  if (!(likely(((__pyx_t_1) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_1, __pyx_mstate_global->__pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 138, __pyx_L1_error)
+  if (!(likely(((__pyx_t_1) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_1, __pyx_mstate_global->__pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 136, __pyx_L1_error)
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
     if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_rhs_y_hat.rcbuffer->pybuffer, (PyObject*)((PyArrayObject *)__pyx_t_1), &__Pyx_TypeInfo___pyx_t_double_complex, PyBUF_FORMAT| PyBUF_STRIDES, 2, 0, __pyx_stack) == -1)) {
       __pyx_v_rhs_y_hat = ((PyArrayObject *)Py_None); __Pyx_INCREF(Py_None); __pyx_pybuffernd_rhs_y_hat.rcbuffer->pybuffer.buf = NULL;
-      __PYX_ERR(0, 138, __pyx_L1_error)
+      __PYX_ERR(0, 136, __pyx_L1_error)
     } else {__pyx_pybuffernd_rhs_y_hat.diminfo[0].strides = __pyx_pybuffernd_rhs_y_hat.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_rhs_y_hat.diminfo[0].shape = __pyx_pybuffernd_rhs_y_hat.rcbuffer->pybuffer.shape[0]; __pyx_pybuffernd_rhs_y_hat.diminfo[1].strides = __pyx_pybuffernd_rhs_y_hat.rcbuffer->pybuffer.strides[1]; __pyx_pybuffernd_rhs_y_hat.diminfo[1].shape = __pyx_pybuffernd_rhs_y_hat.rcbuffer->pybuffer.shape[1];
     }
   }
   __pyx_v_rhs_y_hat = ((PyArrayObject *)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":141
+  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":139
  *         (N, N_half), dtype="complex128"
  *     )
  *     cdef cnp.ndarray[complex128_t, ndim=2] diff_hat = pyfftw.empty_aligned(             # <<<<<<<<<<<<<<
@@ -7256,29 +7151,29 @@ static PyObject *__pyx_pf_60navier_stokes_spectral_pyfftw_algo_optim_vortex_plan
  *     )
 */
   __pyx_t_5 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_6, __pyx_mstate_global->__pyx_n_u_pyfftw); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 141, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_6, __pyx_mstate_global->__pyx_n_u_pyfftw); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 139, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_mstate_global->__pyx_n_u_empty_aligned); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 141, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_mstate_global->__pyx_n_u_empty_aligned); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 139, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
 
-  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":142
+  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":140
  *     )
  *     cdef cnp.ndarray[complex128_t, ndim=2] diff_hat = pyfftw.empty_aligned(
  *         (N, N_half), dtype="complex128"             # <<<<<<<<<<<<<<
  *     )
  *     cdef cnp.ndarray[complex128_t, ndim=2] work_hat = pyfftw.empty_aligned(
 */
-  __pyx_t_6 = __Pyx_PyLong_From_int(__pyx_v_N); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 142, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyLong_From_int(__pyx_v_N); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 140, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
-  __pyx_t_3 = __Pyx_PyLong_From_int(__pyx_v_N_half); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 142, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyLong_From_int(__pyx_v_N_half); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 140, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = PyTuple_New(2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 142, __pyx_L1_error)
+  __pyx_t_4 = PyTuple_New(2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 140, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_GIVEREF(__pyx_t_6);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_6) != (0)) __PYX_ERR(0, 142, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_6) != (0)) __PYX_ERR(0, 140, __pyx_L1_error);
   __Pyx_GIVEREF(__pyx_t_3);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 1, __pyx_t_3) != (0)) __PYX_ERR(0, 142, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 1, __pyx_t_3) != (0)) __PYX_ERR(0, 140, __pyx_L1_error);
   __pyx_t_6 = 0;
   __pyx_t_3 = 0;
   __pyx_t_7 = 1;
@@ -7295,38 +7190,38 @@ static PyObject *__pyx_pf_60navier_stokes_spectral_pyfftw_algo_optim_vortex_plan
   #endif
   {
     PyObject *__pyx_callargs[2 + ((CYTHON_VECTORCALL) ? 1 : 0)] = {__pyx_t_5, __pyx_t_4};
-    __pyx_t_3 = __Pyx_MakeVectorcallBuilderKwds(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 141, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_MakeVectorcallBuilderKwds(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 139, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_dtype, __pyx_mstate_global->__pyx_n_u_complex128, __pyx_t_3, __pyx_callargs+2, 0) < (0)) __PYX_ERR(0, 141, __pyx_L1_error)
+    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_dtype, __pyx_mstate_global->__pyx_n_u_complex128, __pyx_t_3, __pyx_callargs+2, 0) < (0)) __PYX_ERR(0, 139, __pyx_L1_error)
     __pyx_t_1 = __Pyx_Object_Vectorcall_CallFromBuilder((PyObject*)__pyx_t_2, __pyx_callargs+__pyx_t_7, (2-__pyx_t_7) | (__pyx_t_7*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET), __pyx_t_3);
     __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 141, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 139, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
   }
 
-  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":141
+  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":139
  *         (N, N_half), dtype="complex128"
  *     )
  *     cdef cnp.ndarray[complex128_t, ndim=2] diff_hat = pyfftw.empty_aligned(             # <<<<<<<<<<<<<<
  *         (N, N_half), dtype="complex128"
  *     )
 */
-  if (!(likely(((__pyx_t_1) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_1, __pyx_mstate_global->__pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 141, __pyx_L1_error)
+  if (!(likely(((__pyx_t_1) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_1, __pyx_mstate_global->__pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 139, __pyx_L1_error)
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
     if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_diff_hat.rcbuffer->pybuffer, (PyObject*)((PyArrayObject *)__pyx_t_1), &__Pyx_TypeInfo___pyx_t_double_complex, PyBUF_FORMAT| PyBUF_STRIDES, 2, 0, __pyx_stack) == -1)) {
       __pyx_v_diff_hat = ((PyArrayObject *)Py_None); __Pyx_INCREF(Py_None); __pyx_pybuffernd_diff_hat.rcbuffer->pybuffer.buf = NULL;
-      __PYX_ERR(0, 141, __pyx_L1_error)
+      __PYX_ERR(0, 139, __pyx_L1_error)
     } else {__pyx_pybuffernd_diff_hat.diminfo[0].strides = __pyx_pybuffernd_diff_hat.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_diff_hat.diminfo[0].shape = __pyx_pybuffernd_diff_hat.rcbuffer->pybuffer.shape[0]; __pyx_pybuffernd_diff_hat.diminfo[1].strides = __pyx_pybuffernd_diff_hat.rcbuffer->pybuffer.strides[1]; __pyx_pybuffernd_diff_hat.diminfo[1].shape = __pyx_pybuffernd_diff_hat.rcbuffer->pybuffer.shape[1];
     }
   }
   __pyx_v_diff_hat = ((PyArrayObject *)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":144
+  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":142
  *         (N, N_half), dtype="complex128"
  *     )
  *     cdef cnp.ndarray[complex128_t, ndim=2] work_hat = pyfftw.empty_aligned(             # <<<<<<<<<<<<<<
@@ -7334,29 +7229,29 @@ static PyObject *__pyx_pf_60navier_stokes_spectral_pyfftw_algo_optim_vortex_plan
  *     )
 */
   __pyx_t_2 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_pyfftw); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 144, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_pyfftw); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 142, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_empty_aligned); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 144, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_empty_aligned); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 142, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":145
+  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":143
  *     )
  *     cdef cnp.ndarray[complex128_t, ndim=2] work_hat = pyfftw.empty_aligned(
  *         (N, N_half), dtype="complex128"             # <<<<<<<<<<<<<<
  *     )
  *     cdef cnp.ndarray[complex128_t, ndim=2] div_rhs_hat = pyfftw.empty_aligned(
 */
-  __pyx_t_3 = __Pyx_PyLong_From_int(__pyx_v_N); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 145, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyLong_From_int(__pyx_v_N); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 143, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_5 = __Pyx_PyLong_From_int(__pyx_v_N_half); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 145, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyLong_From_int(__pyx_v_N_half); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 143, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_6 = PyTuple_New(2); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 145, __pyx_L1_error)
+  __pyx_t_6 = PyTuple_New(2); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 143, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
   __Pyx_GIVEREF(__pyx_t_3);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_6, 0, __pyx_t_3) != (0)) __PYX_ERR(0, 145, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_6, 0, __pyx_t_3) != (0)) __PYX_ERR(0, 143, __pyx_L1_error);
   __Pyx_GIVEREF(__pyx_t_5);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_6, 1, __pyx_t_5) != (0)) __PYX_ERR(0, 145, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_6, 1, __pyx_t_5) != (0)) __PYX_ERR(0, 143, __pyx_L1_error);
   __pyx_t_3 = 0;
   __pyx_t_5 = 0;
   __pyx_t_7 = 1;
@@ -7373,38 +7268,38 @@ static PyObject *__pyx_pf_60navier_stokes_spectral_pyfftw_algo_optim_vortex_plan
   #endif
   {
     PyObject *__pyx_callargs[2 + ((CYTHON_VECTORCALL) ? 1 : 0)] = {__pyx_t_2, __pyx_t_6};
-    __pyx_t_5 = __Pyx_MakeVectorcallBuilderKwds(1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 144, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_MakeVectorcallBuilderKwds(1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 142, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
-    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_dtype, __pyx_mstate_global->__pyx_n_u_complex128, __pyx_t_5, __pyx_callargs+2, 0) < (0)) __PYX_ERR(0, 144, __pyx_L1_error)
+    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_dtype, __pyx_mstate_global->__pyx_n_u_complex128, __pyx_t_5, __pyx_callargs+2, 0) < (0)) __PYX_ERR(0, 142, __pyx_L1_error)
     __pyx_t_1 = __Pyx_Object_Vectorcall_CallFromBuilder((PyObject*)__pyx_t_4, __pyx_callargs+__pyx_t_7, (2-__pyx_t_7) | (__pyx_t_7*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET), __pyx_t_5);
     __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 144, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 142, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
   }
 
-  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":144
+  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":142
  *         (N, N_half), dtype="complex128"
  *     )
  *     cdef cnp.ndarray[complex128_t, ndim=2] work_hat = pyfftw.empty_aligned(             # <<<<<<<<<<<<<<
  *         (N, N_half), dtype="complex128"
  *     )
 */
-  if (!(likely(((__pyx_t_1) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_1, __pyx_mstate_global->__pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 144, __pyx_L1_error)
+  if (!(likely(((__pyx_t_1) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_1, __pyx_mstate_global->__pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 142, __pyx_L1_error)
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
     if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_work_hat.rcbuffer->pybuffer, (PyObject*)((PyArrayObject *)__pyx_t_1), &__Pyx_TypeInfo___pyx_t_double_complex, PyBUF_FORMAT| PyBUF_STRIDES, 2, 0, __pyx_stack) == -1)) {
       __pyx_v_work_hat = ((PyArrayObject *)Py_None); __Pyx_INCREF(Py_None); __pyx_pybuffernd_work_hat.rcbuffer->pybuffer.buf = NULL;
-      __PYX_ERR(0, 144, __pyx_L1_error)
+      __PYX_ERR(0, 142, __pyx_L1_error)
     } else {__pyx_pybuffernd_work_hat.diminfo[0].strides = __pyx_pybuffernd_work_hat.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_work_hat.diminfo[0].shape = __pyx_pybuffernd_work_hat.rcbuffer->pybuffer.shape[0]; __pyx_pybuffernd_work_hat.diminfo[1].strides = __pyx_pybuffernd_work_hat.rcbuffer->pybuffer.strides[1]; __pyx_pybuffernd_work_hat.diminfo[1].shape = __pyx_pybuffernd_work_hat.rcbuffer->pybuffer.shape[1];
     }
   }
   __pyx_v_work_hat = ((PyArrayObject *)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":147
+  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":145
  *         (N, N_half), dtype="complex128"
  *     )
  *     cdef cnp.ndarray[complex128_t, ndim=2] div_rhs_hat = pyfftw.empty_aligned(             # <<<<<<<<<<<<<<
@@ -7412,29 +7307,29 @@ static PyObject *__pyx_pf_60navier_stokes_spectral_pyfftw_algo_optim_vortex_plan
  *     )
 */
   __pyx_t_4 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_pyfftw); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 147, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_pyfftw); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 145, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_empty_aligned); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 147, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_empty_aligned); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 145, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":148
+  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":146
  *     )
  *     cdef cnp.ndarray[complex128_t, ndim=2] div_rhs_hat = pyfftw.empty_aligned(
  *         (N, N_half), dtype="complex128"             # <<<<<<<<<<<<<<
  *     )
  *     cdef cnp.ndarray[complex128_t, ndim=2] P_hat = pyfftw.empty_aligned(
 */
-  __pyx_t_5 = __Pyx_PyLong_From_int(__pyx_v_N); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 148, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyLong_From_int(__pyx_v_N); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 146, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_2 = __Pyx_PyLong_From_int(__pyx_v_N_half); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 148, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyLong_From_int(__pyx_v_N_half); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 146, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = PyTuple_New(2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 148, __pyx_L1_error)
+  __pyx_t_3 = PyTuple_New(2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 146, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_GIVEREF(__pyx_t_5);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_5) != (0)) __PYX_ERR(0, 148, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_5) != (0)) __PYX_ERR(0, 146, __pyx_L1_error);
   __Pyx_GIVEREF(__pyx_t_2);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_3, 1, __pyx_t_2) != (0)) __PYX_ERR(0, 148, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_3, 1, __pyx_t_2) != (0)) __PYX_ERR(0, 146, __pyx_L1_error);
   __pyx_t_5 = 0;
   __pyx_t_2 = 0;
   __pyx_t_7 = 1;
@@ -7451,38 +7346,38 @@ static PyObject *__pyx_pf_60navier_stokes_spectral_pyfftw_algo_optim_vortex_plan
   #endif
   {
     PyObject *__pyx_callargs[2 + ((CYTHON_VECTORCALL) ? 1 : 0)] = {__pyx_t_4, __pyx_t_3};
-    __pyx_t_2 = __Pyx_MakeVectorcallBuilderKwds(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 147, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_MakeVectorcallBuilderKwds(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 145, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_dtype, __pyx_mstate_global->__pyx_n_u_complex128, __pyx_t_2, __pyx_callargs+2, 0) < (0)) __PYX_ERR(0, 147, __pyx_L1_error)
+    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_dtype, __pyx_mstate_global->__pyx_n_u_complex128, __pyx_t_2, __pyx_callargs+2, 0) < (0)) __PYX_ERR(0, 145, __pyx_L1_error)
     __pyx_t_1 = __Pyx_Object_Vectorcall_CallFromBuilder((PyObject*)__pyx_t_6, __pyx_callargs+__pyx_t_7, (2-__pyx_t_7) | (__pyx_t_7*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET), __pyx_t_2);
     __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 147, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 145, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
   }
 
-  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":147
+  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":145
  *         (N, N_half), dtype="complex128"
  *     )
  *     cdef cnp.ndarray[complex128_t, ndim=2] div_rhs_hat = pyfftw.empty_aligned(             # <<<<<<<<<<<<<<
  *         (N, N_half), dtype="complex128"
  *     )
 */
-  if (!(likely(((__pyx_t_1) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_1, __pyx_mstate_global->__pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 147, __pyx_L1_error)
+  if (!(likely(((__pyx_t_1) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_1, __pyx_mstate_global->__pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 145, __pyx_L1_error)
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
     if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_div_rhs_hat.rcbuffer->pybuffer, (PyObject*)((PyArrayObject *)__pyx_t_1), &__Pyx_TypeInfo___pyx_t_double_complex, PyBUF_FORMAT| PyBUF_STRIDES, 2, 0, __pyx_stack) == -1)) {
       __pyx_v_div_rhs_hat = ((PyArrayObject *)Py_None); __Pyx_INCREF(Py_None); __pyx_pybuffernd_div_rhs_hat.rcbuffer->pybuffer.buf = NULL;
-      __PYX_ERR(0, 147, __pyx_L1_error)
+      __PYX_ERR(0, 145, __pyx_L1_error)
     } else {__pyx_pybuffernd_div_rhs_hat.diminfo[0].strides = __pyx_pybuffernd_div_rhs_hat.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_div_rhs_hat.diminfo[0].shape = __pyx_pybuffernd_div_rhs_hat.rcbuffer->pybuffer.shape[0]; __pyx_pybuffernd_div_rhs_hat.diminfo[1].strides = __pyx_pybuffernd_div_rhs_hat.rcbuffer->pybuffer.strides[1]; __pyx_pybuffernd_div_rhs_hat.diminfo[1].shape = __pyx_pybuffernd_div_rhs_hat.rcbuffer->pybuffer.shape[1];
     }
   }
   __pyx_v_div_rhs_hat = ((PyArrayObject *)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":150
+  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":148
  *         (N, N_half), dtype="complex128"
  *     )
  *     cdef cnp.ndarray[complex128_t, ndim=2] P_hat = pyfftw.empty_aligned(             # <<<<<<<<<<<<<<
@@ -7490,29 +7385,29 @@ static PyObject *__pyx_pf_60navier_stokes_spectral_pyfftw_algo_optim_vortex_plan
  *     )
 */
   __pyx_t_6 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_pyfftw); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 150, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_pyfftw); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 148, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_empty_aligned); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 150, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_empty_aligned); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 148, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":151
+  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":149
  *     )
  *     cdef cnp.ndarray[complex128_t, ndim=2] P_hat = pyfftw.empty_aligned(
  *         (N, N_half), dtype="complex128"             # <<<<<<<<<<<<<<
  *     )
  *     cdef cnp.ndarray[complex128_t, ndim=2] vx_hat_ifft = pyfftw.empty_aligned(
 */
-  __pyx_t_2 = __Pyx_PyLong_From_int(__pyx_v_N); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 151, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyLong_From_int(__pyx_v_N); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 149, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_4 = __Pyx_PyLong_From_int(__pyx_v_N_half); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 151, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyLong_From_int(__pyx_v_N_half); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 149, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_5 = PyTuple_New(2); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 151, __pyx_L1_error)
+  __pyx_t_5 = PyTuple_New(2); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 149, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_GIVEREF(__pyx_t_2);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_2) != (0)) __PYX_ERR(0, 151, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_2) != (0)) __PYX_ERR(0, 149, __pyx_L1_error);
   __Pyx_GIVEREF(__pyx_t_4);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_5, 1, __pyx_t_4) != (0)) __PYX_ERR(0, 151, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_5, 1, __pyx_t_4) != (0)) __PYX_ERR(0, 149, __pyx_L1_error);
   __pyx_t_2 = 0;
   __pyx_t_4 = 0;
   __pyx_t_7 = 1;
@@ -7529,38 +7424,38 @@ static PyObject *__pyx_pf_60navier_stokes_spectral_pyfftw_algo_optim_vortex_plan
   #endif
   {
     PyObject *__pyx_callargs[2 + ((CYTHON_VECTORCALL) ? 1 : 0)] = {__pyx_t_6, __pyx_t_5};
-    __pyx_t_4 = __Pyx_MakeVectorcallBuilderKwds(1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 150, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_MakeVectorcallBuilderKwds(1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 148, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
-    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_dtype, __pyx_mstate_global->__pyx_n_u_complex128, __pyx_t_4, __pyx_callargs+2, 0) < (0)) __PYX_ERR(0, 150, __pyx_L1_error)
+    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_dtype, __pyx_mstate_global->__pyx_n_u_complex128, __pyx_t_4, __pyx_callargs+2, 0) < (0)) __PYX_ERR(0, 148, __pyx_L1_error)
     __pyx_t_1 = __Pyx_Object_Vectorcall_CallFromBuilder((PyObject*)__pyx_t_3, __pyx_callargs+__pyx_t_7, (2-__pyx_t_7) | (__pyx_t_7*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET), __pyx_t_4);
     __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 150, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 148, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
   }
 
-  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":150
+  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":148
  *         (N, N_half), dtype="complex128"
  *     )
  *     cdef cnp.ndarray[complex128_t, ndim=2] P_hat = pyfftw.empty_aligned(             # <<<<<<<<<<<<<<
  *         (N, N_half), dtype="complex128"
  *     )
 */
-  if (!(likely(((__pyx_t_1) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_1, __pyx_mstate_global->__pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 150, __pyx_L1_error)
+  if (!(likely(((__pyx_t_1) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_1, __pyx_mstate_global->__pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 148, __pyx_L1_error)
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
     if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_P_hat.rcbuffer->pybuffer, (PyObject*)((PyArrayObject *)__pyx_t_1), &__Pyx_TypeInfo___pyx_t_double_complex, PyBUF_FORMAT| PyBUF_STRIDES, 2, 0, __pyx_stack) == -1)) {
       __pyx_v_P_hat = ((PyArrayObject *)Py_None); __Pyx_INCREF(Py_None); __pyx_pybuffernd_P_hat.rcbuffer->pybuffer.buf = NULL;
-      __PYX_ERR(0, 150, __pyx_L1_error)
+      __PYX_ERR(0, 148, __pyx_L1_error)
     } else {__pyx_pybuffernd_P_hat.diminfo[0].strides = __pyx_pybuffernd_P_hat.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_P_hat.diminfo[0].shape = __pyx_pybuffernd_P_hat.rcbuffer->pybuffer.shape[0]; __pyx_pybuffernd_P_hat.diminfo[1].strides = __pyx_pybuffernd_P_hat.rcbuffer->pybuffer.strides[1]; __pyx_pybuffernd_P_hat.diminfo[1].shape = __pyx_pybuffernd_P_hat.rcbuffer->pybuffer.shape[1];
     }
   }
   __pyx_v_P_hat = ((PyArrayObject *)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":153
+  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":151
  *         (N, N_half), dtype="complex128"
  *     )
  *     cdef cnp.ndarray[complex128_t, ndim=2] vx_hat_ifft = pyfftw.empty_aligned(             # <<<<<<<<<<<<<<
@@ -7568,29 +7463,29 @@ static PyObject *__pyx_pf_60navier_stokes_spectral_pyfftw_algo_optim_vortex_plan
  *     )
 */
   __pyx_t_3 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_pyfftw); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 153, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_pyfftw); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 151, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_empty_aligned); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 153, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_empty_aligned); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 151, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":154
+  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":152
  *     )
  *     cdef cnp.ndarray[complex128_t, ndim=2] vx_hat_ifft = pyfftw.empty_aligned(
  *         (N, N_half), dtype="complex128"             # <<<<<<<<<<<<<<
  *     )
  *     cdef cnp.ndarray[complex128_t, ndim=2] vy_hat_ifft = pyfftw.empty_aligned(
 */
-  __pyx_t_4 = __Pyx_PyLong_From_int(__pyx_v_N); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 154, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyLong_From_int(__pyx_v_N); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 152, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_6 = __Pyx_PyLong_From_int(__pyx_v_N_half); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 154, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyLong_From_int(__pyx_v_N_half); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 152, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
-  __pyx_t_2 = PyTuple_New(2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 154, __pyx_L1_error)
+  __pyx_t_2 = PyTuple_New(2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 152, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_GIVEREF(__pyx_t_4);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_4) != (0)) __PYX_ERR(0, 154, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_4) != (0)) __PYX_ERR(0, 152, __pyx_L1_error);
   __Pyx_GIVEREF(__pyx_t_6);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_2, 1, __pyx_t_6) != (0)) __PYX_ERR(0, 154, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_2, 1, __pyx_t_6) != (0)) __PYX_ERR(0, 152, __pyx_L1_error);
   __pyx_t_4 = 0;
   __pyx_t_6 = 0;
   __pyx_t_7 = 1;
@@ -7607,38 +7502,38 @@ static PyObject *__pyx_pf_60navier_stokes_spectral_pyfftw_algo_optim_vortex_plan
   #endif
   {
     PyObject *__pyx_callargs[2 + ((CYTHON_VECTORCALL) ? 1 : 0)] = {__pyx_t_3, __pyx_t_2};
-    __pyx_t_6 = __Pyx_MakeVectorcallBuilderKwds(1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 153, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_MakeVectorcallBuilderKwds(1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 151, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
-    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_dtype, __pyx_mstate_global->__pyx_n_u_complex128, __pyx_t_6, __pyx_callargs+2, 0) < (0)) __PYX_ERR(0, 153, __pyx_L1_error)
+    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_dtype, __pyx_mstate_global->__pyx_n_u_complex128, __pyx_t_6, __pyx_callargs+2, 0) < (0)) __PYX_ERR(0, 151, __pyx_L1_error)
     __pyx_t_1 = __Pyx_Object_Vectorcall_CallFromBuilder((PyObject*)__pyx_t_5, __pyx_callargs+__pyx_t_7, (2-__pyx_t_7) | (__pyx_t_7*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET), __pyx_t_6);
     __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 153, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 151, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
   }
 
-  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":153
+  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":151
  *         (N, N_half), dtype="complex128"
  *     )
  *     cdef cnp.ndarray[complex128_t, ndim=2] vx_hat_ifft = pyfftw.empty_aligned(             # <<<<<<<<<<<<<<
  *         (N, N_half), dtype="complex128"
  *     )
 */
-  if (!(likely(((__pyx_t_1) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_1, __pyx_mstate_global->__pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 153, __pyx_L1_error)
+  if (!(likely(((__pyx_t_1) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_1, __pyx_mstate_global->__pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 151, __pyx_L1_error)
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
     if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_vx_hat_ifft.rcbuffer->pybuffer, (PyObject*)((PyArrayObject *)__pyx_t_1), &__Pyx_TypeInfo___pyx_t_double_complex, PyBUF_FORMAT| PyBUF_STRIDES, 2, 0, __pyx_stack) == -1)) {
       __pyx_v_vx_hat_ifft = ((PyArrayObject *)Py_None); __Pyx_INCREF(Py_None); __pyx_pybuffernd_vx_hat_ifft.rcbuffer->pybuffer.buf = NULL;
-      __PYX_ERR(0, 153, __pyx_L1_error)
+      __PYX_ERR(0, 151, __pyx_L1_error)
     } else {__pyx_pybuffernd_vx_hat_ifft.diminfo[0].strides = __pyx_pybuffernd_vx_hat_ifft.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_vx_hat_ifft.diminfo[0].shape = __pyx_pybuffernd_vx_hat_ifft.rcbuffer->pybuffer.shape[0]; __pyx_pybuffernd_vx_hat_ifft.diminfo[1].strides = __pyx_pybuffernd_vx_hat_ifft.rcbuffer->pybuffer.strides[1]; __pyx_pybuffernd_vx_hat_ifft.diminfo[1].shape = __pyx_pybuffernd_vx_hat_ifft.rcbuffer->pybuffer.shape[1];
     }
   }
   __pyx_v_vx_hat_ifft = ((PyArrayObject *)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":156
+  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":154
  *         (N, N_half), dtype="complex128"
  *     )
  *     cdef cnp.ndarray[complex128_t, ndim=2] vy_hat_ifft = pyfftw.empty_aligned(             # <<<<<<<<<<<<<<
@@ -7646,29 +7541,29 @@ static PyObject *__pyx_pf_60navier_stokes_spectral_pyfftw_algo_optim_vortex_plan
  *     )
 */
   __pyx_t_5 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_6, __pyx_mstate_global->__pyx_n_u_pyfftw); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 156, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_6, __pyx_mstate_global->__pyx_n_u_pyfftw); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 154, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_mstate_global->__pyx_n_u_empty_aligned); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 156, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_mstate_global->__pyx_n_u_empty_aligned); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 154, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
 
-  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":157
+  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":155
  *     )
  *     cdef cnp.ndarray[complex128_t, ndim=2] vy_hat_ifft = pyfftw.empty_aligned(
  *         (N, N_half), dtype="complex128"             # <<<<<<<<<<<<<<
  *     )
  * 
 */
-  __pyx_t_6 = __Pyx_PyLong_From_int(__pyx_v_N); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 157, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyLong_From_int(__pyx_v_N); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 155, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
-  __pyx_t_3 = __Pyx_PyLong_From_int(__pyx_v_N_half); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 157, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyLong_From_int(__pyx_v_N_half); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 155, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = PyTuple_New(2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 157, __pyx_L1_error)
+  __pyx_t_4 = PyTuple_New(2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 155, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_GIVEREF(__pyx_t_6);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_6) != (0)) __PYX_ERR(0, 157, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_6) != (0)) __PYX_ERR(0, 155, __pyx_L1_error);
   __Pyx_GIVEREF(__pyx_t_3);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 1, __pyx_t_3) != (0)) __PYX_ERR(0, 157, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 1, __pyx_t_3) != (0)) __PYX_ERR(0, 155, __pyx_L1_error);
   __pyx_t_6 = 0;
   __pyx_t_3 = 0;
   __pyx_t_7 = 1;
@@ -7685,38 +7580,38 @@ static PyObject *__pyx_pf_60navier_stokes_spectral_pyfftw_algo_optim_vortex_plan
   #endif
   {
     PyObject *__pyx_callargs[2 + ((CYTHON_VECTORCALL) ? 1 : 0)] = {__pyx_t_5, __pyx_t_4};
-    __pyx_t_3 = __Pyx_MakeVectorcallBuilderKwds(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 156, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_MakeVectorcallBuilderKwds(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 154, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_dtype, __pyx_mstate_global->__pyx_n_u_complex128, __pyx_t_3, __pyx_callargs+2, 0) < (0)) __PYX_ERR(0, 156, __pyx_L1_error)
+    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_dtype, __pyx_mstate_global->__pyx_n_u_complex128, __pyx_t_3, __pyx_callargs+2, 0) < (0)) __PYX_ERR(0, 154, __pyx_L1_error)
     __pyx_t_1 = __Pyx_Object_Vectorcall_CallFromBuilder((PyObject*)__pyx_t_2, __pyx_callargs+__pyx_t_7, (2-__pyx_t_7) | (__pyx_t_7*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET), __pyx_t_3);
     __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 156, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 154, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
   }
 
-  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":156
+  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":154
  *         (N, N_half), dtype="complex128"
  *     )
  *     cdef cnp.ndarray[complex128_t, ndim=2] vy_hat_ifft = pyfftw.empty_aligned(             # <<<<<<<<<<<<<<
  *         (N, N_half), dtype="complex128"
  *     )
 */
-  if (!(likely(((__pyx_t_1) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_1, __pyx_mstate_global->__pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 156, __pyx_L1_error)
+  if (!(likely(((__pyx_t_1) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_1, __pyx_mstate_global->__pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 154, __pyx_L1_error)
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
     if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_vy_hat_ifft.rcbuffer->pybuffer, (PyObject*)((PyArrayObject *)__pyx_t_1), &__Pyx_TypeInfo___pyx_t_double_complex, PyBUF_FORMAT| PyBUF_STRIDES, 2, 0, __pyx_stack) == -1)) {
       __pyx_v_vy_hat_ifft = ((PyArrayObject *)Py_None); __Pyx_INCREF(Py_None); __pyx_pybuffernd_vy_hat_ifft.rcbuffer->pybuffer.buf = NULL;
-      __PYX_ERR(0, 156, __pyx_L1_error)
+      __PYX_ERR(0, 154, __pyx_L1_error)
     } else {__pyx_pybuffernd_vy_hat_ifft.diminfo[0].strides = __pyx_pybuffernd_vy_hat_ifft.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_vy_hat_ifft.diminfo[0].shape = __pyx_pybuffernd_vy_hat_ifft.rcbuffer->pybuffer.shape[0]; __pyx_pybuffernd_vy_hat_ifft.diminfo[1].strides = __pyx_pybuffernd_vy_hat_ifft.rcbuffer->pybuffer.strides[1]; __pyx_pybuffernd_vy_hat_ifft.diminfo[1].shape = __pyx_pybuffernd_vy_hat_ifft.rcbuffer->pybuffer.shape[1];
     }
   }
   __pyx_v_vy_hat_ifft = ((PyArrayObject *)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":160
+  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":158
  *     )
  * 
  *     cdef object fft_vx = pyfftw.FFTW(vx, vx_hat, axes=(0, 1), direction="FFTW_FORWARD")             # <<<<<<<<<<<<<<
@@ -7724,9 +7619,9 @@ static PyObject *__pyx_pf_60navier_stokes_spectral_pyfftw_algo_optim_vortex_plan
  *     cdef object fft_rhs_x = pyfftw.FFTW(
 */
   __pyx_t_2 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_pyfftw); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 160, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_pyfftw); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 158, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_FFTW); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 160, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_FFTW); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 158, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_t_7 = 1;
@@ -7743,21 +7638,21 @@ static PyObject *__pyx_pf_60navier_stokes_spectral_pyfftw_algo_optim_vortex_plan
   #endif
   {
     PyObject *__pyx_callargs[3 + ((CYTHON_VECTORCALL) ? 2 : 0)] = {__pyx_t_2, ((PyObject *)__pyx_v_vx), ((PyObject *)__pyx_v_vx_hat)};
-    __pyx_t_3 = __Pyx_MakeVectorcallBuilderKwds(2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 160, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_MakeVectorcallBuilderKwds(2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 158, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_axes, __pyx_mstate_global->__pyx_tuple[0], __pyx_t_3, __pyx_callargs+3, 0) < (0)) __PYX_ERR(0, 160, __pyx_L1_error)
-    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_direction, __pyx_mstate_global->__pyx_n_u_FFTW_FORWARD, __pyx_t_3, __pyx_callargs+3, 1) < (0)) __PYX_ERR(0, 160, __pyx_L1_error)
+    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_axes, __pyx_mstate_global->__pyx_tuple[0], __pyx_t_3, __pyx_callargs+3, 0) < (0)) __PYX_ERR(0, 158, __pyx_L1_error)
+    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_direction, __pyx_mstate_global->__pyx_n_u_FFTW_FORWARD, __pyx_t_3, __pyx_callargs+3, 1) < (0)) __PYX_ERR(0, 158, __pyx_L1_error)
     __pyx_t_1 = __Pyx_Object_Vectorcall_CallFromBuilder((PyObject*)__pyx_t_4, __pyx_callargs+__pyx_t_7, (3-__pyx_t_7) | (__pyx_t_7*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET), __pyx_t_3);
     __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 160, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 158, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
   }
   __pyx_v_fft_vx = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":161
+  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":159
  * 
  *     cdef object fft_vx = pyfftw.FFTW(vx, vx_hat, axes=(0, 1), direction="FFTW_FORWARD")
  *     cdef object fft_vy = pyfftw.FFTW(vy, vy_hat, axes=(0, 1), direction="FFTW_FORWARD")             # <<<<<<<<<<<<<<
@@ -7765,9 +7660,9 @@ static PyObject *__pyx_pf_60navier_stokes_spectral_pyfftw_algo_optim_vortex_plan
  *         rhs_x, rhs_x_hat, axes=(0, 1), direction="FFTW_FORWARD"
 */
   __pyx_t_4 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_pyfftw); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 161, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_pyfftw); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 159, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_FFTW); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 161, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_FFTW); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 159, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_t_7 = 1;
@@ -7784,21 +7679,21 @@ static PyObject *__pyx_pf_60navier_stokes_spectral_pyfftw_algo_optim_vortex_plan
   #endif
   {
     PyObject *__pyx_callargs[3 + ((CYTHON_VECTORCALL) ? 2 : 0)] = {__pyx_t_4, ((PyObject *)__pyx_v_vy), ((PyObject *)__pyx_v_vy_hat)};
-    __pyx_t_3 = __Pyx_MakeVectorcallBuilderKwds(2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 161, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_MakeVectorcallBuilderKwds(2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 159, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_axes, __pyx_mstate_global->__pyx_tuple[0], __pyx_t_3, __pyx_callargs+3, 0) < (0)) __PYX_ERR(0, 161, __pyx_L1_error)
-    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_direction, __pyx_mstate_global->__pyx_n_u_FFTW_FORWARD, __pyx_t_3, __pyx_callargs+3, 1) < (0)) __PYX_ERR(0, 161, __pyx_L1_error)
+    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_axes, __pyx_mstate_global->__pyx_tuple[0], __pyx_t_3, __pyx_callargs+3, 0) < (0)) __PYX_ERR(0, 159, __pyx_L1_error)
+    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_direction, __pyx_mstate_global->__pyx_n_u_FFTW_FORWARD, __pyx_t_3, __pyx_callargs+3, 1) < (0)) __PYX_ERR(0, 159, __pyx_L1_error)
     __pyx_t_1 = __Pyx_Object_Vectorcall_CallFromBuilder((PyObject*)__pyx_t_2, __pyx_callargs+__pyx_t_7, (3-__pyx_t_7) | (__pyx_t_7*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET), __pyx_t_3);
     __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 161, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 159, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
   }
   __pyx_v_fft_vy = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":162
+  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":160
  *     cdef object fft_vx = pyfftw.FFTW(vx, vx_hat, axes=(0, 1), direction="FFTW_FORWARD")
  *     cdef object fft_vy = pyfftw.FFTW(vy, vy_hat, axes=(0, 1), direction="FFTW_FORWARD")
  *     cdef object fft_rhs_x = pyfftw.FFTW(             # <<<<<<<<<<<<<<
@@ -7806,13 +7701,13 @@ static PyObject *__pyx_pf_60navier_stokes_spectral_pyfftw_algo_optim_vortex_plan
  *     )
 */
   __pyx_t_2 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_pyfftw); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 162, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_pyfftw); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 160, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_FFTW); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 162, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_FFTW); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 160, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":163
+  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":161
  *     cdef object fft_vy = pyfftw.FFTW(vy, vy_hat, axes=(0, 1), direction="FFTW_FORWARD")
  *     cdef object fft_rhs_x = pyfftw.FFTW(
  *         rhs_x, rhs_x_hat, axes=(0, 1), direction="FFTW_FORWARD"             # <<<<<<<<<<<<<<
@@ -7833,21 +7728,21 @@ static PyObject *__pyx_pf_60navier_stokes_spectral_pyfftw_algo_optim_vortex_plan
   #endif
   {
     PyObject *__pyx_callargs[3 + ((CYTHON_VECTORCALL) ? 2 : 0)] = {__pyx_t_2, ((PyObject *)__pyx_v_rhs_x), ((PyObject *)__pyx_v_rhs_x_hat)};
-    __pyx_t_3 = __Pyx_MakeVectorcallBuilderKwds(2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 162, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_MakeVectorcallBuilderKwds(2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 160, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_axes, __pyx_mstate_global->__pyx_tuple[0], __pyx_t_3, __pyx_callargs+3, 0) < (0)) __PYX_ERR(0, 162, __pyx_L1_error)
-    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_direction, __pyx_mstate_global->__pyx_n_u_FFTW_FORWARD, __pyx_t_3, __pyx_callargs+3, 1) < (0)) __PYX_ERR(0, 162, __pyx_L1_error)
+    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_axes, __pyx_mstate_global->__pyx_tuple[0], __pyx_t_3, __pyx_callargs+3, 0) < (0)) __PYX_ERR(0, 160, __pyx_L1_error)
+    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_direction, __pyx_mstate_global->__pyx_n_u_FFTW_FORWARD, __pyx_t_3, __pyx_callargs+3, 1) < (0)) __PYX_ERR(0, 160, __pyx_L1_error)
     __pyx_t_1 = __Pyx_Object_Vectorcall_CallFromBuilder((PyObject*)__pyx_t_4, __pyx_callargs+__pyx_t_7, (3-__pyx_t_7) | (__pyx_t_7*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET), __pyx_t_3);
     __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 162, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 160, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
   }
   __pyx_v_fft_rhs_x = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":165
+  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":163
  *         rhs_x, rhs_x_hat, axes=(0, 1), direction="FFTW_FORWARD"
  *     )
  *     cdef object fft_rhs_y = pyfftw.FFTW(             # <<<<<<<<<<<<<<
@@ -7855,13 +7750,13 @@ static PyObject *__pyx_pf_60navier_stokes_spectral_pyfftw_algo_optim_vortex_plan
  *     )
 */
   __pyx_t_4 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_pyfftw); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 165, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_pyfftw); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 163, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_FFTW); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 165, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_FFTW); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 163, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":166
+  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":164
  *     )
  *     cdef object fft_rhs_y = pyfftw.FFTW(
  *         rhs_y, rhs_y_hat, axes=(0, 1), direction="FFTW_FORWARD"             # <<<<<<<<<<<<<<
@@ -7882,21 +7777,21 @@ static PyObject *__pyx_pf_60navier_stokes_spectral_pyfftw_algo_optim_vortex_plan
   #endif
   {
     PyObject *__pyx_callargs[3 + ((CYTHON_VECTORCALL) ? 2 : 0)] = {__pyx_t_4, ((PyObject *)__pyx_v_rhs_y), ((PyObject *)__pyx_v_rhs_y_hat)};
-    __pyx_t_3 = __Pyx_MakeVectorcallBuilderKwds(2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 165, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_MakeVectorcallBuilderKwds(2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 163, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_axes, __pyx_mstate_global->__pyx_tuple[0], __pyx_t_3, __pyx_callargs+3, 0) < (0)) __PYX_ERR(0, 165, __pyx_L1_error)
-    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_direction, __pyx_mstate_global->__pyx_n_u_FFTW_FORWARD, __pyx_t_3, __pyx_callargs+3, 1) < (0)) __PYX_ERR(0, 165, __pyx_L1_error)
+    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_axes, __pyx_mstate_global->__pyx_tuple[0], __pyx_t_3, __pyx_callargs+3, 0) < (0)) __PYX_ERR(0, 163, __pyx_L1_error)
+    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_direction, __pyx_mstate_global->__pyx_n_u_FFTW_FORWARD, __pyx_t_3, __pyx_callargs+3, 1) < (0)) __PYX_ERR(0, 163, __pyx_L1_error)
     __pyx_t_1 = __Pyx_Object_Vectorcall_CallFromBuilder((PyObject*)__pyx_t_2, __pyx_callargs+__pyx_t_7, (3-__pyx_t_7) | (__pyx_t_7*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET), __pyx_t_3);
     __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 165, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 163, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
   }
   __pyx_v_fft_rhs_y = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":168
+  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":166
  *         rhs_y, rhs_y_hat, axes=(0, 1), direction="FFTW_FORWARD"
  *     )
  *     cdef object ifft_wz = pyfftw.FFTW(             # <<<<<<<<<<<<<<
@@ -7904,13 +7799,13 @@ static PyObject *__pyx_pf_60navier_stokes_spectral_pyfftw_algo_optim_vortex_plan
  *         wz,
 */
   __pyx_t_2 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_pyfftw); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 168, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_pyfftw); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 166, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_FFTW); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 168, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_FFTW); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 166, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":173
+  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":171
  *         axes=(0, 1),
  *         direction="FFTW_BACKWARD",
  *         normalise_idft=True,             # <<<<<<<<<<<<<<
@@ -7931,22 +7826,22 @@ static PyObject *__pyx_pf_60navier_stokes_spectral_pyfftw_algo_optim_vortex_plan
   #endif
   {
     PyObject *__pyx_callargs[3 + ((CYTHON_VECTORCALL) ? 3 : 0)] = {__pyx_t_2, ((PyObject *)__pyx_v_diff_hat), ((PyObject *)__pyx_v_wz)};
-    __pyx_t_3 = __Pyx_MakeVectorcallBuilderKwds(3); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 168, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_MakeVectorcallBuilderKwds(3); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 166, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_axes, __pyx_mstate_global->__pyx_tuple[0], __pyx_t_3, __pyx_callargs+3, 0) < (0)) __PYX_ERR(0, 168, __pyx_L1_error)
-    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_direction, __pyx_mstate_global->__pyx_n_u_FFTW_BACKWARD, __pyx_t_3, __pyx_callargs+3, 1) < (0)) __PYX_ERR(0, 168, __pyx_L1_error)
-    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_normalise_idft, Py_True, __pyx_t_3, __pyx_callargs+3, 2) < (0)) __PYX_ERR(0, 168, __pyx_L1_error)
+    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_axes, __pyx_mstate_global->__pyx_tuple[0], __pyx_t_3, __pyx_callargs+3, 0) < (0)) __PYX_ERR(0, 166, __pyx_L1_error)
+    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_direction, __pyx_mstate_global->__pyx_n_u_FFTW_BACKWARD, __pyx_t_3, __pyx_callargs+3, 1) < (0)) __PYX_ERR(0, 166, __pyx_L1_error)
+    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_normalise_idft, Py_True, __pyx_t_3, __pyx_callargs+3, 2) < (0)) __PYX_ERR(0, 166, __pyx_L1_error)
     __pyx_t_1 = __Pyx_Object_Vectorcall_CallFromBuilder((PyObject*)__pyx_t_4, __pyx_callargs+__pyx_t_7, (3-__pyx_t_7) | (__pyx_t_7*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET), __pyx_t_3);
     __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 168, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 166, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
   }
   __pyx_v_ifft_wz = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":175
+  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":173
  *         normalise_idft=True,
  *     )
  *     cdef object ifft_vx = pyfftw.FFTW(             # <<<<<<<<<<<<<<
@@ -7954,13 +7849,13 @@ static PyObject *__pyx_pf_60navier_stokes_spectral_pyfftw_algo_optim_vortex_plan
  *         vx,
 */
   __pyx_t_4 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_pyfftw); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 175, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_pyfftw); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 173, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_FFTW); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 175, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_FFTW); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 173, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":180
+  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":178
  *         axes=(0, 1),
  *         direction="FFTW_BACKWARD",
  *         normalise_idft=True,             # <<<<<<<<<<<<<<
@@ -7981,22 +7876,22 @@ static PyObject *__pyx_pf_60navier_stokes_spectral_pyfftw_algo_optim_vortex_plan
   #endif
   {
     PyObject *__pyx_callargs[3 + ((CYTHON_VECTORCALL) ? 3 : 0)] = {__pyx_t_4, ((PyObject *)__pyx_v_vx_hat_ifft), ((PyObject *)__pyx_v_vx)};
-    __pyx_t_3 = __Pyx_MakeVectorcallBuilderKwds(3); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 175, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_MakeVectorcallBuilderKwds(3); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 173, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_axes, __pyx_mstate_global->__pyx_tuple[0], __pyx_t_3, __pyx_callargs+3, 0) < (0)) __PYX_ERR(0, 175, __pyx_L1_error)
-    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_direction, __pyx_mstate_global->__pyx_n_u_FFTW_BACKWARD, __pyx_t_3, __pyx_callargs+3, 1) < (0)) __PYX_ERR(0, 175, __pyx_L1_error)
-    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_normalise_idft, Py_True, __pyx_t_3, __pyx_callargs+3, 2) < (0)) __PYX_ERR(0, 175, __pyx_L1_error)
+    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_axes, __pyx_mstate_global->__pyx_tuple[0], __pyx_t_3, __pyx_callargs+3, 0) < (0)) __PYX_ERR(0, 173, __pyx_L1_error)
+    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_direction, __pyx_mstate_global->__pyx_n_u_FFTW_BACKWARD, __pyx_t_3, __pyx_callargs+3, 1) < (0)) __PYX_ERR(0, 173, __pyx_L1_error)
+    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_normalise_idft, Py_True, __pyx_t_3, __pyx_callargs+3, 2) < (0)) __PYX_ERR(0, 173, __pyx_L1_error)
     __pyx_t_1 = __Pyx_Object_Vectorcall_CallFromBuilder((PyObject*)__pyx_t_2, __pyx_callargs+__pyx_t_7, (3-__pyx_t_7) | (__pyx_t_7*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET), __pyx_t_3);
     __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 175, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 173, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
   }
   __pyx_v_ifft_vx = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":182
+  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":180
  *         normalise_idft=True,
  *     )
  *     cdef object ifft_vy = pyfftw.FFTW(             # <<<<<<<<<<<<<<
@@ -8004,13 +7899,13 @@ static PyObject *__pyx_pf_60navier_stokes_spectral_pyfftw_algo_optim_vortex_plan
  *         vy,
 */
   __pyx_t_2 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_pyfftw); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 182, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_pyfftw); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 180, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_FFTW); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 182, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_FFTW); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 180, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":187
+  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":185
  *         axes=(0, 1),
  *         direction="FFTW_BACKWARD",
  *         normalise_idft=True,             # <<<<<<<<<<<<<<
@@ -8031,22 +7926,22 @@ static PyObject *__pyx_pf_60navier_stokes_spectral_pyfftw_algo_optim_vortex_plan
   #endif
   {
     PyObject *__pyx_callargs[3 + ((CYTHON_VECTORCALL) ? 3 : 0)] = {__pyx_t_2, ((PyObject *)__pyx_v_vy_hat_ifft), ((PyObject *)__pyx_v_vy)};
-    __pyx_t_3 = __Pyx_MakeVectorcallBuilderKwds(3); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 182, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_MakeVectorcallBuilderKwds(3); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 180, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_axes, __pyx_mstate_global->__pyx_tuple[0], __pyx_t_3, __pyx_callargs+3, 0) < (0)) __PYX_ERR(0, 182, __pyx_L1_error)
-    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_direction, __pyx_mstate_global->__pyx_n_u_FFTW_BACKWARD, __pyx_t_3, __pyx_callargs+3, 1) < (0)) __PYX_ERR(0, 182, __pyx_L1_error)
-    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_normalise_idft, Py_True, __pyx_t_3, __pyx_callargs+3, 2) < (0)) __PYX_ERR(0, 182, __pyx_L1_error)
+    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_axes, __pyx_mstate_global->__pyx_tuple[0], __pyx_t_3, __pyx_callargs+3, 0) < (0)) __PYX_ERR(0, 180, __pyx_L1_error)
+    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_direction, __pyx_mstate_global->__pyx_n_u_FFTW_BACKWARD, __pyx_t_3, __pyx_callargs+3, 1) < (0)) __PYX_ERR(0, 180, __pyx_L1_error)
+    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_normalise_idft, Py_True, __pyx_t_3, __pyx_callargs+3, 2) < (0)) __PYX_ERR(0, 180, __pyx_L1_error)
     __pyx_t_1 = __Pyx_Object_Vectorcall_CallFromBuilder((PyObject*)__pyx_t_4, __pyx_callargs+__pyx_t_7, (3-__pyx_t_7) | (__pyx_t_7*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET), __pyx_t_3);
     __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 182, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 180, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
   }
   __pyx_v_ifft_vy = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":190
+  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":188
  *     )
  * 
  *     cdef cnp.ndarray[float64_t, ndim=1] xlin = np.linspace(             # <<<<<<<<<<<<<<
@@ -8054,22 +7949,22 @@ static PyObject *__pyx_pf_60navier_stokes_spectral_pyfftw_algo_optim_vortex_plan
  *     )  # Note: x=0 & x=1 are the same point!
 */
   __pyx_t_4 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 190, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 188, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_linspace); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 190, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_linspace); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 188, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":191
+  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":189
  * 
  *     cdef cnp.ndarray[float64_t, ndim=1] xlin = np.linspace(
  *         0.0, L, num=N + 1             # <<<<<<<<<<<<<<
  *     )  # Note: x=0 & x=1 are the same point!
  *     cdef cnp.ndarray[float64_t, ndim=2] xx
 */
-  __pyx_t_3 = PyFloat_FromDouble(__pyx_v_L); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 191, __pyx_L1_error)
+  __pyx_t_3 = PyFloat_FromDouble(__pyx_v_L); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 189, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_5 = __Pyx_PyLong_From_long((__pyx_v_N + 1)); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 191, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyLong_From_long((__pyx_v_N + 1)); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 189, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __pyx_t_7 = 1;
   #if CYTHON_UNPACK_METHODS
@@ -8085,54 +7980,54 @@ static PyObject *__pyx_pf_60navier_stokes_spectral_pyfftw_algo_optim_vortex_plan
   #endif
   {
     PyObject *__pyx_callargs[3 + ((CYTHON_VECTORCALL) ? 1 : 0)] = {__pyx_t_4, __pyx_mstate_global->__pyx_float_0_0, __pyx_t_3};
-    __pyx_t_6 = __Pyx_MakeVectorcallBuilderKwds(1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 190, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_MakeVectorcallBuilderKwds(1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 188, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
-    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_num, __pyx_t_5, __pyx_t_6, __pyx_callargs+3, 0) < (0)) __PYX_ERR(0, 190, __pyx_L1_error)
+    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_num, __pyx_t_5, __pyx_t_6, __pyx_callargs+3, 0) < (0)) __PYX_ERR(0, 188, __pyx_L1_error)
     __pyx_t_1 = __Pyx_Object_Vectorcall_CallFromBuilder((PyObject*)__pyx_t_2, __pyx_callargs+__pyx_t_7, (3-__pyx_t_7) | (__pyx_t_7*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET), __pyx_t_6);
     __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 190, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 188, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
   }
 
-  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":190
+  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":188
  *     )
  * 
  *     cdef cnp.ndarray[float64_t, ndim=1] xlin = np.linspace(             # <<<<<<<<<<<<<<
  *         0.0, L, num=N + 1
  *     )  # Note: x=0 & x=1 are the same point!
 */
-  if (!(likely(((__pyx_t_1) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_1, __pyx_mstate_global->__pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 190, __pyx_L1_error)
+  if (!(likely(((__pyx_t_1) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_1, __pyx_mstate_global->__pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 188, __pyx_L1_error)
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
     if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_xlin.rcbuffer->pybuffer, (PyObject*)((PyArrayObject *)__pyx_t_1), &__Pyx_TypeInfo_nn___pyx_t_60navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real_float64_t, PyBUF_FORMAT| PyBUF_STRIDES, 1, 0, __pyx_stack) == -1)) {
       __pyx_v_xlin = ((PyArrayObject *)Py_None); __Pyx_INCREF(Py_None); __pyx_pybuffernd_xlin.rcbuffer->pybuffer.buf = NULL;
-      __PYX_ERR(0, 190, __pyx_L1_error)
+      __PYX_ERR(0, 188, __pyx_L1_error)
     } else {__pyx_pybuffernd_xlin.diminfo[0].strides = __pyx_pybuffernd_xlin.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_xlin.diminfo[0].shape = __pyx_pybuffernd_xlin.rcbuffer->pybuffer.shape[0];
     }
   }
   __pyx_v_xlin = ((PyArrayObject *)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":206
+  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":204
  * 
  *     # Domain [0,1] x [0,1]
  *     xlin = xlin[0:N]  # chop off periodic point             # <<<<<<<<<<<<<<
  *     xx, yy = np.meshgrid(xlin, xlin)
  * 
 */
-  __pyx_t_1 = __Pyx_PyLong_From_int(__pyx_v_N); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 206, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyLong_From_int(__pyx_v_N); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 204, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PySlice_New(__pyx_mstate_global->__pyx_int_0, __pyx_t_1, Py_None); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 206, __pyx_L1_error)
+  __pyx_t_2 = PySlice_New(__pyx_mstate_global->__pyx_int_0, __pyx_t_1, Py_None); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 204, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_PyObject_GetItem(((PyObject *)__pyx_v_xlin), __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 206, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetItem(((PyObject *)__pyx_v_xlin), __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 204, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  if (!(likely(((__pyx_t_1) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_1, __pyx_mstate_global->__pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 206, __pyx_L1_error)
+  if (!(likely(((__pyx_t_1) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_1, __pyx_mstate_global->__pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 204, __pyx_L1_error)
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
     __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_xlin.rcbuffer->pybuffer);
@@ -8148,12 +8043,12 @@ static PyObject *__pyx_pf_60navier_stokes_spectral_pyfftw_algo_optim_vortex_plan
       __pyx_t_9 = __pyx_t_10 = __pyx_t_11 = 0;
     }
     __pyx_pybuffernd_xlin.diminfo[0].strides = __pyx_pybuffernd_xlin.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_xlin.diminfo[0].shape = __pyx_pybuffernd_xlin.rcbuffer->pybuffer.shape[0];
-    if (unlikely((__pyx_t_8 < 0))) __PYX_ERR(0, 206, __pyx_L1_error)
+    if (unlikely((__pyx_t_8 < 0))) __PYX_ERR(0, 204, __pyx_L1_error)
   }
   __Pyx_DECREF_SET(__pyx_v_xlin, ((PyArrayObject *)__pyx_t_1));
   __pyx_t_1 = 0;
 
-  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":207
+  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":205
  *     # Domain [0,1] x [0,1]
  *     xlin = xlin[0:N]  # chop off periodic point
  *     xx, yy = np.meshgrid(xlin, xlin)             # <<<<<<<<<<<<<<
@@ -8161,9 +8056,9 @@ static PyObject *__pyx_pf_60navier_stokes_spectral_pyfftw_algo_optim_vortex_plan
  *     # Initial Condition (vortex)
 */
   __pyx_t_2 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_6, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 207, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_6, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 205, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
-  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_mstate_global->__pyx_n_u_meshgrid); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 207, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_mstate_global->__pyx_n_u_meshgrid); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 205, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
   __pyx_t_7 = 1;
@@ -8183,7 +8078,7 @@ static PyObject *__pyx_pf_60navier_stokes_spectral_pyfftw_algo_optim_vortex_plan
     __pyx_t_1 = __Pyx_PyObject_FastCall((PyObject*)__pyx_t_5, __pyx_callargs+__pyx_t_7, (3-__pyx_t_7) | (__pyx_t_7*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
     __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 207, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 205, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
   }
   if ((likely(PyTuple_CheckExact(__pyx_t_1))) || (PyList_CheckExact(__pyx_t_1))) {
@@ -8192,7 +8087,7 @@ static PyObject *__pyx_pf_60navier_stokes_spectral_pyfftw_algo_optim_vortex_plan
     if (unlikely(size != 2)) {
       if (size > 2) __Pyx_RaiseTooManyValuesError(2);
       else if (size >= 0) __Pyx_RaiseNeedMoreValuesError(size);
-      __PYX_ERR(0, 207, __pyx_L1_error)
+      __PYX_ERR(0, 205, __pyx_L1_error)
     }
     #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
     if (likely(PyTuple_CheckExact(sequence))) {
@@ -8202,22 +8097,22 @@ static PyObject *__pyx_pf_60navier_stokes_spectral_pyfftw_algo_optim_vortex_plan
       __Pyx_INCREF(__pyx_t_2);
     } else {
       __pyx_t_5 = __Pyx_PyList_GetItemRefFast(sequence, 0, __Pyx_ReferenceSharing_SharedReference);
-      if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 207, __pyx_L1_error)
+      if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 205, __pyx_L1_error)
       __Pyx_XGOTREF(__pyx_t_5);
       __pyx_t_2 = __Pyx_PyList_GetItemRefFast(sequence, 1, __Pyx_ReferenceSharing_SharedReference);
-      if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 207, __pyx_L1_error)
+      if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 205, __pyx_L1_error)
       __Pyx_XGOTREF(__pyx_t_2);
     }
     #else
-    __pyx_t_5 = __Pyx_PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 207, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 205, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
-    __pyx_t_2 = __Pyx_PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 207, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 205, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     #endif
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   } else {
     Py_ssize_t index = -1;
-    __pyx_t_6 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 207, __pyx_L1_error)
+    __pyx_t_6 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 205, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __pyx_t_12 = (CYTHON_COMPILING_IN_LIMITED_API) ? PyIter_Next : __Pyx_PyObject_GetIterNextFunc(__pyx_t_6);
@@ -8225,7 +8120,7 @@ static PyObject *__pyx_pf_60navier_stokes_spectral_pyfftw_algo_optim_vortex_plan
     __Pyx_GOTREF(__pyx_t_5);
     index = 1; __pyx_t_2 = __pyx_t_12(__pyx_t_6); if (unlikely(!__pyx_t_2)) goto __pyx_L3_unpacking_failed;
     __Pyx_GOTREF(__pyx_t_2);
-    if (__Pyx_IternextUnpackEndCheck(__pyx_t_12(__pyx_t_6), 2) < (0)) __PYX_ERR(0, 207, __pyx_L1_error)
+    if (__Pyx_IternextUnpackEndCheck(__pyx_t_12(__pyx_t_6), 2) < (0)) __PYX_ERR(0, 205, __pyx_L1_error)
     __pyx_t_12 = NULL;
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
     goto __pyx_L4_unpacking_done;
@@ -8233,11 +8128,11 @@ static PyObject *__pyx_pf_60navier_stokes_spectral_pyfftw_algo_optim_vortex_plan
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
     __pyx_t_12 = NULL;
     if (__Pyx_IterFinish() == 0) __Pyx_RaiseNeedMoreValuesError(index);
-    __PYX_ERR(0, 207, __pyx_L1_error)
+    __PYX_ERR(0, 205, __pyx_L1_error)
     __pyx_L4_unpacking_done:;
   }
-  if (!(likely(((__pyx_t_5) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_5, __pyx_mstate_global->__pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 207, __pyx_L1_error)
-  if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_mstate_global->__pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 207, __pyx_L1_error)
+  if (!(likely(((__pyx_t_5) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_5, __pyx_mstate_global->__pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 205, __pyx_L1_error)
+  if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_mstate_global->__pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 205, __pyx_L1_error)
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
     __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_xx.rcbuffer->pybuffer);
@@ -8253,7 +8148,7 @@ static PyObject *__pyx_pf_60navier_stokes_spectral_pyfftw_algo_optim_vortex_plan
       __pyx_t_11 = __pyx_t_10 = __pyx_t_9 = 0;
     }
     __pyx_pybuffernd_xx.diminfo[0].strides = __pyx_pybuffernd_xx.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_xx.diminfo[0].shape = __pyx_pybuffernd_xx.rcbuffer->pybuffer.shape[0]; __pyx_pybuffernd_xx.diminfo[1].strides = __pyx_pybuffernd_xx.rcbuffer->pybuffer.strides[1]; __pyx_pybuffernd_xx.diminfo[1].shape = __pyx_pybuffernd_xx.rcbuffer->pybuffer.shape[1];
-    if (unlikely((__pyx_t_8 < 0))) __PYX_ERR(0, 207, __pyx_L1_error)
+    if (unlikely((__pyx_t_8 < 0))) __PYX_ERR(0, 205, __pyx_L1_error)
   }
   __pyx_v_xx = ((PyArrayObject *)__pyx_t_5);
   __pyx_t_5 = 0;
@@ -8272,12 +8167,12 @@ static PyObject *__pyx_pf_60navier_stokes_spectral_pyfftw_algo_optim_vortex_plan
       __pyx_t_9 = __pyx_t_10 = __pyx_t_11 = 0;
     }
     __pyx_pybuffernd_yy.diminfo[0].strides = __pyx_pybuffernd_yy.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_yy.diminfo[0].shape = __pyx_pybuffernd_yy.rcbuffer->pybuffer.shape[0]; __pyx_pybuffernd_yy.diminfo[1].strides = __pyx_pybuffernd_yy.rcbuffer->pybuffer.strides[1]; __pyx_pybuffernd_yy.diminfo[1].shape = __pyx_pybuffernd_yy.rcbuffer->pybuffer.shape[1];
-    if (unlikely((__pyx_t_8 < 0))) __PYX_ERR(0, 207, __pyx_L1_error)
+    if (unlikely((__pyx_t_8 < 0))) __PYX_ERR(0, 205, __pyx_L1_error)
   }
   __pyx_v_yy = ((PyArrayObject *)__pyx_t_2);
   __pyx_t_2 = 0;
 
-  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":210
+  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":208
  * 
  *     # Initial Condition (vortex)
  *     vx[:] = -np.sin(2 * np.pi * yy)             # <<<<<<<<<<<<<<
@@ -8285,20 +8180,20 @@ static PyObject *__pyx_pf_60navier_stokes_spectral_pyfftw_algo_optim_vortex_plan
  * 
 */
   __pyx_t_2 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 210, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 208, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_sin); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 210, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_sin); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 208, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 210, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 208, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_pi); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 210, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_pi); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 208, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  __pyx_t_5 = __Pyx_PyLong_MultiplyCObj(__pyx_mstate_global->__pyx_int_2, __pyx_t_3, 2, 0, 0); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 210, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyLong_MultiplyCObj(__pyx_mstate_global->__pyx_int_2, __pyx_t_3, 2, 0, 0); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 208, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_3 = PyNumber_Multiply(__pyx_t_5, ((PyObject *)__pyx_v_yy)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 210, __pyx_L1_error)
+  __pyx_t_3 = PyNumber_Multiply(__pyx_t_5, ((PyObject *)__pyx_v_yy)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 208, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   __pyx_t_7 = 1;
@@ -8319,16 +8214,16 @@ static PyObject *__pyx_pf_60navier_stokes_spectral_pyfftw_algo_optim_vortex_plan
     __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 210, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 208, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
   }
-  __pyx_t_6 = PyNumber_Negative(__pyx_t_1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 210, __pyx_L1_error)
+  __pyx_t_6 = PyNumber_Negative(__pyx_t_1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 208, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  if (unlikely((PyObject_SetItem(((PyObject *)__pyx_v_vx), __pyx_mstate_global->__pyx_slice[0], __pyx_t_6) < 0))) __PYX_ERR(0, 210, __pyx_L1_error)
+  if (unlikely((PyObject_SetItem(((PyObject *)__pyx_v_vx), __pyx_mstate_global->__pyx_slice[0], __pyx_t_6) < 0))) __PYX_ERR(0, 208, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
 
-  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":211
+  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":209
  *     # Initial Condition (vortex)
  *     vx[:] = -np.sin(2 * np.pi * yy)
  *     vy[:] = np.sin(2 * np.pi * xx * 2)             # <<<<<<<<<<<<<<
@@ -8336,23 +8231,23 @@ static PyObject *__pyx_pf_60navier_stokes_spectral_pyfftw_algo_optim_vortex_plan
  *     # Fourier Space Variables (half-spectrum on axis 1)
 */
   __pyx_t_1 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 211, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 209, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_sin); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 211, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_sin); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 209, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 211, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 209, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_pi); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 211, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_pi); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 209, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_3 = __Pyx_PyLong_MultiplyCObj(__pyx_mstate_global->__pyx_int_2, __pyx_t_5, 2, 0, 0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 211, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyLong_MultiplyCObj(__pyx_mstate_global->__pyx_int_2, __pyx_t_5, 2, 0, 0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 209, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  __pyx_t_5 = PyNumber_Multiply(__pyx_t_3, ((PyObject *)__pyx_v_xx)); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 211, __pyx_L1_error)
+  __pyx_t_5 = PyNumber_Multiply(__pyx_t_3, ((PyObject *)__pyx_v_xx)); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 209, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_3 = __Pyx_PyLong_MultiplyObjC(__pyx_t_5, __pyx_mstate_global->__pyx_int_2, 2, 0, 0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 211, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyLong_MultiplyObjC(__pyx_t_5, __pyx_mstate_global->__pyx_int_2, 2, 0, 0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 209, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   __pyx_t_7 = 1;
@@ -8373,13 +8268,13 @@ static PyObject *__pyx_pf_60navier_stokes_spectral_pyfftw_algo_optim_vortex_plan
     __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 211, __pyx_L1_error)
+    if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 209, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
   }
-  if (unlikely((PyObject_SetItem(((PyObject *)__pyx_v_vy), __pyx_mstate_global->__pyx_slice[0], __pyx_t_6) < 0))) __PYX_ERR(0, 211, __pyx_L1_error)
+  if (unlikely((PyObject_SetItem(((PyObject *)__pyx_v_vy), __pyx_mstate_global->__pyx_slice[0], __pyx_t_6) < 0))) __PYX_ERR(0, 209, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
 
-  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":214
+  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":212
  * 
  *     # Fourier Space Variables (half-spectrum on axis 1)
  *     dx = L / N             # <<<<<<<<<<<<<<
@@ -8388,55 +8283,55 @@ static PyObject *__pyx_pf_60navier_stokes_spectral_pyfftw_algo_optim_vortex_plan
 */
   __pyx_v_dx = (__pyx_v_L / ((double)__pyx_v_N));
 
-  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":215
+  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":213
  *     # Fourier Space Variables (half-spectrum on axis 1)
  *     dx = L / N
  *     kx = 2.0 * np.pi * np.fft.rfftfreq(N, d=dx)[None, :]             # <<<<<<<<<<<<<<
  *     ky = 2.0 * np.pi * np.fft.fftfreq(N, d=dx)[:, None]
  *     kmax = np.max(np.abs(2.0 * np.pi * np.fft.fftfreq(N, d=dx)))
 */
-  __Pyx_GetModuleGlobalName(__pyx_t_6, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 215, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_6, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 213, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_mstate_global->__pyx_n_u_pi); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 215, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_mstate_global->__pyx_n_u_pi); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 213, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-  __pyx_t_6 = PyNumber_Multiply(__pyx_mstate_global->__pyx_float_2_0, __pyx_t_2); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 215, __pyx_L1_error)
+  __pyx_t_6 = PyNumber_Multiply(__pyx_mstate_global->__pyx_float_2_0, __pyx_t_2); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 213, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 215, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 213, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_fft); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 215, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_fft); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 213, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_t_3 = __pyx_t_5;
   __Pyx_INCREF(__pyx_t_3);
-  __pyx_t_1 = __Pyx_PyLong_From_int(__pyx_v_N); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 215, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyLong_From_int(__pyx_v_N); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 213, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_4 = PyFloat_FromDouble(__pyx_v_dx); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 215, __pyx_L1_error)
+  __pyx_t_4 = PyFloat_FromDouble(__pyx_v_dx); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 213, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __pyx_t_7 = 0;
   {
     PyObject *__pyx_callargs[2 + ((CYTHON_VECTORCALL) ? 1 : 0)] = {__pyx_t_3, __pyx_t_1};
-    __pyx_t_13 = __Pyx_MakeVectorcallBuilderKwds(1); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 215, __pyx_L1_error)
+    __pyx_t_13 = __Pyx_MakeVectorcallBuilderKwds(1); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 213, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_13);
-    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_d, __pyx_t_4, __pyx_t_13, __pyx_callargs+2, 0) < (0)) __PYX_ERR(0, 215, __pyx_L1_error)
+    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_d, __pyx_t_4, __pyx_t_13, __pyx_callargs+2, 0) < (0)) __PYX_ERR(0, 213, __pyx_L1_error)
     __pyx_t_2 = __Pyx_Object_VectorcallMethod_CallFromBuilder((PyObject*)__pyx_mstate_global->__pyx_n_u_rfftfreq, __pyx_callargs+__pyx_t_7, (2-__pyx_t_7) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET), __pyx_t_13);
     __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_DECREF(__pyx_t_13); __pyx_t_13 = 0;
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-    if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 215, __pyx_L1_error)
+    if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 213, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
   }
-  __pyx_t_5 = __Pyx_PyObject_GetItem(__pyx_t_2, __pyx_mstate_global->__pyx_tuple[1]); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 215, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyObject_GetItem(__pyx_t_2, __pyx_mstate_global->__pyx_tuple[1]); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 213, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = PyNumber_Multiply(__pyx_t_6, __pyx_t_5); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 215, __pyx_L1_error)
+  __pyx_t_2 = PyNumber_Multiply(__pyx_t_6, __pyx_t_5); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 213, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_mstate_global->__pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 215, __pyx_L1_error)
+  if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_mstate_global->__pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 213, __pyx_L1_error)
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
     __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_kx.rcbuffer->pybuffer);
@@ -8452,60 +8347,60 @@ static PyObject *__pyx_pf_60navier_stokes_spectral_pyfftw_algo_optim_vortex_plan
       __pyx_t_11 = __pyx_t_10 = __pyx_t_9 = 0;
     }
     __pyx_pybuffernd_kx.diminfo[0].strides = __pyx_pybuffernd_kx.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_kx.diminfo[0].shape = __pyx_pybuffernd_kx.rcbuffer->pybuffer.shape[0]; __pyx_pybuffernd_kx.diminfo[1].strides = __pyx_pybuffernd_kx.rcbuffer->pybuffer.strides[1]; __pyx_pybuffernd_kx.diminfo[1].shape = __pyx_pybuffernd_kx.rcbuffer->pybuffer.shape[1];
-    if (unlikely((__pyx_t_8 < 0))) __PYX_ERR(0, 215, __pyx_L1_error)
+    if (unlikely((__pyx_t_8 < 0))) __PYX_ERR(0, 213, __pyx_L1_error)
   }
   __pyx_v_kx = ((PyArrayObject *)__pyx_t_2);
   __pyx_t_2 = 0;
 
-  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":216
+  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":214
  *     dx = L / N
  *     kx = 2.0 * np.pi * np.fft.rfftfreq(N, d=dx)[None, :]
  *     ky = 2.0 * np.pi * np.fft.fftfreq(N, d=dx)[:, None]             # <<<<<<<<<<<<<<
  *     kmax = np.max(np.abs(2.0 * np.pi * np.fft.fftfreq(N, d=dx)))
  * 
 */
-  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 216, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 214, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_pi); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 216, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_pi); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 214, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = PyNumber_Multiply(__pyx_mstate_global->__pyx_float_2_0, __pyx_t_5); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 216, __pyx_L1_error)
+  __pyx_t_2 = PyNumber_Multiply(__pyx_mstate_global->__pyx_float_2_0, __pyx_t_5); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 214, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  __Pyx_GetModuleGlobalName(__pyx_t_13, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 216, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_13, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 214, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_13);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_13, __pyx_mstate_global->__pyx_n_u_fft); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 216, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_13, __pyx_mstate_global->__pyx_n_u_fft); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 214, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_13); __pyx_t_13 = 0;
   __pyx_t_6 = __pyx_t_4;
   __Pyx_INCREF(__pyx_t_6);
-  __pyx_t_13 = __Pyx_PyLong_From_int(__pyx_v_N); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 216, __pyx_L1_error)
+  __pyx_t_13 = __Pyx_PyLong_From_int(__pyx_v_N); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 214, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_13);
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_dx); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 216, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_dx); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 214, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_t_7 = 0;
   {
     PyObject *__pyx_callargs[2 + ((CYTHON_VECTORCALL) ? 1 : 0)] = {__pyx_t_6, __pyx_t_13};
-    __pyx_t_3 = __Pyx_MakeVectorcallBuilderKwds(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 216, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_MakeVectorcallBuilderKwds(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 214, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_d, __pyx_t_1, __pyx_t_3, __pyx_callargs+2, 0) < (0)) __PYX_ERR(0, 216, __pyx_L1_error)
+    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_d, __pyx_t_1, __pyx_t_3, __pyx_callargs+2, 0) < (0)) __PYX_ERR(0, 214, __pyx_L1_error)
     __pyx_t_5 = __Pyx_Object_VectorcallMethod_CallFromBuilder((PyObject*)__pyx_mstate_global->__pyx_n_u_fftfreq, __pyx_callargs+__pyx_t_7, (2-__pyx_t_7) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET), __pyx_t_3);
     __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
     __Pyx_DECREF(__pyx_t_13); __pyx_t_13 = 0;
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 216, __pyx_L1_error)
+    if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 214, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
   }
-  __pyx_t_4 = __Pyx_PyObject_GetItem(__pyx_t_5, __pyx_mstate_global->__pyx_tuple[2]); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 216, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_GetItem(__pyx_t_5, __pyx_mstate_global->__pyx_tuple[2]); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 214, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  __pyx_t_5 = PyNumber_Multiply(__pyx_t_2, __pyx_t_4); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 216, __pyx_L1_error)
+  __pyx_t_5 = PyNumber_Multiply(__pyx_t_2, __pyx_t_4); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 214, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  if (!(likely(((__pyx_t_5) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_5, __pyx_mstate_global->__pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 216, __pyx_L1_error)
+  if (!(likely(((__pyx_t_5) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_5, __pyx_mstate_global->__pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 214, __pyx_L1_error)
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
     __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_ky.rcbuffer->pybuffer);
@@ -8521,12 +8416,12 @@ static PyObject *__pyx_pf_60navier_stokes_spectral_pyfftw_algo_optim_vortex_plan
       __pyx_t_9 = __pyx_t_10 = __pyx_t_11 = 0;
     }
     __pyx_pybuffernd_ky.diminfo[0].strides = __pyx_pybuffernd_ky.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_ky.diminfo[0].shape = __pyx_pybuffernd_ky.rcbuffer->pybuffer.shape[0]; __pyx_pybuffernd_ky.diminfo[1].strides = __pyx_pybuffernd_ky.rcbuffer->pybuffer.strides[1]; __pyx_pybuffernd_ky.diminfo[1].shape = __pyx_pybuffernd_ky.rcbuffer->pybuffer.shape[1];
-    if (unlikely((__pyx_t_8 < 0))) __PYX_ERR(0, 216, __pyx_L1_error)
+    if (unlikely((__pyx_t_8 < 0))) __PYX_ERR(0, 214, __pyx_L1_error)
   }
   __pyx_v_ky = ((PyArrayObject *)__pyx_t_5);
   __pyx_t_5 = 0;
 
-  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":217
+  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":215
  *     kx = 2.0 * np.pi * np.fft.rfftfreq(N, d=dx)[None, :]
  *     ky = 2.0 * np.pi * np.fft.fftfreq(N, d=dx)[:, None]
  *     kmax = np.max(np.abs(2.0 * np.pi * np.fft.fftfreq(N, d=dx)))             # <<<<<<<<<<<<<<
@@ -8534,52 +8429,52 @@ static PyObject *__pyx_pf_60navier_stokes_spectral_pyfftw_algo_optim_vortex_plan
  *     # FIXED: zero division for kSq
 */
   __pyx_t_4 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 217, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 215, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_max); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 217, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_max); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 215, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_t_1 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_13, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 217, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_13, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 215, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_13);
-  __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_13, __pyx_mstate_global->__pyx_n_u_abs); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 217, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_13, __pyx_mstate_global->__pyx_n_u_abs); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 215, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
   __Pyx_DECREF(__pyx_t_13); __pyx_t_13 = 0;
-  __Pyx_GetModuleGlobalName(__pyx_t_13, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 217, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_13, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 215, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_13);
-  __pyx_t_14 = __Pyx_PyObject_GetAttrStr(__pyx_t_13, __pyx_mstate_global->__pyx_n_u_pi); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 217, __pyx_L1_error)
+  __pyx_t_14 = __Pyx_PyObject_GetAttrStr(__pyx_t_13, __pyx_mstate_global->__pyx_n_u_pi); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 215, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_14);
   __Pyx_DECREF(__pyx_t_13); __pyx_t_13 = 0;
-  __pyx_t_13 = PyNumber_Multiply(__pyx_mstate_global->__pyx_float_2_0, __pyx_t_14); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 217, __pyx_L1_error)
+  __pyx_t_13 = PyNumber_Multiply(__pyx_mstate_global->__pyx_float_2_0, __pyx_t_14); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 215, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_13);
   __Pyx_DECREF(__pyx_t_14); __pyx_t_14 = 0;
-  __Pyx_GetModuleGlobalName(__pyx_t_16, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_16)) __PYX_ERR(0, 217, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_16, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_16)) __PYX_ERR(0, 215, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_16);
-  __pyx_t_17 = __Pyx_PyObject_GetAttrStr(__pyx_t_16, __pyx_mstate_global->__pyx_n_u_fft); if (unlikely(!__pyx_t_17)) __PYX_ERR(0, 217, __pyx_L1_error)
+  __pyx_t_17 = __Pyx_PyObject_GetAttrStr(__pyx_t_16, __pyx_mstate_global->__pyx_n_u_fft); if (unlikely(!__pyx_t_17)) __PYX_ERR(0, 215, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_17);
   __Pyx_DECREF(__pyx_t_16); __pyx_t_16 = 0;
   __pyx_t_15 = __pyx_t_17;
   __Pyx_INCREF(__pyx_t_15);
-  __pyx_t_16 = __Pyx_PyLong_From_int(__pyx_v_N); if (unlikely(!__pyx_t_16)) __PYX_ERR(0, 217, __pyx_L1_error)
+  __pyx_t_16 = __Pyx_PyLong_From_int(__pyx_v_N); if (unlikely(!__pyx_t_16)) __PYX_ERR(0, 215, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_16);
-  __pyx_t_18 = PyFloat_FromDouble(__pyx_v_dx); if (unlikely(!__pyx_t_18)) __PYX_ERR(0, 217, __pyx_L1_error)
+  __pyx_t_18 = PyFloat_FromDouble(__pyx_v_dx); if (unlikely(!__pyx_t_18)) __PYX_ERR(0, 215, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_18);
   __pyx_t_7 = 0;
   {
     PyObject *__pyx_callargs[2 + ((CYTHON_VECTORCALL) ? 1 : 0)] = {__pyx_t_15, __pyx_t_16};
-    __pyx_t_19 = __Pyx_MakeVectorcallBuilderKwds(1); if (unlikely(!__pyx_t_19)) __PYX_ERR(0, 217, __pyx_L1_error)
+    __pyx_t_19 = __Pyx_MakeVectorcallBuilderKwds(1); if (unlikely(!__pyx_t_19)) __PYX_ERR(0, 215, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_19);
-    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_d, __pyx_t_18, __pyx_t_19, __pyx_callargs+2, 0) < (0)) __PYX_ERR(0, 217, __pyx_L1_error)
+    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_d, __pyx_t_18, __pyx_t_19, __pyx_callargs+2, 0) < (0)) __PYX_ERR(0, 215, __pyx_L1_error)
     __pyx_t_14 = __Pyx_Object_VectorcallMethod_CallFromBuilder((PyObject*)__pyx_mstate_global->__pyx_n_u_fftfreq, __pyx_callargs+__pyx_t_7, (2-__pyx_t_7) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET), __pyx_t_19);
     __Pyx_XDECREF(__pyx_t_15); __pyx_t_15 = 0;
     __Pyx_DECREF(__pyx_t_16); __pyx_t_16 = 0;
     __Pyx_DECREF(__pyx_t_18); __pyx_t_18 = 0;
     __Pyx_DECREF(__pyx_t_19); __pyx_t_19 = 0;
     __Pyx_DECREF(__pyx_t_17); __pyx_t_17 = 0;
-    if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 217, __pyx_L1_error)
+    if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 215, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_14);
   }
-  __pyx_t_17 = PyNumber_Multiply(__pyx_t_13, __pyx_t_14); if (unlikely(!__pyx_t_17)) __PYX_ERR(0, 217, __pyx_L1_error)
+  __pyx_t_17 = PyNumber_Multiply(__pyx_t_13, __pyx_t_14); if (unlikely(!__pyx_t_17)) __PYX_ERR(0, 215, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_17);
   __Pyx_DECREF(__pyx_t_13); __pyx_t_13 = 0;
   __Pyx_DECREF(__pyx_t_14); __pyx_t_14 = 0;
@@ -8601,7 +8496,7 @@ static PyObject *__pyx_pf_60navier_stokes_spectral_pyfftw_algo_optim_vortex_plan
     __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
     __Pyx_DECREF(__pyx_t_17); __pyx_t_17 = 0;
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-    if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 217, __pyx_L1_error)
+    if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 215, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
   }
   __pyx_t_7 = 1;
@@ -8622,29 +8517,29 @@ static PyObject *__pyx_pf_60navier_stokes_spectral_pyfftw_algo_optim_vortex_plan
     __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 217, __pyx_L1_error)
+    if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 215, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
   }
-  __pyx_t_20 = __Pyx_PyFloat_AsDouble(__pyx_t_5); if (unlikely((__pyx_t_20 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 217, __pyx_L1_error)
+  __pyx_t_20 = __Pyx_PyFloat_AsDouble(__pyx_t_5); if (unlikely((__pyx_t_20 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 215, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   __pyx_v_kmax = __pyx_t_20;
 
-  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":220
+  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":218
  * 
  *     # FIXED: zero division for kSq
  *     kSq = kx**2 + ky**2             # <<<<<<<<<<<<<<
  *     # kSq_inv = 1.0 / kSq
  *     # kSq_inv[kSq == 0] = 1
 */
-  __pyx_t_5 = PyNumber_Power(((PyObject *)__pyx_v_kx), __pyx_mstate_global->__pyx_int_2, Py_None); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 220, __pyx_L1_error)
+  __pyx_t_5 = PyNumber_Power(((PyObject *)__pyx_v_kx), __pyx_mstate_global->__pyx_int_2, Py_None); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 218, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_3 = PyNumber_Power(((PyObject *)__pyx_v_ky), __pyx_mstate_global->__pyx_int_2, Py_None); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 220, __pyx_L1_error)
+  __pyx_t_3 = PyNumber_Power(((PyObject *)__pyx_v_ky), __pyx_mstate_global->__pyx_int_2, Py_None); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 218, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_2 = PyNumber_Add(__pyx_t_5, __pyx_t_3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 220, __pyx_L1_error)
+  __pyx_t_2 = PyNumber_Add(__pyx_t_5, __pyx_t_3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 218, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_mstate_global->__pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 220, __pyx_L1_error)
+  if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_mstate_global->__pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 218, __pyx_L1_error)
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
     __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_kSq.rcbuffer->pybuffer);
@@ -8660,12 +8555,12 @@ static PyObject *__pyx_pf_60navier_stokes_spectral_pyfftw_algo_optim_vortex_plan
       __pyx_t_11 = __pyx_t_10 = __pyx_t_9 = 0;
     }
     __pyx_pybuffernd_kSq.diminfo[0].strides = __pyx_pybuffernd_kSq.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_kSq.diminfo[0].shape = __pyx_pybuffernd_kSq.rcbuffer->pybuffer.shape[0]; __pyx_pybuffernd_kSq.diminfo[1].strides = __pyx_pybuffernd_kSq.rcbuffer->pybuffer.strides[1]; __pyx_pybuffernd_kSq.diminfo[1].shape = __pyx_pybuffernd_kSq.rcbuffer->pybuffer.shape[1];
-    if (unlikely((__pyx_t_8 < 0))) __PYX_ERR(0, 220, __pyx_L1_error)
+    if (unlikely((__pyx_t_8 < 0))) __PYX_ERR(0, 218, __pyx_L1_error)
   }
   __pyx_v_kSq = ((PyArrayObject *)__pyx_t_2);
   __pyx_t_2 = 0;
 
-  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":223
+  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":221
  *     # kSq_inv = 1.0 / kSq
  *     # kSq_inv[kSq == 0] = 1
  *     kSq_inv = np.zeros_like(kSq)             # <<<<<<<<<<<<<<
@@ -8673,9 +8568,9 @@ static PyObject *__pyx_pf_60navier_stokes_spectral_pyfftw_algo_optim_vortex_plan
  *     kSq_inv[mask] = 1.0 / kSq[mask]
 */
   __pyx_t_3 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 223, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 221, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_zeros_like); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 223, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_zeros_like); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 221, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   __pyx_t_7 = 1;
@@ -8695,10 +8590,10 @@ static PyObject *__pyx_pf_60navier_stokes_spectral_pyfftw_algo_optim_vortex_plan
     __pyx_t_2 = __Pyx_PyObject_FastCall((PyObject*)__pyx_t_4, __pyx_callargs+__pyx_t_7, (2-__pyx_t_7) | (__pyx_t_7*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
     __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 223, __pyx_L1_error)
+    if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 221, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
   }
-  if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_mstate_global->__pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 223, __pyx_L1_error)
+  if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_mstate_global->__pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 221, __pyx_L1_error)
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
     __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_kSq_inv.rcbuffer->pybuffer);
@@ -8714,20 +8609,20 @@ static PyObject *__pyx_pf_60navier_stokes_spectral_pyfftw_algo_optim_vortex_plan
       __pyx_t_9 = __pyx_t_10 = __pyx_t_11 = 0;
     }
     __pyx_pybuffernd_kSq_inv.diminfo[0].strides = __pyx_pybuffernd_kSq_inv.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_kSq_inv.diminfo[0].shape = __pyx_pybuffernd_kSq_inv.rcbuffer->pybuffer.shape[0]; __pyx_pybuffernd_kSq_inv.diminfo[1].strides = __pyx_pybuffernd_kSq_inv.rcbuffer->pybuffer.strides[1]; __pyx_pybuffernd_kSq_inv.diminfo[1].shape = __pyx_pybuffernd_kSq_inv.rcbuffer->pybuffer.shape[1];
-    if (unlikely((__pyx_t_8 < 0))) __PYX_ERR(0, 223, __pyx_L1_error)
+    if (unlikely((__pyx_t_8 < 0))) __PYX_ERR(0, 221, __pyx_L1_error)
   }
   __pyx_v_kSq_inv = ((PyArrayObject *)__pyx_t_2);
   __pyx_t_2 = 0;
 
-  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":224
+  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":222
  *     # kSq_inv[kSq == 0] = 1
  *     kSq_inv = np.zeros_like(kSq)
  *     mask = kSq != 0             # <<<<<<<<<<<<<<
  *     kSq_inv[mask] = 1.0 / kSq[mask]
  *     ikx = 1j * kx
 */
-  __pyx_t_2 = PyObject_RichCompare(((PyObject *)__pyx_v_kSq), __pyx_mstate_global->__pyx_int_0, Py_NE); __Pyx_XGOTREF(__pyx_t_2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 224, __pyx_L1_error)
-  if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_mstate_global->__pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 224, __pyx_L1_error)
+  __pyx_t_2 = PyObject_RichCompare(((PyObject *)__pyx_v_kSq), __pyx_mstate_global->__pyx_int_0, Py_NE); __Pyx_XGOTREF(__pyx_t_2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 222, __pyx_L1_error)
+  if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_mstate_global->__pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 222, __pyx_L1_error)
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
     __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_mask.rcbuffer->pybuffer);
@@ -8743,39 +8638,39 @@ static PyObject *__pyx_pf_60navier_stokes_spectral_pyfftw_algo_optim_vortex_plan
       __pyx_t_11 = __pyx_t_10 = __pyx_t_9 = 0;
     }
     __pyx_pybuffernd_mask.diminfo[0].strides = __pyx_pybuffernd_mask.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_mask.diminfo[0].shape = __pyx_pybuffernd_mask.rcbuffer->pybuffer.shape[0]; __pyx_pybuffernd_mask.diminfo[1].strides = __pyx_pybuffernd_mask.rcbuffer->pybuffer.strides[1]; __pyx_pybuffernd_mask.diminfo[1].shape = __pyx_pybuffernd_mask.rcbuffer->pybuffer.shape[1];
-    if (unlikely((__pyx_t_8 < 0))) __PYX_ERR(0, 224, __pyx_L1_error)
+    if (unlikely((__pyx_t_8 < 0))) __PYX_ERR(0, 222, __pyx_L1_error)
   }
   __pyx_v_mask = ((PyArrayObject *)__pyx_t_2);
   __pyx_t_2 = 0;
 
-  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":225
+  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":223
  *     kSq_inv = np.zeros_like(kSq)
  *     mask = kSq != 0
  *     kSq_inv[mask] = 1.0 / kSq[mask]             # <<<<<<<<<<<<<<
  *     ikx = 1j * kx
  *     iky = 1j * ky
 */
-  __pyx_t_2 = __Pyx_PyObject_GetItem(((PyObject *)__pyx_v_kSq), ((PyObject *)__pyx_v_mask)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 225, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetItem(((PyObject *)__pyx_v_kSq), ((PyObject *)__pyx_v_mask)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 223, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_4 = __Pyx_PyFloat_TrueDivideCObj(__pyx_mstate_global->__pyx_float_1_0, __pyx_t_2, 1.0, 0, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 225, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyFloat_TrueDivideCObj(__pyx_mstate_global->__pyx_float_1_0, __pyx_t_2, 1.0, 0, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 223, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  if (unlikely((PyObject_SetItem(((PyObject *)__pyx_v_kSq_inv), ((PyObject *)__pyx_v_mask), __pyx_t_4) < 0))) __PYX_ERR(0, 225, __pyx_L1_error)
+  if (unlikely((PyObject_SetItem(((PyObject *)__pyx_v_kSq_inv), ((PyObject *)__pyx_v_mask), __pyx_t_4) < 0))) __PYX_ERR(0, 223, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":226
+  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":224
  *     mask = kSq != 0
  *     kSq_inv[mask] = 1.0 / kSq[mask]
  *     ikx = 1j * kx             # <<<<<<<<<<<<<<
  *     iky = 1j * ky
  * 
 */
-  __pyx_t_4 = PyComplex_FromDoubles(0.0, 1.0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 226, __pyx_L1_error)
+  __pyx_t_4 = PyComplex_FromDoubles(0.0, 1.0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 224, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_2 = PyNumber_Multiply(__pyx_t_4, ((PyObject *)__pyx_v_kx)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 226, __pyx_L1_error)
+  __pyx_t_2 = PyNumber_Multiply(__pyx_t_4, ((PyObject *)__pyx_v_kx)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 224, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_mstate_global->__pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 226, __pyx_L1_error)
+  if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_mstate_global->__pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 224, __pyx_L1_error)
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
     __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_ikx.rcbuffer->pybuffer);
@@ -8791,24 +8686,24 @@ static PyObject *__pyx_pf_60navier_stokes_spectral_pyfftw_algo_optim_vortex_plan
       __pyx_t_9 = __pyx_t_10 = __pyx_t_11 = 0;
     }
     __pyx_pybuffernd_ikx.diminfo[0].strides = __pyx_pybuffernd_ikx.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_ikx.diminfo[0].shape = __pyx_pybuffernd_ikx.rcbuffer->pybuffer.shape[0]; __pyx_pybuffernd_ikx.diminfo[1].strides = __pyx_pybuffernd_ikx.rcbuffer->pybuffer.strides[1]; __pyx_pybuffernd_ikx.diminfo[1].shape = __pyx_pybuffernd_ikx.rcbuffer->pybuffer.shape[1];
-    if (unlikely((__pyx_t_8 < 0))) __PYX_ERR(0, 226, __pyx_L1_error)
+    if (unlikely((__pyx_t_8 < 0))) __PYX_ERR(0, 224, __pyx_L1_error)
   }
   __pyx_v_ikx = ((PyArrayObject *)__pyx_t_2);
   __pyx_t_2 = 0;
 
-  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":227
+  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":225
  *     kSq_inv[mask] = 1.0 / kSq[mask]
  *     ikx = 1j * kx
  *     iky = 1j * ky             # <<<<<<<<<<<<<<
  * 
  *     # dealias with the 2/3 rule
 */
-  __pyx_t_2 = PyComplex_FromDoubles(0.0, 1.0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 227, __pyx_L1_error)
+  __pyx_t_2 = PyComplex_FromDoubles(0.0, 1.0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 225, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_4 = PyNumber_Multiply(__pyx_t_2, ((PyObject *)__pyx_v_ky)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 227, __pyx_L1_error)
+  __pyx_t_4 = PyNumber_Multiply(__pyx_t_2, ((PyObject *)__pyx_v_ky)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 225, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  if (!(likely(((__pyx_t_4) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_4, __pyx_mstate_global->__pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 227, __pyx_L1_error)
+  if (!(likely(((__pyx_t_4) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_4, __pyx_mstate_global->__pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 225, __pyx_L1_error)
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
     __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_iky.rcbuffer->pybuffer);
@@ -8824,12 +8719,12 @@ static PyObject *__pyx_pf_60navier_stokes_spectral_pyfftw_algo_optim_vortex_plan
       __pyx_t_11 = __pyx_t_10 = __pyx_t_9 = 0;
     }
     __pyx_pybuffernd_iky.diminfo[0].strides = __pyx_pybuffernd_iky.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_iky.diminfo[0].shape = __pyx_pybuffernd_iky.rcbuffer->pybuffer.shape[0]; __pyx_pybuffernd_iky.diminfo[1].strides = __pyx_pybuffernd_iky.rcbuffer->pybuffer.strides[1]; __pyx_pybuffernd_iky.diminfo[1].shape = __pyx_pybuffernd_iky.rcbuffer->pybuffer.shape[1];
-    if (unlikely((__pyx_t_8 < 0))) __PYX_ERR(0, 227, __pyx_L1_error)
+    if (unlikely((__pyx_t_8 < 0))) __PYX_ERR(0, 225, __pyx_L1_error)
   }
   __pyx_v_iky = ((PyArrayObject *)__pyx_t_4);
   __pyx_t_4 = 0;
 
-  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":230
+  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":228
  * 
  *     # dealias with the 2/3 rule
  *     dealias = (np.abs(kx) < (2.0 / 3.0) * kmax) & (np.abs(ky) < (2.0 / 3.0) * kmax)             # <<<<<<<<<<<<<<
@@ -8837,9 +8732,9 @@ static PyObject *__pyx_pf_60navier_stokes_spectral_pyfftw_algo_optim_vortex_plan
  *     # number of timesteps
 */
   __pyx_t_2 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 230, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 228, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_abs); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 230, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_abs); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 228, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_t_7 = 1;
@@ -8859,18 +8754,18 @@ static PyObject *__pyx_pf_60navier_stokes_spectral_pyfftw_algo_optim_vortex_plan
     __pyx_t_4 = __Pyx_PyObject_FastCall((PyObject*)__pyx_t_5, __pyx_callargs+__pyx_t_7, (2-__pyx_t_7) | (__pyx_t_7*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
     __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-    if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 230, __pyx_L1_error)
+    if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 228, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
   }
-  __pyx_t_5 = PyFloat_FromDouble(((2.0 / 3.0) * __pyx_v_kmax)); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 230, __pyx_L1_error)
+  __pyx_t_5 = PyFloat_FromDouble(((2.0 / 3.0) * __pyx_v_kmax)); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 228, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_2 = PyObject_RichCompare(__pyx_t_4, __pyx_t_5, Py_LT); __Pyx_XGOTREF(__pyx_t_2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 230, __pyx_L1_error)
+  __pyx_t_2 = PyObject_RichCompare(__pyx_t_4, __pyx_t_5, Py_LT); __Pyx_XGOTREF(__pyx_t_2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 228, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   __pyx_t_4 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 230, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 228, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_abs); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 230, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_abs); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 228, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_t_7 = 1;
@@ -8890,19 +8785,19 @@ static PyObject *__pyx_pf_60navier_stokes_spectral_pyfftw_algo_optim_vortex_plan
     __pyx_t_5 = __Pyx_PyObject_FastCall((PyObject*)__pyx_t_6, __pyx_callargs+__pyx_t_7, (2-__pyx_t_7) | (__pyx_t_7*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
     __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-    if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 230, __pyx_L1_error)
+    if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 228, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
   }
-  __pyx_t_6 = PyFloat_FromDouble(((2.0 / 3.0) * __pyx_v_kmax)); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 230, __pyx_L1_error)
+  __pyx_t_6 = PyFloat_FromDouble(((2.0 / 3.0) * __pyx_v_kmax)); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 228, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
-  __pyx_t_4 = PyObject_RichCompare(__pyx_t_5, __pyx_t_6, Py_LT); __Pyx_XGOTREF(__pyx_t_4); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 230, __pyx_L1_error)
+  __pyx_t_4 = PyObject_RichCompare(__pyx_t_5, __pyx_t_6, Py_LT); __Pyx_XGOTREF(__pyx_t_4); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 228, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-  __pyx_t_6 = PyNumber_And(__pyx_t_2, __pyx_t_4); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 230, __pyx_L1_error)
+  __pyx_t_6 = PyNumber_And(__pyx_t_2, __pyx_t_4); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 228, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  if (!(likely(((__pyx_t_6) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_6, __pyx_mstate_global->__pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 230, __pyx_L1_error)
+  if (!(likely(((__pyx_t_6) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_6, __pyx_mstate_global->__pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 228, __pyx_L1_error)
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
     __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_dealias.rcbuffer->pybuffer);
@@ -8918,12 +8813,12 @@ static PyObject *__pyx_pf_60navier_stokes_spectral_pyfftw_algo_optim_vortex_plan
       __pyx_t_9 = __pyx_t_10 = __pyx_t_11 = 0;
     }
     __pyx_pybuffernd_dealias.diminfo[0].strides = __pyx_pybuffernd_dealias.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_dealias.diminfo[0].shape = __pyx_pybuffernd_dealias.rcbuffer->pybuffer.shape[0]; __pyx_pybuffernd_dealias.diminfo[1].strides = __pyx_pybuffernd_dealias.rcbuffer->pybuffer.strides[1]; __pyx_pybuffernd_dealias.diminfo[1].shape = __pyx_pybuffernd_dealias.rcbuffer->pybuffer.shape[1];
-    if (unlikely((__pyx_t_8 < 0))) __PYX_ERR(0, 230, __pyx_L1_error)
+    if (unlikely((__pyx_t_8 < 0))) __PYX_ERR(0, 228, __pyx_L1_error)
   }
   __pyx_v_dealias = ((PyArrayObject *)__pyx_t_6);
   __pyx_t_6 = 0;
 
-  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":233
+  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":231
  * 
  *     # number of timesteps
  *     Nt = int(np.ceil(tEnd / dt))             # <<<<<<<<<<<<<<
@@ -8931,12 +8826,12 @@ static PyObject *__pyx_pf_60navier_stokes_spectral_pyfftw_algo_optim_vortex_plan
  *     # prep figure
 */
   __pyx_t_4 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 233, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 231, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_ceil); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 233, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_ceil); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 231, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = PyFloat_FromDouble((__pyx_v_tEnd / __pyx_v_dt)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 233, __pyx_L1_error)
+  __pyx_t_2 = PyFloat_FromDouble((__pyx_v_tEnd / __pyx_v_dt)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 231, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_7 = 1;
   #if CYTHON_UNPACK_METHODS
@@ -8956,17 +8851,17 @@ static PyObject *__pyx_pf_60navier_stokes_spectral_pyfftw_algo_optim_vortex_plan
     __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-    if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 233, __pyx_L1_error)
+    if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 231, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
   }
-  __pyx_t_5 = __Pyx_PyNumber_Int(__pyx_t_6); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 233, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyNumber_Int(__pyx_t_6); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 231, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-  __pyx_t_8 = __Pyx_PyLong_As_int(__pyx_t_5); if (unlikely((__pyx_t_8 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 233, __pyx_L1_error)
+  __pyx_t_8 = __Pyx_PyLong_As_int(__pyx_t_5); if (unlikely((__pyx_t_8 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 231, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   __pyx_v_Nt = __pyx_t_8;
 
-  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":241
+  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":239
  *     # vx_hat =fftn(vx)
  *     # vy_hat = fftn(vy)
  *     fft_vx()             # <<<<<<<<<<<<<<
@@ -8993,12 +8888,12 @@ static PyObject *__pyx_pf_60navier_stokes_spectral_pyfftw_algo_optim_vortex_plan
     __pyx_t_5 = __Pyx_PyObject_FastCall((PyObject*)__pyx_t_2, __pyx_callargs+__pyx_t_7, (1-__pyx_t_7) | (__pyx_t_7*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
     __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 241, __pyx_L1_error)
+    if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 239, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
   }
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":242
+  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":240
  *     # vy_hat = fftn(vy)
  *     fft_vx()
  *     fft_vy()             # <<<<<<<<<<<<<<
@@ -9025,27 +8920,27 @@ static PyObject *__pyx_pf_60navier_stokes_spectral_pyfftw_algo_optim_vortex_plan
     __pyx_t_5 = __Pyx_PyObject_FastCall((PyObject*)__pyx_t_6, __pyx_callargs+__pyx_t_7, (1-__pyx_t_7) | (__pyx_t_7*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
     __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-    if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 242, __pyx_L1_error)
+    if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 240, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
   }
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":245
+  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":243
  * 
  *     # precompute diffusion denom
  *     diffuse_denom = 1.0 + dt * nu * kSq             # <<<<<<<<<<<<<<
  * 
  *     # Main Loop
 */
-  __pyx_t_5 = PyFloat_FromDouble((__pyx_v_dt * __pyx_v_nu)); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 245, __pyx_L1_error)
+  __pyx_t_5 = PyFloat_FromDouble((__pyx_v_dt * __pyx_v_nu)); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 243, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_6 = PyNumber_Multiply(__pyx_t_5, ((PyObject *)__pyx_v_kSq)); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 245, __pyx_L1_error)
+  __pyx_t_6 = PyNumber_Multiply(__pyx_t_5, ((PyObject *)__pyx_v_kSq)); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 243, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  __pyx_t_5 = __Pyx_PyFloat_AddCObj(__pyx_mstate_global->__pyx_float_1_0, __pyx_t_6, 1.0, 0, 0); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 245, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyFloat_AddCObj(__pyx_mstate_global->__pyx_float_1_0, __pyx_t_6, 1.0, 0, 0); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 243, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-  if (!(likely(((__pyx_t_5) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_5, __pyx_mstate_global->__pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 245, __pyx_L1_error)
+  if (!(likely(((__pyx_t_5) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_5, __pyx_mstate_global->__pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 243, __pyx_L1_error)
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
     __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_diffuse_denom.rcbuffer->pybuffer);
@@ -9061,12 +8956,12 @@ static PyObject *__pyx_pf_60navier_stokes_spectral_pyfftw_algo_optim_vortex_plan
       __pyx_t_11 = __pyx_t_10 = __pyx_t_9 = 0;
     }
     __pyx_pybuffernd_diffuse_denom.diminfo[0].strides = __pyx_pybuffernd_diffuse_denom.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_diffuse_denom.diminfo[0].shape = __pyx_pybuffernd_diffuse_denom.rcbuffer->pybuffer.shape[0]; __pyx_pybuffernd_diffuse_denom.diminfo[1].strides = __pyx_pybuffernd_diffuse_denom.rcbuffer->pybuffer.strides[1]; __pyx_pybuffernd_diffuse_denom.diminfo[1].shape = __pyx_pybuffernd_diffuse_denom.rcbuffer->pybuffer.shape[1];
-    if (unlikely((__pyx_t_8 < 0))) __PYX_ERR(0, 245, __pyx_L1_error)
+    if (unlikely((__pyx_t_8 < 0))) __PYX_ERR(0, 243, __pyx_L1_error)
   }
   __pyx_v_diffuse_denom = ((PyArrayObject *)__pyx_t_5);
   __pyx_t_5 = 0;
 
-  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":248
+  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":246
  * 
  *     # Main Loop
  *     for i in range(Nt):             # <<<<<<<<<<<<<<
@@ -9078,7 +8973,7 @@ static PyObject *__pyx_pf_60navier_stokes_spectral_pyfftw_algo_optim_vortex_plan
   for (__pyx_t_22 = 0; __pyx_t_22 < __pyx_t_21; __pyx_t_22+=1) {
     __pyx_v_i = __pyx_t_22;
 
-    /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":257
+    /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":255
  * 
  *         # vorticity formualation
  *         wz = curl(vx_hat, vy_hat, ikx, iky, diff_hat, work_hat, wz, ifft_wz)             # <<<<<<<<<<<<<<
@@ -9086,7 +8981,7 @@ static PyObject *__pyx_pf_60navier_stokes_spectral_pyfftw_algo_optim_vortex_plan
  *         rhs_y[:] = -vx * wz
 */
     __pyx_t_6 = NULL;
-    __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_curl); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 257, __pyx_L1_error)
+    __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_curl); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 255, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __pyx_t_7 = 1;
     #if CYTHON_UNPACK_METHODS
@@ -9105,10 +9000,10 @@ static PyObject *__pyx_pf_60navier_stokes_spectral_pyfftw_algo_optim_vortex_plan
       __pyx_t_5 = __Pyx_PyObject_FastCall((PyObject*)__pyx_t_2, __pyx_callargs+__pyx_t_7, (9-__pyx_t_7) | (__pyx_t_7*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
       __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-      if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 257, __pyx_L1_error)
+      if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 255, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_5);
     }
-    if (!(likely(((__pyx_t_5) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_5, __pyx_mstate_global->__pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 257, __pyx_L1_error)
+    if (!(likely(((__pyx_t_5) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_5, __pyx_mstate_global->__pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 255, __pyx_L1_error)
     {
       __Pyx_BufFmt_StackElem __pyx_stack[1];
       __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_wz.rcbuffer->pybuffer);
@@ -9124,39 +9019,39 @@ static PyObject *__pyx_pf_60navier_stokes_spectral_pyfftw_algo_optim_vortex_plan
         __pyx_t_9 = __pyx_t_10 = __pyx_t_11 = 0;
       }
       __pyx_pybuffernd_wz.diminfo[0].strides = __pyx_pybuffernd_wz.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_wz.diminfo[0].shape = __pyx_pybuffernd_wz.rcbuffer->pybuffer.shape[0]; __pyx_pybuffernd_wz.diminfo[1].strides = __pyx_pybuffernd_wz.rcbuffer->pybuffer.strides[1]; __pyx_pybuffernd_wz.diminfo[1].shape = __pyx_pybuffernd_wz.rcbuffer->pybuffer.shape[1];
-      if (unlikely((__pyx_t_23 < 0))) __PYX_ERR(0, 257, __pyx_L1_error)
+      if (unlikely((__pyx_t_23 < 0))) __PYX_ERR(0, 255, __pyx_L1_error)
     }
     __Pyx_DECREF_SET(__pyx_v_wz, ((PyArrayObject *)__pyx_t_5));
     __pyx_t_5 = 0;
 
-    /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":258
+    /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":256
  *         # vorticity formualation
  *         wz = curl(vx_hat, vy_hat, ikx, iky, diff_hat, work_hat, wz, ifft_wz)
  *         rhs_x[:] = vy * wz             # <<<<<<<<<<<<<<
  *         rhs_y[:] = -vx * wz
  * 
 */
-    __pyx_t_5 = PyNumber_Multiply(((PyObject *)__pyx_v_vy), ((PyObject *)__pyx_v_wz)); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 258, __pyx_L1_error)
+    __pyx_t_5 = PyNumber_Multiply(((PyObject *)__pyx_v_vy), ((PyObject *)__pyx_v_wz)); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 256, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
-    if (unlikely((PyObject_SetItem(((PyObject *)__pyx_v_rhs_x), __pyx_mstate_global->__pyx_slice[0], __pyx_t_5) < 0))) __PYX_ERR(0, 258, __pyx_L1_error)
+    if (unlikely((PyObject_SetItem(((PyObject *)__pyx_v_rhs_x), __pyx_mstate_global->__pyx_slice[0], __pyx_t_5) < 0))) __PYX_ERR(0, 256, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-    /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":259
+    /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":257
  *         wz = curl(vx_hat, vy_hat, ikx, iky, diff_hat, work_hat, wz, ifft_wz)
  *         rhs_x[:] = vy * wz
  *         rhs_y[:] = -vx * wz             # <<<<<<<<<<<<<<
  * 
  *         rhs_x_hat = apply_dealias(rhs_x_hat, dealias, fft_rhs_x)
 */
-    __pyx_t_5 = PyNumber_Negative(((PyObject *)__pyx_v_vx)); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 259, __pyx_L1_error)
+    __pyx_t_5 = PyNumber_Negative(((PyObject *)__pyx_v_vx)); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 257, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
-    __pyx_t_2 = PyNumber_Multiply(__pyx_t_5, ((PyObject *)__pyx_v_wz)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 259, __pyx_L1_error)
+    __pyx_t_2 = PyNumber_Multiply(__pyx_t_5, ((PyObject *)__pyx_v_wz)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 257, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-    if (unlikely((PyObject_SetItem(((PyObject *)__pyx_v_rhs_y), __pyx_mstate_global->__pyx_slice[0], __pyx_t_2) < 0))) __PYX_ERR(0, 259, __pyx_L1_error)
+    if (unlikely((PyObject_SetItem(((PyObject *)__pyx_v_rhs_y), __pyx_mstate_global->__pyx_slice[0], __pyx_t_2) < 0))) __PYX_ERR(0, 257, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-    /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":261
+    /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":259
  *         rhs_y[:] = -vx * wz
  * 
  *         rhs_x_hat = apply_dealias(rhs_x_hat, dealias, fft_rhs_x)             # <<<<<<<<<<<<<<
@@ -9164,7 +9059,7 @@ static PyObject *__pyx_pf_60navier_stokes_spectral_pyfftw_algo_optim_vortex_plan
  * 
 */
     __pyx_t_5 = NULL;
-    __Pyx_GetModuleGlobalName(__pyx_t_6, __pyx_mstate_global->__pyx_n_u_apply_dealias); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 261, __pyx_L1_error)
+    __Pyx_GetModuleGlobalName(__pyx_t_6, __pyx_mstate_global->__pyx_n_u_apply_dealias); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 259, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     __pyx_t_7 = 1;
     #if CYTHON_UNPACK_METHODS
@@ -9183,10 +9078,10 @@ static PyObject *__pyx_pf_60navier_stokes_spectral_pyfftw_algo_optim_vortex_plan
       __pyx_t_2 = __Pyx_PyObject_FastCall((PyObject*)__pyx_t_6, __pyx_callargs+__pyx_t_7, (4-__pyx_t_7) | (__pyx_t_7*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
       __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
       __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-      if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 261, __pyx_L1_error)
+      if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 259, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
     }
-    if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_mstate_global->__pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 261, __pyx_L1_error)
+    if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_mstate_global->__pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 259, __pyx_L1_error)
     {
       __Pyx_BufFmt_StackElem __pyx_stack[1];
       __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_rhs_x_hat.rcbuffer->pybuffer);
@@ -9202,20 +9097,20 @@ static PyObject *__pyx_pf_60navier_stokes_spectral_pyfftw_algo_optim_vortex_plan
         __pyx_t_11 = __pyx_t_10 = __pyx_t_9 = 0;
       }
       __pyx_pybuffernd_rhs_x_hat.diminfo[0].strides = __pyx_pybuffernd_rhs_x_hat.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_rhs_x_hat.diminfo[0].shape = __pyx_pybuffernd_rhs_x_hat.rcbuffer->pybuffer.shape[0]; __pyx_pybuffernd_rhs_x_hat.diminfo[1].strides = __pyx_pybuffernd_rhs_x_hat.rcbuffer->pybuffer.strides[1]; __pyx_pybuffernd_rhs_x_hat.diminfo[1].shape = __pyx_pybuffernd_rhs_x_hat.rcbuffer->pybuffer.shape[1];
-      if (unlikely((__pyx_t_23 < 0))) __PYX_ERR(0, 261, __pyx_L1_error)
+      if (unlikely((__pyx_t_23 < 0))) __PYX_ERR(0, 259, __pyx_L1_error)
     }
     __Pyx_DECREF_SET(__pyx_v_rhs_x_hat, ((PyArrayObject *)__pyx_t_2));
     __pyx_t_2 = 0;
 
-    /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":262
+    /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":260
  * 
  *         rhs_x_hat = apply_dealias(rhs_x_hat, dealias, fft_rhs_x)
  *         rhs_y_hat = apply_dealias(rhs_y_hat, dealias, fft_rhs_y)             # <<<<<<<<<<<<<<
  * 
- *         np.multiply(rhs_x_hat, dt, out=work_hat)
+ *         vx_hat += rhs_x_hat * dt
 */
     __pyx_t_6 = NULL;
-    __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_apply_dealias); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 262, __pyx_L1_error)
+    __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_apply_dealias); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 260, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     __pyx_t_7 = 1;
     #if CYTHON_UNPACK_METHODS
@@ -9234,10 +9129,10 @@ static PyObject *__pyx_pf_60navier_stokes_spectral_pyfftw_algo_optim_vortex_plan
       __pyx_t_2 = __Pyx_PyObject_FastCall((PyObject*)__pyx_t_5, __pyx_callargs+__pyx_t_7, (4-__pyx_t_7) | (__pyx_t_7*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
       __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-      if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 262, __pyx_L1_error)
+      if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 260, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
     }
-    if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_mstate_global->__pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 262, __pyx_L1_error)
+    if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_mstate_global->__pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 260, __pyx_L1_error)
     {
       __Pyx_BufFmt_StackElem __pyx_stack[1];
       __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_rhs_y_hat.rcbuffer->pybuffer);
@@ -9253,325 +9148,136 @@ static PyObject *__pyx_pf_60navier_stokes_spectral_pyfftw_algo_optim_vortex_plan
         __pyx_t_9 = __pyx_t_10 = __pyx_t_11 = 0;
       }
       __pyx_pybuffernd_rhs_y_hat.diminfo[0].strides = __pyx_pybuffernd_rhs_y_hat.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_rhs_y_hat.diminfo[0].shape = __pyx_pybuffernd_rhs_y_hat.rcbuffer->pybuffer.shape[0]; __pyx_pybuffernd_rhs_y_hat.diminfo[1].strides = __pyx_pybuffernd_rhs_y_hat.rcbuffer->pybuffer.strides[1]; __pyx_pybuffernd_rhs_y_hat.diminfo[1].shape = __pyx_pybuffernd_rhs_y_hat.rcbuffer->pybuffer.shape[1];
-      if (unlikely((__pyx_t_23 < 0))) __PYX_ERR(0, 262, __pyx_L1_error)
+      if (unlikely((__pyx_t_23 < 0))) __PYX_ERR(0, 260, __pyx_L1_error)
     }
     __Pyx_DECREF_SET(__pyx_v_rhs_y_hat, ((PyArrayObject *)__pyx_t_2));
     __pyx_t_2 = 0;
 
-    /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":264
+    /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":262
  *         rhs_y_hat = apply_dealias(rhs_y_hat, dealias, fft_rhs_y)
  * 
- *         np.multiply(rhs_x_hat, dt, out=work_hat)             # <<<<<<<<<<<<<<
- *         np.add(vx_hat, work_hat, out=vx_hat)
- *         np.multiply(rhs_y_hat, dt, out=work_hat)
-*/
-    __pyx_t_5 = NULL;
-    __Pyx_GetModuleGlobalName(__pyx_t_6, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 264, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_6);
-    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_mstate_global->__pyx_n_u_multiply); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 264, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_4);
-    __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-    __pyx_t_6 = PyFloat_FromDouble(__pyx_v_dt); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 264, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_6);
-    __pyx_t_7 = 1;
-    #if CYTHON_UNPACK_METHODS
-    if (unlikely(PyMethod_Check(__pyx_t_4))) {
-      __pyx_t_5 = PyMethod_GET_SELF(__pyx_t_4);
-      assert(__pyx_t_5);
-      PyObject* __pyx__function = PyMethod_GET_FUNCTION(__pyx_t_4);
-      __Pyx_INCREF(__pyx_t_5);
-      __Pyx_INCREF(__pyx__function);
-      __Pyx_DECREF_SET(__pyx_t_4, __pyx__function);
-      __pyx_t_7 = 0;
-    }
-    #endif
-    {
-      PyObject *__pyx_callargs[3 + ((CYTHON_VECTORCALL) ? 1 : 0)] = {__pyx_t_5, ((PyObject *)__pyx_v_rhs_x_hat), __pyx_t_6};
-      __pyx_t_3 = __Pyx_MakeVectorcallBuilderKwds(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 264, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_3);
-      if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_out, ((PyObject *)__pyx_v_work_hat), __pyx_t_3, __pyx_callargs+3, 0) < (0)) __PYX_ERR(0, 264, __pyx_L1_error)
-      __pyx_t_2 = __Pyx_Object_Vectorcall_CallFromBuilder((PyObject*)__pyx_t_4, __pyx_callargs+__pyx_t_7, (3-__pyx_t_7) | (__pyx_t_7*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET), __pyx_t_3);
-      __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
-      __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-      __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-      __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-      if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 264, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_2);
-    }
-    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-    /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":265
+ *         vx_hat += rhs_x_hat * dt             # <<<<<<<<<<<<<<
+ *         vy_hat += rhs_y_hat * dt
  * 
- *         np.multiply(rhs_x_hat, dt, out=work_hat)
- *         np.add(vx_hat, work_hat, out=vx_hat)             # <<<<<<<<<<<<<<
- *         np.multiply(rhs_y_hat, dt, out=work_hat)
- *         np.add(vy_hat, work_hat, out=vy_hat)
 */
-    __pyx_t_4 = NULL;
-    __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 265, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_add); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 265, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_6);
-    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    __pyx_t_7 = 1;
-    #if CYTHON_UNPACK_METHODS
-    if (unlikely(PyMethod_Check(__pyx_t_6))) {
-      __pyx_t_4 = PyMethod_GET_SELF(__pyx_t_6);
-      assert(__pyx_t_4);
-      PyObject* __pyx__function = PyMethod_GET_FUNCTION(__pyx_t_6);
-      __Pyx_INCREF(__pyx_t_4);
-      __Pyx_INCREF(__pyx__function);
-      __Pyx_DECREF_SET(__pyx_t_6, __pyx__function);
-      __pyx_t_7 = 0;
-    }
-    #endif
-    {
-      PyObject *__pyx_callargs[3 + ((CYTHON_VECTORCALL) ? 1 : 0)] = {__pyx_t_4, ((PyObject *)__pyx_v_vx_hat), ((PyObject *)__pyx_v_work_hat)};
-      __pyx_t_3 = __Pyx_MakeVectorcallBuilderKwds(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 265, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_3);
-      if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_out, ((PyObject *)__pyx_v_vx_hat), __pyx_t_3, __pyx_callargs+3, 0) < (0)) __PYX_ERR(0, 265, __pyx_L1_error)
-      __pyx_t_2 = __Pyx_Object_Vectorcall_CallFromBuilder((PyObject*)__pyx_t_6, __pyx_callargs+__pyx_t_7, (3-__pyx_t_7) | (__pyx_t_7*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET), __pyx_t_3);
-      __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-      __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-      __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-      if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 265, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_2);
-    }
+    __pyx_t_2 = PyFloat_FromDouble(__pyx_v_dt); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 262, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_2);
+    __pyx_t_5 = PyNumber_Multiply(((PyObject *)__pyx_v_rhs_x_hat), __pyx_t_2); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 262, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+    __pyx_t_2 = PyNumber_InPlaceAdd(((PyObject *)__pyx_v_vx_hat), __pyx_t_5); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 262, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_2);
+    __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+    if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_mstate_global->__pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 262, __pyx_L1_error)
+    {
+      __Pyx_BufFmt_StackElem __pyx_stack[1];
+      __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_vx_hat.rcbuffer->pybuffer);
+      __pyx_t_23 = __Pyx_GetBufferAndValidate(&__pyx_pybuffernd_vx_hat.rcbuffer->pybuffer, (PyObject*)((PyArrayObject *)__pyx_t_2), &__Pyx_TypeInfo___pyx_t_double_complex, PyBUF_FORMAT| PyBUF_STRIDES, 2, 0, __pyx_stack);
+      if (unlikely(__pyx_t_23 < 0)) {
+        PyErr_Fetch(&__pyx_t_11, &__pyx_t_10, &__pyx_t_9);
+        if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_vx_hat.rcbuffer->pybuffer, (PyObject*)__pyx_v_vx_hat, &__Pyx_TypeInfo___pyx_t_double_complex, PyBUF_FORMAT| PyBUF_STRIDES, 2, 0, __pyx_stack) == -1)) {
+          Py_XDECREF(__pyx_t_11); Py_XDECREF(__pyx_t_10); Py_XDECREF(__pyx_t_9);
+          __Pyx_RaiseBufferFallbackError();
+        } else {
+          PyErr_Restore(__pyx_t_11, __pyx_t_10, __pyx_t_9);
+        }
+        __pyx_t_11 = __pyx_t_10 = __pyx_t_9 = 0;
+      }
+      __pyx_pybuffernd_vx_hat.diminfo[0].strides = __pyx_pybuffernd_vx_hat.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_vx_hat.diminfo[0].shape = __pyx_pybuffernd_vx_hat.rcbuffer->pybuffer.shape[0]; __pyx_pybuffernd_vx_hat.diminfo[1].strides = __pyx_pybuffernd_vx_hat.rcbuffer->pybuffer.strides[1]; __pyx_pybuffernd_vx_hat.diminfo[1].shape = __pyx_pybuffernd_vx_hat.rcbuffer->pybuffer.shape[1];
+      if (unlikely((__pyx_t_23 < 0))) __PYX_ERR(0, 262, __pyx_L1_error)
+    }
+    __Pyx_DECREF_SET(__pyx_v_vx_hat, ((PyArrayObject *)__pyx_t_2));
+    __pyx_t_2 = 0;
+
+    /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":263
+ * 
+ *         vx_hat += rhs_x_hat * dt
+ *         vy_hat += rhs_y_hat * dt             # <<<<<<<<<<<<<<
+ * 
+ *         # Poisson solve for pressure
+*/
+    __pyx_t_2 = PyFloat_FromDouble(__pyx_v_dt); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 263, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_2);
+    __pyx_t_5 = PyNumber_Multiply(((PyObject *)__pyx_v_rhs_y_hat), __pyx_t_2); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 263, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_5);
+    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+    __pyx_t_2 = PyNumber_InPlaceAdd(((PyObject *)__pyx_v_vy_hat), __pyx_t_5); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 263, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_2);
+    __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+    if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_mstate_global->__pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 263, __pyx_L1_error)
+    {
+      __Pyx_BufFmt_StackElem __pyx_stack[1];
+      __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_vy_hat.rcbuffer->pybuffer);
+      __pyx_t_23 = __Pyx_GetBufferAndValidate(&__pyx_pybuffernd_vy_hat.rcbuffer->pybuffer, (PyObject*)((PyArrayObject *)__pyx_t_2), &__Pyx_TypeInfo___pyx_t_double_complex, PyBUF_FORMAT| PyBUF_STRIDES, 2, 0, __pyx_stack);
+      if (unlikely(__pyx_t_23 < 0)) {
+        PyErr_Fetch(&__pyx_t_9, &__pyx_t_10, &__pyx_t_11);
+        if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_vy_hat.rcbuffer->pybuffer, (PyObject*)__pyx_v_vy_hat, &__Pyx_TypeInfo___pyx_t_double_complex, PyBUF_FORMAT| PyBUF_STRIDES, 2, 0, __pyx_stack) == -1)) {
+          Py_XDECREF(__pyx_t_9); Py_XDECREF(__pyx_t_10); Py_XDECREF(__pyx_t_11);
+          __Pyx_RaiseBufferFallbackError();
+        } else {
+          PyErr_Restore(__pyx_t_9, __pyx_t_10, __pyx_t_11);
+        }
+        __pyx_t_9 = __pyx_t_10 = __pyx_t_11 = 0;
+      }
+      __pyx_pybuffernd_vy_hat.diminfo[0].strides = __pyx_pybuffernd_vy_hat.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_vy_hat.diminfo[0].shape = __pyx_pybuffernd_vy_hat.rcbuffer->pybuffer.shape[0]; __pyx_pybuffernd_vy_hat.diminfo[1].strides = __pyx_pybuffernd_vy_hat.rcbuffer->pybuffer.strides[1]; __pyx_pybuffernd_vy_hat.diminfo[1].shape = __pyx_pybuffernd_vy_hat.rcbuffer->pybuffer.shape[1];
+      if (unlikely((__pyx_t_23 < 0))) __PYX_ERR(0, 263, __pyx_L1_error)
+    }
+    __Pyx_DECREF_SET(__pyx_v_vy_hat, ((PyArrayObject *)__pyx_t_2));
+    __pyx_t_2 = 0;
 
     /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":266
- *         np.multiply(rhs_x_hat, dt, out=work_hat)
- *         np.add(vx_hat, work_hat, out=vx_hat)
- *         np.multiply(rhs_y_hat, dt, out=work_hat)             # <<<<<<<<<<<<<<
- *         np.add(vy_hat, work_hat, out=vy_hat)
+ * 
+ *         # Poisson solve for pressure
+ *         div_rhs_hat[:] = ikx * rhs_x_hat + iky * rhs_y_hat             # <<<<<<<<<<<<<<
+ *         P_hat = poisson_solve(div_rhs_hat, kSq_inv)
  * 
 */
-    __pyx_t_6 = NULL;
-    __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 266, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_multiply); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 266, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_4);
-    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    __pyx_t_3 = PyFloat_FromDouble(__pyx_v_dt); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 266, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_7 = 1;
-    #if CYTHON_UNPACK_METHODS
-    if (unlikely(PyMethod_Check(__pyx_t_4))) {
-      __pyx_t_6 = PyMethod_GET_SELF(__pyx_t_4);
-      assert(__pyx_t_6);
-      PyObject* __pyx__function = PyMethod_GET_FUNCTION(__pyx_t_4);
-      __Pyx_INCREF(__pyx_t_6);
-      __Pyx_INCREF(__pyx__function);
-      __Pyx_DECREF_SET(__pyx_t_4, __pyx__function);
-      __pyx_t_7 = 0;
-    }
-    #endif
-    {
-      PyObject *__pyx_callargs[3 + ((CYTHON_VECTORCALL) ? 1 : 0)] = {__pyx_t_6, ((PyObject *)__pyx_v_rhs_y_hat), __pyx_t_3};
-      __pyx_t_5 = __Pyx_MakeVectorcallBuilderKwds(1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 266, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_5);
-      if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_out, ((PyObject *)__pyx_v_work_hat), __pyx_t_5, __pyx_callargs+3, 0) < (0)) __PYX_ERR(0, 266, __pyx_L1_error)
-      __pyx_t_2 = __Pyx_Object_Vectorcall_CallFromBuilder((PyObject*)__pyx_t_4, __pyx_callargs+__pyx_t_7, (3-__pyx_t_7) | (__pyx_t_7*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET), __pyx_t_5);
-      __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
-      __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-      __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-      __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-      if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 266, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_2);
-    }
+    __pyx_t_2 = PyNumber_Multiply(((PyObject *)__pyx_v_ikx), ((PyObject *)__pyx_v_rhs_x_hat)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 266, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_2);
+    __pyx_t_5 = PyNumber_Multiply(((PyObject *)__pyx_v_iky), ((PyObject *)__pyx_v_rhs_y_hat)); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 266, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_5);
+    __pyx_t_6 = PyNumber_Add(__pyx_t_2, __pyx_t_5); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 266, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_6);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+    __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+    if (unlikely((PyObject_SetItem(((PyObject *)__pyx_v_div_rhs_hat), __pyx_mstate_global->__pyx_slice[0], __pyx_t_6) < 0))) __PYX_ERR(0, 266, __pyx_L1_error)
+    __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
 
     /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":267
- *         np.add(vx_hat, work_hat, out=vx_hat)
- *         np.multiply(rhs_y_hat, dt, out=work_hat)
- *         np.add(vy_hat, work_hat, out=vy_hat)             # <<<<<<<<<<<<<<
- * 
  *         # Poisson solve for pressure
-*/
-    __pyx_t_4 = NULL;
-    __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 267, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_5);
-    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_add); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 267, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_3);
-    __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-    __pyx_t_7 = 1;
-    #if CYTHON_UNPACK_METHODS
-    if (unlikely(PyMethod_Check(__pyx_t_3))) {
-      __pyx_t_4 = PyMethod_GET_SELF(__pyx_t_3);
-      assert(__pyx_t_4);
-      PyObject* __pyx__function = PyMethod_GET_FUNCTION(__pyx_t_3);
-      __Pyx_INCREF(__pyx_t_4);
-      __Pyx_INCREF(__pyx__function);
-      __Pyx_DECREF_SET(__pyx_t_3, __pyx__function);
-      __pyx_t_7 = 0;
-    }
-    #endif
-    {
-      PyObject *__pyx_callargs[3 + ((CYTHON_VECTORCALL) ? 1 : 0)] = {__pyx_t_4, ((PyObject *)__pyx_v_vy_hat), ((PyObject *)__pyx_v_work_hat)};
-      __pyx_t_5 = __Pyx_MakeVectorcallBuilderKwds(1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 267, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_5);
-      if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_out, ((PyObject *)__pyx_v_vy_hat), __pyx_t_5, __pyx_callargs+3, 0) < (0)) __PYX_ERR(0, 267, __pyx_L1_error)
-      __pyx_t_2 = __Pyx_Object_Vectorcall_CallFromBuilder((PyObject*)__pyx_t_3, __pyx_callargs+__pyx_t_7, (3-__pyx_t_7) | (__pyx_t_7*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET), __pyx_t_5);
-      __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-      __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-      __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-      if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 267, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_2);
-    }
-    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-    /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":270
- * 
- *         # Poisson solve for pressure
- *         np.multiply(ikx, rhs_x_hat, out=div_rhs_hat)             # <<<<<<<<<<<<<<
- *         np.multiply(iky, rhs_y_hat, out=work_hat)
- *         np.add(div_rhs_hat, work_hat, out=div_rhs_hat)
-*/
-    __pyx_t_3 = NULL;
-    __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 270, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_5);
-    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_multiply); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 270, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_4);
-    __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-    __pyx_t_7 = 1;
-    #if CYTHON_UNPACK_METHODS
-    if (unlikely(PyMethod_Check(__pyx_t_4))) {
-      __pyx_t_3 = PyMethod_GET_SELF(__pyx_t_4);
-      assert(__pyx_t_3);
-      PyObject* __pyx__function = PyMethod_GET_FUNCTION(__pyx_t_4);
-      __Pyx_INCREF(__pyx_t_3);
-      __Pyx_INCREF(__pyx__function);
-      __Pyx_DECREF_SET(__pyx_t_4, __pyx__function);
-      __pyx_t_7 = 0;
-    }
-    #endif
-    {
-      PyObject *__pyx_callargs[3 + ((CYTHON_VECTORCALL) ? 1 : 0)] = {__pyx_t_3, ((PyObject *)__pyx_v_ikx), ((PyObject *)__pyx_v_rhs_x_hat)};
-      __pyx_t_5 = __Pyx_MakeVectorcallBuilderKwds(1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 270, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_5);
-      if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_out, ((PyObject *)__pyx_v_div_rhs_hat), __pyx_t_5, __pyx_callargs+3, 0) < (0)) __PYX_ERR(0, 270, __pyx_L1_error)
-      __pyx_t_2 = __Pyx_Object_Vectorcall_CallFromBuilder((PyObject*)__pyx_t_4, __pyx_callargs+__pyx_t_7, (3-__pyx_t_7) | (__pyx_t_7*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET), __pyx_t_5);
-      __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-      __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-      __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-      if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 270, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_2);
-    }
-    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-    /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":271
- *         # Poisson solve for pressure
- *         np.multiply(ikx, rhs_x_hat, out=div_rhs_hat)
- *         np.multiply(iky, rhs_y_hat, out=work_hat)             # <<<<<<<<<<<<<<
- *         np.add(div_rhs_hat, work_hat, out=div_rhs_hat)
- *         P_hat = poisson_solve(div_rhs_hat, kSq_inv)
-*/
-    __pyx_t_4 = NULL;
-    __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 271, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_5);
-    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_multiply); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 271, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_3);
-    __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-    __pyx_t_7 = 1;
-    #if CYTHON_UNPACK_METHODS
-    if (unlikely(PyMethod_Check(__pyx_t_3))) {
-      __pyx_t_4 = PyMethod_GET_SELF(__pyx_t_3);
-      assert(__pyx_t_4);
-      PyObject* __pyx__function = PyMethod_GET_FUNCTION(__pyx_t_3);
-      __Pyx_INCREF(__pyx_t_4);
-      __Pyx_INCREF(__pyx__function);
-      __Pyx_DECREF_SET(__pyx_t_3, __pyx__function);
-      __pyx_t_7 = 0;
-    }
-    #endif
-    {
-      PyObject *__pyx_callargs[3 + ((CYTHON_VECTORCALL) ? 1 : 0)] = {__pyx_t_4, ((PyObject *)__pyx_v_iky), ((PyObject *)__pyx_v_rhs_y_hat)};
-      __pyx_t_5 = __Pyx_MakeVectorcallBuilderKwds(1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 271, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_5);
-      if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_out, ((PyObject *)__pyx_v_work_hat), __pyx_t_5, __pyx_callargs+3, 0) < (0)) __PYX_ERR(0, 271, __pyx_L1_error)
-      __pyx_t_2 = __Pyx_Object_Vectorcall_CallFromBuilder((PyObject*)__pyx_t_3, __pyx_callargs+__pyx_t_7, (3-__pyx_t_7) | (__pyx_t_7*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET), __pyx_t_5);
-      __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-      __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-      __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-      if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 271, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_2);
-    }
-    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-    /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":272
- *         np.multiply(ikx, rhs_x_hat, out=div_rhs_hat)
- *         np.multiply(iky, rhs_y_hat, out=work_hat)
- *         np.add(div_rhs_hat, work_hat, out=div_rhs_hat)             # <<<<<<<<<<<<<<
- *         P_hat = poisson_solve(div_rhs_hat, kSq_inv)
- * 
-*/
-    __pyx_t_3 = NULL;
-    __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 272, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_5);
-    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_add); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 272, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_4);
-    __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-    __pyx_t_7 = 1;
-    #if CYTHON_UNPACK_METHODS
-    if (unlikely(PyMethod_Check(__pyx_t_4))) {
-      __pyx_t_3 = PyMethod_GET_SELF(__pyx_t_4);
-      assert(__pyx_t_3);
-      PyObject* __pyx__function = PyMethod_GET_FUNCTION(__pyx_t_4);
-      __Pyx_INCREF(__pyx_t_3);
-      __Pyx_INCREF(__pyx__function);
-      __Pyx_DECREF_SET(__pyx_t_4, __pyx__function);
-      __pyx_t_7 = 0;
-    }
-    #endif
-    {
-      PyObject *__pyx_callargs[3 + ((CYTHON_VECTORCALL) ? 1 : 0)] = {__pyx_t_3, ((PyObject *)__pyx_v_div_rhs_hat), ((PyObject *)__pyx_v_work_hat)};
-      __pyx_t_5 = __Pyx_MakeVectorcallBuilderKwds(1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 272, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_5);
-      if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_out, ((PyObject *)__pyx_v_div_rhs_hat), __pyx_t_5, __pyx_callargs+3, 0) < (0)) __PYX_ERR(0, 272, __pyx_L1_error)
-      __pyx_t_2 = __Pyx_Object_Vectorcall_CallFromBuilder((PyObject*)__pyx_t_4, __pyx_callargs+__pyx_t_7, (3-__pyx_t_7) | (__pyx_t_7*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET), __pyx_t_5);
-      __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-      __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-      __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-      if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 272, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_2);
-    }
-    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-    /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":273
- *         np.multiply(iky, rhs_y_hat, out=work_hat)
- *         np.add(div_rhs_hat, work_hat, out=div_rhs_hat)
+ *         div_rhs_hat[:] = ikx * rhs_x_hat + iky * rhs_y_hat
  *         P_hat = poisson_solve(div_rhs_hat, kSq_inv)             # <<<<<<<<<<<<<<
  * 
  *         # Correction (to eliminate divergence component of velocity)
 */
-    __pyx_t_4 = NULL;
-    __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_poisson_solve); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 273, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_5);
+    __pyx_t_5 = NULL;
+    __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_poisson_solve); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 267, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_2);
     __pyx_t_7 = 1;
     #if CYTHON_UNPACK_METHODS
-    if (unlikely(PyMethod_Check(__pyx_t_5))) {
-      __pyx_t_4 = PyMethod_GET_SELF(__pyx_t_5);
-      assert(__pyx_t_4);
-      PyObject* __pyx__function = PyMethod_GET_FUNCTION(__pyx_t_5);
-      __Pyx_INCREF(__pyx_t_4);
+    if (unlikely(PyMethod_Check(__pyx_t_2))) {
+      __pyx_t_5 = PyMethod_GET_SELF(__pyx_t_2);
+      assert(__pyx_t_5);
+      PyObject* __pyx__function = PyMethod_GET_FUNCTION(__pyx_t_2);
+      __Pyx_INCREF(__pyx_t_5);
       __Pyx_INCREF(__pyx__function);
-      __Pyx_DECREF_SET(__pyx_t_5, __pyx__function);
+      __Pyx_DECREF_SET(__pyx_t_2, __pyx__function);
       __pyx_t_7 = 0;
     }
     #endif
     {
-      PyObject *__pyx_callargs[3] = {__pyx_t_4, ((PyObject *)__pyx_v_div_rhs_hat), ((PyObject *)__pyx_v_kSq_inv)};
-      __pyx_t_2 = __Pyx_PyObject_FastCall((PyObject*)__pyx_t_5, __pyx_callargs+__pyx_t_7, (3-__pyx_t_7) | (__pyx_t_7*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
-      __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-      __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-      if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 273, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_2);
+      PyObject *__pyx_callargs[3] = {__pyx_t_5, ((PyObject *)__pyx_v_div_rhs_hat), ((PyObject *)__pyx_v_kSq_inv)};
+      __pyx_t_6 = __Pyx_PyObject_FastCall((PyObject*)__pyx_t_2, __pyx_callargs+__pyx_t_7, (3-__pyx_t_7) | (__pyx_t_7*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
+      __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
+      __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+      if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 267, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_6);
     }
-    if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_mstate_global->__pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 273, __pyx_L1_error)
+    if (!(likely(((__pyx_t_6) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_6, __pyx_mstate_global->__pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 267, __pyx_L1_error)
     {
       __Pyx_BufFmt_StackElem __pyx_stack[1];
       __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_P_hat.rcbuffer->pybuffer);
-      __pyx_t_23 = __Pyx_GetBufferAndValidate(&__pyx_pybuffernd_P_hat.rcbuffer->pybuffer, (PyObject*)((PyArrayObject *)__pyx_t_2), &__Pyx_TypeInfo___pyx_t_double_complex, PyBUF_FORMAT| PyBUF_STRIDES, 2, 0, __pyx_stack);
+      __pyx_t_23 = __Pyx_GetBufferAndValidate(&__pyx_pybuffernd_P_hat.rcbuffer->pybuffer, (PyObject*)((PyArrayObject *)__pyx_t_6), &__Pyx_TypeInfo___pyx_t_double_complex, PyBUF_FORMAT| PyBUF_STRIDES, 2, 0, __pyx_stack);
       if (unlikely(__pyx_t_23 < 0)) {
         PyErr_Fetch(&__pyx_t_11, &__pyx_t_10, &__pyx_t_9);
         if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_P_hat.rcbuffer->pybuffer, (PyObject*)__pyx_v_P_hat, &__Pyx_TypeInfo___pyx_t_double_complex, PyBUF_FORMAT| PyBUF_STRIDES, 2, 0, __pyx_stack) == -1)) {
@@ -9583,261 +9289,30 @@ static PyObject *__pyx_pf_60navier_stokes_spectral_pyfftw_algo_optim_vortex_plan
         __pyx_t_11 = __pyx_t_10 = __pyx_t_9 = 0;
       }
       __pyx_pybuffernd_P_hat.diminfo[0].strides = __pyx_pybuffernd_P_hat.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_P_hat.diminfo[0].shape = __pyx_pybuffernd_P_hat.rcbuffer->pybuffer.shape[0]; __pyx_pybuffernd_P_hat.diminfo[1].strides = __pyx_pybuffernd_P_hat.rcbuffer->pybuffer.strides[1]; __pyx_pybuffernd_P_hat.diminfo[1].shape = __pyx_pybuffernd_P_hat.rcbuffer->pybuffer.shape[1];
-      if (unlikely((__pyx_t_23 < 0))) __PYX_ERR(0, 273, __pyx_L1_error)
+      if (unlikely((__pyx_t_23 < 0))) __PYX_ERR(0, 267, __pyx_L1_error)
     }
-    __Pyx_DECREF_SET(__pyx_v_P_hat, ((PyArrayObject *)__pyx_t_2));
-    __pyx_t_2 = 0;
+    __Pyx_DECREF_SET(__pyx_v_P_hat, ((PyArrayObject *)__pyx_t_6));
+    __pyx_t_6 = 0;
 
-    /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":276
+    /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":270
  * 
  *         # Correction (to eliminate divergence component of velocity)
- *         np.multiply(ikx, P_hat, out=work_hat)             # <<<<<<<<<<<<<<
- *         np.multiply(work_hat, dt, out=work_hat)
- *         np.subtract(vx_hat, work_hat, out=vx_hat)
-*/
-    __pyx_t_5 = NULL;
-    __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 276, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_multiply); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 276, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_3);
-    __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __pyx_t_7 = 1;
-    #if CYTHON_UNPACK_METHODS
-    if (unlikely(PyMethod_Check(__pyx_t_3))) {
-      __pyx_t_5 = PyMethod_GET_SELF(__pyx_t_3);
-      assert(__pyx_t_5);
-      PyObject* __pyx__function = PyMethod_GET_FUNCTION(__pyx_t_3);
-      __Pyx_INCREF(__pyx_t_5);
-      __Pyx_INCREF(__pyx__function);
-      __Pyx_DECREF_SET(__pyx_t_3, __pyx__function);
-      __pyx_t_7 = 0;
-    }
-    #endif
-    {
-      PyObject *__pyx_callargs[3 + ((CYTHON_VECTORCALL) ? 1 : 0)] = {__pyx_t_5, ((PyObject *)__pyx_v_ikx), ((PyObject *)__pyx_v_P_hat)};
-      __pyx_t_4 = __Pyx_MakeVectorcallBuilderKwds(1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 276, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_4);
-      if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_out, ((PyObject *)__pyx_v_work_hat), __pyx_t_4, __pyx_callargs+3, 0) < (0)) __PYX_ERR(0, 276, __pyx_L1_error)
-      __pyx_t_2 = __Pyx_Object_Vectorcall_CallFromBuilder((PyObject*)__pyx_t_3, __pyx_callargs+__pyx_t_7, (3-__pyx_t_7) | (__pyx_t_7*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET), __pyx_t_4);
-      __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
-      __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-      __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-      if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 276, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_2);
-    }
-    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-    /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":277
- *         # Correction (to eliminate divergence component of velocity)
- *         np.multiply(ikx, P_hat, out=work_hat)
- *         np.multiply(work_hat, dt, out=work_hat)             # <<<<<<<<<<<<<<
- *         np.subtract(vx_hat, work_hat, out=vx_hat)
- *         np.multiply(iky, P_hat, out=work_hat)
-*/
-    __pyx_t_3 = NULL;
-    __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 277, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_multiply); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 277, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_5);
-    __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __pyx_t_4 = PyFloat_FromDouble(__pyx_v_dt); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 277, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_7 = 1;
-    #if CYTHON_UNPACK_METHODS
-    if (unlikely(PyMethod_Check(__pyx_t_5))) {
-      __pyx_t_3 = PyMethod_GET_SELF(__pyx_t_5);
-      assert(__pyx_t_3);
-      PyObject* __pyx__function = PyMethod_GET_FUNCTION(__pyx_t_5);
-      __Pyx_INCREF(__pyx_t_3);
-      __Pyx_INCREF(__pyx__function);
-      __Pyx_DECREF_SET(__pyx_t_5, __pyx__function);
-      __pyx_t_7 = 0;
-    }
-    #endif
-    {
-      PyObject *__pyx_callargs[3 + ((CYTHON_VECTORCALL) ? 1 : 0)] = {__pyx_t_3, ((PyObject *)__pyx_v_work_hat), __pyx_t_4};
-      __pyx_t_6 = __Pyx_MakeVectorcallBuilderKwds(1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 277, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_6);
-      if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_out, ((PyObject *)__pyx_v_work_hat), __pyx_t_6, __pyx_callargs+3, 0) < (0)) __PYX_ERR(0, 277, __pyx_L1_error)
-      __pyx_t_2 = __Pyx_Object_Vectorcall_CallFromBuilder((PyObject*)__pyx_t_5, __pyx_callargs+__pyx_t_7, (3-__pyx_t_7) | (__pyx_t_7*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET), __pyx_t_6);
-      __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-      __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-      __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-      __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-      if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 277, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_2);
-    }
-    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-    /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":278
- *         np.multiply(ikx, P_hat, out=work_hat)
- *         np.multiply(work_hat, dt, out=work_hat)
- *         np.subtract(vx_hat, work_hat, out=vx_hat)             # <<<<<<<<<<<<<<
- *         np.multiply(iky, P_hat, out=work_hat)
- *         np.multiply(work_hat, dt, out=work_hat)
-*/
-    __pyx_t_5 = NULL;
-    __Pyx_GetModuleGlobalName(__pyx_t_6, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 278, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_6);
-    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_mstate_global->__pyx_n_u_subtract); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 278, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_4);
-    __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-    __pyx_t_7 = 1;
-    #if CYTHON_UNPACK_METHODS
-    if (unlikely(PyMethod_Check(__pyx_t_4))) {
-      __pyx_t_5 = PyMethod_GET_SELF(__pyx_t_4);
-      assert(__pyx_t_5);
-      PyObject* __pyx__function = PyMethod_GET_FUNCTION(__pyx_t_4);
-      __Pyx_INCREF(__pyx_t_5);
-      __Pyx_INCREF(__pyx__function);
-      __Pyx_DECREF_SET(__pyx_t_4, __pyx__function);
-      __pyx_t_7 = 0;
-    }
-    #endif
-    {
-      PyObject *__pyx_callargs[3 + ((CYTHON_VECTORCALL) ? 1 : 0)] = {__pyx_t_5, ((PyObject *)__pyx_v_vx_hat), ((PyObject *)__pyx_v_work_hat)};
-      __pyx_t_6 = __Pyx_MakeVectorcallBuilderKwds(1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 278, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_6);
-      if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_out, ((PyObject *)__pyx_v_vx_hat), __pyx_t_6, __pyx_callargs+3, 0) < (0)) __PYX_ERR(0, 278, __pyx_L1_error)
-      __pyx_t_2 = __Pyx_Object_Vectorcall_CallFromBuilder((PyObject*)__pyx_t_4, __pyx_callargs+__pyx_t_7, (3-__pyx_t_7) | (__pyx_t_7*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET), __pyx_t_6);
-      __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
-      __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-      __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-      if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 278, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_2);
-    }
-    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-    /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":279
- *         np.multiply(work_hat, dt, out=work_hat)
- *         np.subtract(vx_hat, work_hat, out=vx_hat)
- *         np.multiply(iky, P_hat, out=work_hat)             # <<<<<<<<<<<<<<
- *         np.multiply(work_hat, dt, out=work_hat)
- *         np.subtract(vy_hat, work_hat, out=vy_hat)
-*/
-    __pyx_t_4 = NULL;
-    __Pyx_GetModuleGlobalName(__pyx_t_6, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 279, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_6);
-    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_mstate_global->__pyx_n_u_multiply); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 279, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_5);
-    __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-    __pyx_t_7 = 1;
-    #if CYTHON_UNPACK_METHODS
-    if (unlikely(PyMethod_Check(__pyx_t_5))) {
-      __pyx_t_4 = PyMethod_GET_SELF(__pyx_t_5);
-      assert(__pyx_t_4);
-      PyObject* __pyx__function = PyMethod_GET_FUNCTION(__pyx_t_5);
-      __Pyx_INCREF(__pyx_t_4);
-      __Pyx_INCREF(__pyx__function);
-      __Pyx_DECREF_SET(__pyx_t_5, __pyx__function);
-      __pyx_t_7 = 0;
-    }
-    #endif
-    {
-      PyObject *__pyx_callargs[3 + ((CYTHON_VECTORCALL) ? 1 : 0)] = {__pyx_t_4, ((PyObject *)__pyx_v_iky), ((PyObject *)__pyx_v_P_hat)};
-      __pyx_t_6 = __Pyx_MakeVectorcallBuilderKwds(1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 279, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_6);
-      if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_out, ((PyObject *)__pyx_v_work_hat), __pyx_t_6, __pyx_callargs+3, 0) < (0)) __PYX_ERR(0, 279, __pyx_L1_error)
-      __pyx_t_2 = __Pyx_Object_Vectorcall_CallFromBuilder((PyObject*)__pyx_t_5, __pyx_callargs+__pyx_t_7, (3-__pyx_t_7) | (__pyx_t_7*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET), __pyx_t_6);
-      __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-      __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-      __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-      if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 279, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_2);
-    }
-    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-    /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":280
- *         np.subtract(vx_hat, work_hat, out=vx_hat)
- *         np.multiply(iky, P_hat, out=work_hat)
- *         np.multiply(work_hat, dt, out=work_hat)             # <<<<<<<<<<<<<<
- *         np.subtract(vy_hat, work_hat, out=vy_hat)
+ *         vx_hat -= ikx * P_hat * dt             # <<<<<<<<<<<<<<
+ *         vy_hat -= iky * P_hat * dt
  * 
 */
-    __pyx_t_5 = NULL;
-    __Pyx_GetModuleGlobalName(__pyx_t_6, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 280, __pyx_L1_error)
+    __pyx_t_6 = PyNumber_Multiply(((PyObject *)__pyx_v_ikx), ((PyObject *)__pyx_v_P_hat)); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 270, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
-    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_mstate_global->__pyx_n_u_multiply); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 280, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_4);
-    __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-    __pyx_t_6 = PyFloat_FromDouble(__pyx_v_dt); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 280, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_6);
-    __pyx_t_7 = 1;
-    #if CYTHON_UNPACK_METHODS
-    if (unlikely(PyMethod_Check(__pyx_t_4))) {
-      __pyx_t_5 = PyMethod_GET_SELF(__pyx_t_4);
-      assert(__pyx_t_5);
-      PyObject* __pyx__function = PyMethod_GET_FUNCTION(__pyx_t_4);
-      __Pyx_INCREF(__pyx_t_5);
-      __Pyx_INCREF(__pyx__function);
-      __Pyx_DECREF_SET(__pyx_t_4, __pyx__function);
-      __pyx_t_7 = 0;
-    }
-    #endif
-    {
-      PyObject *__pyx_callargs[3 + ((CYTHON_VECTORCALL) ? 1 : 0)] = {__pyx_t_5, ((PyObject *)__pyx_v_work_hat), __pyx_t_6};
-      __pyx_t_3 = __Pyx_MakeVectorcallBuilderKwds(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 280, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_3);
-      if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_out, ((PyObject *)__pyx_v_work_hat), __pyx_t_3, __pyx_callargs+3, 0) < (0)) __PYX_ERR(0, 280, __pyx_L1_error)
-      __pyx_t_2 = __Pyx_Object_Vectorcall_CallFromBuilder((PyObject*)__pyx_t_4, __pyx_callargs+__pyx_t_7, (3-__pyx_t_7) | (__pyx_t_7*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET), __pyx_t_3);
-      __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
-      __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-      __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-      __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-      if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 280, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_2);
-    }
-    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-    /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":281
- *         np.multiply(iky, P_hat, out=work_hat)
- *         np.multiply(work_hat, dt, out=work_hat)
- *         np.subtract(vy_hat, work_hat, out=vy_hat)             # <<<<<<<<<<<<<<
- * 
- *         # Diffusion solve
-*/
-    __pyx_t_4 = NULL;
-    __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 281, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_subtract); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 281, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_6);
-    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    __pyx_t_7 = 1;
-    #if CYTHON_UNPACK_METHODS
-    if (unlikely(PyMethod_Check(__pyx_t_6))) {
-      __pyx_t_4 = PyMethod_GET_SELF(__pyx_t_6);
-      assert(__pyx_t_4);
-      PyObject* __pyx__function = PyMethod_GET_FUNCTION(__pyx_t_6);
-      __Pyx_INCREF(__pyx_t_4);
-      __Pyx_INCREF(__pyx__function);
-      __Pyx_DECREF_SET(__pyx_t_6, __pyx__function);
-      __pyx_t_7 = 0;
-    }
-    #endif
-    {
-      PyObject *__pyx_callargs[3 + ((CYTHON_VECTORCALL) ? 1 : 0)] = {__pyx_t_4, ((PyObject *)__pyx_v_vy_hat), ((PyObject *)__pyx_v_work_hat)};
-      __pyx_t_3 = __Pyx_MakeVectorcallBuilderKwds(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 281, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_3);
-      if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_out, ((PyObject *)__pyx_v_vy_hat), __pyx_t_3, __pyx_callargs+3, 0) < (0)) __PYX_ERR(0, 281, __pyx_L1_error)
-      __pyx_t_2 = __Pyx_Object_Vectorcall_CallFromBuilder((PyObject*)__pyx_t_6, __pyx_callargs+__pyx_t_7, (3-__pyx_t_7) | (__pyx_t_7*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET), __pyx_t_3);
-      __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-      __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-      __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-      if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 281, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_2);
-    }
-    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-    /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":285
- *         # Diffusion solve
- *         # diffusion_solve(vx_hat, vy_hat, diffuse_denom) # removed to keep inline
- *         vx_hat /= diffuse_denom             # <<<<<<<<<<<<<<
- *         vy_hat /= diffuse_denom
- * 
-*/
-    __pyx_t_2 = __Pyx_PyNumber_InPlaceDivide(((PyObject *)__pyx_v_vx_hat), ((PyObject *)__pyx_v_diffuse_denom)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 285, __pyx_L1_error)
+    __pyx_t_2 = PyFloat_FromDouble(__pyx_v_dt); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 270, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_mstate_global->__pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 285, __pyx_L1_error)
+    __pyx_t_5 = PyNumber_Multiply(__pyx_t_6, __pyx_t_2); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 270, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_5);
+    __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
+    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+    __pyx_t_2 = PyNumber_InPlaceSubtract(((PyObject *)__pyx_v_vx_hat), __pyx_t_5); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 270, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_2);
+    __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+    if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_mstate_global->__pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 270, __pyx_L1_error)
     {
       __Pyx_BufFmt_StackElem __pyx_stack[1];
       __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_vx_hat.rcbuffer->pybuffer);
@@ -9853,25 +9328,34 @@ static PyObject *__pyx_pf_60navier_stokes_spectral_pyfftw_algo_optim_vortex_plan
         __pyx_t_9 = __pyx_t_10 = __pyx_t_11 = 0;
       }
       __pyx_pybuffernd_vx_hat.diminfo[0].strides = __pyx_pybuffernd_vx_hat.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_vx_hat.diminfo[0].shape = __pyx_pybuffernd_vx_hat.rcbuffer->pybuffer.shape[0]; __pyx_pybuffernd_vx_hat.diminfo[1].strides = __pyx_pybuffernd_vx_hat.rcbuffer->pybuffer.strides[1]; __pyx_pybuffernd_vx_hat.diminfo[1].shape = __pyx_pybuffernd_vx_hat.rcbuffer->pybuffer.shape[1];
-      if (unlikely((__pyx_t_23 < 0))) __PYX_ERR(0, 285, __pyx_L1_error)
+      if (unlikely((__pyx_t_23 < 0))) __PYX_ERR(0, 270, __pyx_L1_error)
     }
     __Pyx_DECREF_SET(__pyx_v_vx_hat, ((PyArrayObject *)__pyx_t_2));
     __pyx_t_2 = 0;
 
-    /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":286
- *         # diffusion_solve(vx_hat, vy_hat, diffuse_denom) # removed to keep inline
- *         vx_hat /= diffuse_denom
- *         vy_hat /= diffuse_denom             # <<<<<<<<<<<<<<
+    /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":271
+ *         # Correction (to eliminate divergence component of velocity)
+ *         vx_hat -= ikx * P_hat * dt
+ *         vy_hat -= iky * P_hat * dt             # <<<<<<<<<<<<<<
  * 
- *         # copy to ifft temp variables, fix for ifft_vx/vy blowing up
+ *         # Diffusion solve
 */
-    __pyx_t_2 = __Pyx_PyNumber_InPlaceDivide(((PyObject *)__pyx_v_vy_hat), ((PyObject *)__pyx_v_diffuse_denom)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 286, __pyx_L1_error)
+    __pyx_t_2 = PyNumber_Multiply(((PyObject *)__pyx_v_iky), ((PyObject *)__pyx_v_P_hat)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 271, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_mstate_global->__pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 286, __pyx_L1_error)
+    __pyx_t_5 = PyFloat_FromDouble(__pyx_v_dt); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 271, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_5);
+    __pyx_t_6 = PyNumber_Multiply(__pyx_t_2, __pyx_t_5); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 271, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_6);
+    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+    __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+    __pyx_t_5 = PyNumber_InPlaceSubtract(((PyObject *)__pyx_v_vy_hat), __pyx_t_6); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 271, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_5);
+    __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
+    if (!(likely(((__pyx_t_5) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_5, __pyx_mstate_global->__pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 271, __pyx_L1_error)
     {
       __Pyx_BufFmt_StackElem __pyx_stack[1];
       __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_vy_hat.rcbuffer->pybuffer);
-      __pyx_t_23 = __Pyx_GetBufferAndValidate(&__pyx_pybuffernd_vy_hat.rcbuffer->pybuffer, (PyObject*)((PyArrayObject *)__pyx_t_2), &__Pyx_TypeInfo___pyx_t_double_complex, PyBUF_FORMAT| PyBUF_STRIDES, 2, 0, __pyx_stack);
+      __pyx_t_23 = __Pyx_GetBufferAndValidate(&__pyx_pybuffernd_vy_hat.rcbuffer->pybuffer, (PyObject*)((PyArrayObject *)__pyx_t_5), &__Pyx_TypeInfo___pyx_t_double_complex, PyBUF_FORMAT| PyBUF_STRIDES, 2, 0, __pyx_stack);
       if (unlikely(__pyx_t_23 < 0)) {
         PyErr_Fetch(&__pyx_t_11, &__pyx_t_10, &__pyx_t_9);
         if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_vy_hat.rcbuffer->pybuffer, (PyObject*)__pyx_v_vy_hat, &__Pyx_TypeInfo___pyx_t_double_complex, PyBUF_FORMAT| PyBUF_STRIDES, 2, 0, __pyx_stack) == -1)) {
@@ -9883,30 +9367,90 @@ static PyObject *__pyx_pf_60navier_stokes_spectral_pyfftw_algo_optim_vortex_plan
         __pyx_t_11 = __pyx_t_10 = __pyx_t_9 = 0;
       }
       __pyx_pybuffernd_vy_hat.diminfo[0].strides = __pyx_pybuffernd_vy_hat.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_vy_hat.diminfo[0].shape = __pyx_pybuffernd_vy_hat.rcbuffer->pybuffer.shape[0]; __pyx_pybuffernd_vy_hat.diminfo[1].strides = __pyx_pybuffernd_vy_hat.rcbuffer->pybuffer.strides[1]; __pyx_pybuffernd_vy_hat.diminfo[1].shape = __pyx_pybuffernd_vy_hat.rcbuffer->pybuffer.shape[1];
-      if (unlikely((__pyx_t_23 < 0))) __PYX_ERR(0, 286, __pyx_L1_error)
+      if (unlikely((__pyx_t_23 < 0))) __PYX_ERR(0, 271, __pyx_L1_error)
     }
-    __Pyx_DECREF_SET(__pyx_v_vy_hat, ((PyArrayObject *)__pyx_t_2));
-    __pyx_t_2 = 0;
+    __Pyx_DECREF_SET(__pyx_v_vy_hat, ((PyArrayObject *)__pyx_t_5));
+    __pyx_t_5 = 0;
 
-    /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":289
+    /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":275
+ *         # Diffusion solve
+ *         # diffusion_solve(vx_hat, vy_hat, diffuse_denom) # removed to keep inline
+ *         vx_hat /= diffuse_denom             # <<<<<<<<<<<<<<
+ *         vy_hat /= diffuse_denom
+ * 
+*/
+    __pyx_t_5 = __Pyx_PyNumber_InPlaceDivide(((PyObject *)__pyx_v_vx_hat), ((PyObject *)__pyx_v_diffuse_denom)); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 275, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_5);
+    if (!(likely(((__pyx_t_5) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_5, __pyx_mstate_global->__pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 275, __pyx_L1_error)
+    {
+      __Pyx_BufFmt_StackElem __pyx_stack[1];
+      __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_vx_hat.rcbuffer->pybuffer);
+      __pyx_t_23 = __Pyx_GetBufferAndValidate(&__pyx_pybuffernd_vx_hat.rcbuffer->pybuffer, (PyObject*)((PyArrayObject *)__pyx_t_5), &__Pyx_TypeInfo___pyx_t_double_complex, PyBUF_FORMAT| PyBUF_STRIDES, 2, 0, __pyx_stack);
+      if (unlikely(__pyx_t_23 < 0)) {
+        PyErr_Fetch(&__pyx_t_9, &__pyx_t_10, &__pyx_t_11);
+        if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_vx_hat.rcbuffer->pybuffer, (PyObject*)__pyx_v_vx_hat, &__Pyx_TypeInfo___pyx_t_double_complex, PyBUF_FORMAT| PyBUF_STRIDES, 2, 0, __pyx_stack) == -1)) {
+          Py_XDECREF(__pyx_t_9); Py_XDECREF(__pyx_t_10); Py_XDECREF(__pyx_t_11);
+          __Pyx_RaiseBufferFallbackError();
+        } else {
+          PyErr_Restore(__pyx_t_9, __pyx_t_10, __pyx_t_11);
+        }
+        __pyx_t_9 = __pyx_t_10 = __pyx_t_11 = 0;
+      }
+      __pyx_pybuffernd_vx_hat.diminfo[0].strides = __pyx_pybuffernd_vx_hat.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_vx_hat.diminfo[0].shape = __pyx_pybuffernd_vx_hat.rcbuffer->pybuffer.shape[0]; __pyx_pybuffernd_vx_hat.diminfo[1].strides = __pyx_pybuffernd_vx_hat.rcbuffer->pybuffer.strides[1]; __pyx_pybuffernd_vx_hat.diminfo[1].shape = __pyx_pybuffernd_vx_hat.rcbuffer->pybuffer.shape[1];
+      if (unlikely((__pyx_t_23 < 0))) __PYX_ERR(0, 275, __pyx_L1_error)
+    }
+    __Pyx_DECREF_SET(__pyx_v_vx_hat, ((PyArrayObject *)__pyx_t_5));
+    __pyx_t_5 = 0;
+
+    /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":276
+ *         # diffusion_solve(vx_hat, vy_hat, diffuse_denom) # removed to keep inline
+ *         vx_hat /= diffuse_denom
+ *         vy_hat /= diffuse_denom             # <<<<<<<<<<<<<<
+ * 
+ *         # copy to ifft temp variables, fix for ifft_vx/vy blowing up
+*/
+    __pyx_t_5 = __Pyx_PyNumber_InPlaceDivide(((PyObject *)__pyx_v_vy_hat), ((PyObject *)__pyx_v_diffuse_denom)); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 276, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_5);
+    if (!(likely(((__pyx_t_5) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_5, __pyx_mstate_global->__pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 276, __pyx_L1_error)
+    {
+      __Pyx_BufFmt_StackElem __pyx_stack[1];
+      __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_vy_hat.rcbuffer->pybuffer);
+      __pyx_t_23 = __Pyx_GetBufferAndValidate(&__pyx_pybuffernd_vy_hat.rcbuffer->pybuffer, (PyObject*)((PyArrayObject *)__pyx_t_5), &__Pyx_TypeInfo___pyx_t_double_complex, PyBUF_FORMAT| PyBUF_STRIDES, 2, 0, __pyx_stack);
+      if (unlikely(__pyx_t_23 < 0)) {
+        PyErr_Fetch(&__pyx_t_11, &__pyx_t_10, &__pyx_t_9);
+        if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_vy_hat.rcbuffer->pybuffer, (PyObject*)__pyx_v_vy_hat, &__Pyx_TypeInfo___pyx_t_double_complex, PyBUF_FORMAT| PyBUF_STRIDES, 2, 0, __pyx_stack) == -1)) {
+          Py_XDECREF(__pyx_t_11); Py_XDECREF(__pyx_t_10); Py_XDECREF(__pyx_t_9);
+          __Pyx_RaiseBufferFallbackError();
+        } else {
+          PyErr_Restore(__pyx_t_11, __pyx_t_10, __pyx_t_9);
+        }
+        __pyx_t_11 = __pyx_t_10 = __pyx_t_9 = 0;
+      }
+      __pyx_pybuffernd_vy_hat.diminfo[0].strides = __pyx_pybuffernd_vy_hat.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_vy_hat.diminfo[0].shape = __pyx_pybuffernd_vy_hat.rcbuffer->pybuffer.shape[0]; __pyx_pybuffernd_vy_hat.diminfo[1].strides = __pyx_pybuffernd_vy_hat.rcbuffer->pybuffer.strides[1]; __pyx_pybuffernd_vy_hat.diminfo[1].shape = __pyx_pybuffernd_vy_hat.rcbuffer->pybuffer.shape[1];
+      if (unlikely((__pyx_t_23 < 0))) __PYX_ERR(0, 276, __pyx_L1_error)
+    }
+    __Pyx_DECREF_SET(__pyx_v_vy_hat, ((PyArrayObject *)__pyx_t_5));
+    __pyx_t_5 = 0;
+
+    /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":279
  * 
  *         # copy to ifft temp variables, fix for ifft_vx/vy blowing up
  *         vx_hat_ifft[:] = vx_hat             # <<<<<<<<<<<<<<
  *         vy_hat_ifft[:] = vy_hat
  *         ifft_vx()
 */
-    if (unlikely((PyObject_SetItem(((PyObject *)__pyx_v_vx_hat_ifft), __pyx_mstate_global->__pyx_slice[0], ((PyObject *)__pyx_v_vx_hat)) < 0))) __PYX_ERR(0, 289, __pyx_L1_error)
+    if (unlikely((PyObject_SetItem(((PyObject *)__pyx_v_vx_hat_ifft), __pyx_mstate_global->__pyx_slice[0], ((PyObject *)__pyx_v_vx_hat)) < 0))) __PYX_ERR(0, 279, __pyx_L1_error)
 
-    /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":290
+    /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":280
  *         # copy to ifft temp variables, fix for ifft_vx/vy blowing up
  *         vx_hat_ifft[:] = vx_hat
  *         vy_hat_ifft[:] = vy_hat             # <<<<<<<<<<<<<<
  *         ifft_vx()
  *         ifft_vy()
 */
-    if (unlikely((PyObject_SetItem(((PyObject *)__pyx_v_vy_hat_ifft), __pyx_mstate_global->__pyx_slice[0], ((PyObject *)__pyx_v_vy_hat)) < 0))) __PYX_ERR(0, 290, __pyx_L1_error)
+    if (unlikely((PyObject_SetItem(((PyObject *)__pyx_v_vy_hat_ifft), __pyx_mstate_global->__pyx_slice[0], ((PyObject *)__pyx_v_vy_hat)) < 0))) __PYX_ERR(0, 280, __pyx_L1_error)
 
-    /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":291
+    /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":281
  *         vx_hat_ifft[:] = vx_hat
  *         vy_hat_ifft[:] = vy_hat
  *         ifft_vx()             # <<<<<<<<<<<<<<
@@ -9915,62 +9459,62 @@ static PyObject *__pyx_pf_60navier_stokes_spectral_pyfftw_algo_optim_vortex_plan
 */
     __pyx_t_6 = NULL;
     __Pyx_INCREF(__pyx_v_ifft_vx);
-    __pyx_t_3 = __pyx_v_ifft_vx; 
+    __pyx_t_2 = __pyx_v_ifft_vx; 
     __pyx_t_7 = 1;
     #if CYTHON_UNPACK_METHODS
-    if (unlikely(PyMethod_Check(__pyx_t_3))) {
-      __pyx_t_6 = PyMethod_GET_SELF(__pyx_t_3);
+    if (unlikely(PyMethod_Check(__pyx_t_2))) {
+      __pyx_t_6 = PyMethod_GET_SELF(__pyx_t_2);
       assert(__pyx_t_6);
-      PyObject* __pyx__function = PyMethod_GET_FUNCTION(__pyx_t_3);
+      PyObject* __pyx__function = PyMethod_GET_FUNCTION(__pyx_t_2);
       __Pyx_INCREF(__pyx_t_6);
       __Pyx_INCREF(__pyx__function);
-      __Pyx_DECREF_SET(__pyx_t_3, __pyx__function);
+      __Pyx_DECREF_SET(__pyx_t_2, __pyx__function);
       __pyx_t_7 = 0;
     }
     #endif
     {
       PyObject *__pyx_callargs[2] = {__pyx_t_6, NULL};
-      __pyx_t_2 = __Pyx_PyObject_FastCall((PyObject*)__pyx_t_3, __pyx_callargs+__pyx_t_7, (1-__pyx_t_7) | (__pyx_t_7*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
+      __pyx_t_5 = __Pyx_PyObject_FastCall((PyObject*)__pyx_t_2, __pyx_callargs+__pyx_t_7, (1-__pyx_t_7) | (__pyx_t_7*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
       __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
-      __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-      if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 291, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_2);
+      __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+      if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 281, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_5);
     }
-    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+    __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-    /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":292
+    /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":282
  *         vy_hat_ifft[:] = vy_hat
  *         ifft_vx()
  *         ifft_vy()             # <<<<<<<<<<<<<<
  * 
  *         # update time
 */
-    __pyx_t_3 = NULL;
+    __pyx_t_2 = NULL;
     __Pyx_INCREF(__pyx_v_ifft_vy);
     __pyx_t_6 = __pyx_v_ifft_vy; 
     __pyx_t_7 = 1;
     #if CYTHON_UNPACK_METHODS
     if (unlikely(PyMethod_Check(__pyx_t_6))) {
-      __pyx_t_3 = PyMethod_GET_SELF(__pyx_t_6);
-      assert(__pyx_t_3);
+      __pyx_t_2 = PyMethod_GET_SELF(__pyx_t_6);
+      assert(__pyx_t_2);
       PyObject* __pyx__function = PyMethod_GET_FUNCTION(__pyx_t_6);
-      __Pyx_INCREF(__pyx_t_3);
+      __Pyx_INCREF(__pyx_t_2);
       __Pyx_INCREF(__pyx__function);
       __Pyx_DECREF_SET(__pyx_t_6, __pyx__function);
       __pyx_t_7 = 0;
     }
     #endif
     {
-      PyObject *__pyx_callargs[2] = {__pyx_t_3, NULL};
-      __pyx_t_2 = __Pyx_PyObject_FastCall((PyObject*)__pyx_t_6, __pyx_callargs+__pyx_t_7, (1-__pyx_t_7) | (__pyx_t_7*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
-      __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
+      PyObject *__pyx_callargs[2] = {__pyx_t_2, NULL};
+      __pyx_t_5 = __Pyx_PyObject_FastCall((PyObject*)__pyx_t_6, __pyx_callargs+__pyx_t_7, (1-__pyx_t_7) | (__pyx_t_7*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
+      __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
       __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-      if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 292, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_2);
+      if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 282, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_5);
     }
-    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+    __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-    /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":295
+    /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":285
  * 
  *         # update time
  *         t += dt             # <<<<<<<<<<<<<<
@@ -9979,7 +9523,7 @@ static PyObject *__pyx_pf_60navier_stokes_spectral_pyfftw_algo_optim_vortex_plan
 */
     __pyx_v_t = (__pyx_v_t + __pyx_v_dt);
 
-    /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":299
+    /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":289
  * 
  *         # plot in real time
  *         plotThisTurn = False             # <<<<<<<<<<<<<<
@@ -9988,7 +9532,7 @@ static PyObject *__pyx_pf_60navier_stokes_spectral_pyfftw_algo_optim_vortex_plan
 */
     __pyx_v_plotThisTurn = 0;
 
-    /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":300
+    /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":290
  *         # plot in real time
  *         plotThisTurn = False
  *         if t + dt > outputCount * tOut:             # <<<<<<<<<<<<<<
@@ -9998,7 +9542,7 @@ static PyObject *__pyx_pf_60navier_stokes_spectral_pyfftw_algo_optim_vortex_plan
     __pyx_t_24 = ((__pyx_v_t + __pyx_v_dt) > (__pyx_v_outputCount * __pyx_v_tOut));
     if (__pyx_t_24) {
 
-      /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":301
+      /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":291
  *         plotThisTurn = False
  *         if t + dt > outputCount * tOut:
  *             plotThisTurn = True             # <<<<<<<<<<<<<<
@@ -10007,7 +9551,7 @@ static PyObject *__pyx_pf_60navier_stokes_spectral_pyfftw_algo_optim_vortex_plan
 */
       __pyx_v_plotThisTurn = 1;
 
-      /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":300
+      /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":290
  *         # plot in real time
  *         plotThisTurn = False
  *         if t + dt > outputCount * tOut:             # <<<<<<<<<<<<<<
@@ -10017,7 +9561,7 @@ static PyObject *__pyx_pf_60navier_stokes_spectral_pyfftw_algo_optim_vortex_plan
     }
   }
 
-  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":318
+  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":308
  *     # plt.show()
  * 
  *     return 0             # <<<<<<<<<<<<<<
@@ -10029,7 +9573,7 @@ static PyObject *__pyx_pf_60navier_stokes_spectral_pyfftw_algo_optim_vortex_plan
   __pyx_r = __pyx_mstate_global->__pyx_int_0;
   goto __pyx_L0;
 
-  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":105
+  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":103
  * 
  * 
  * @profile             # <<<<<<<<<<<<<<
@@ -10896,7 +10440,7 @@ __Pyx_RefNannySetupContext("PyInit_navier_stokes_spectral_pyfftw_algo_optim_vort
   if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_curl, __pyx_t_7) < (0)) __PYX_ERR(0, 74, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
 
-  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":93
+  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":91
  * 
  * 
  * @profile             # <<<<<<<<<<<<<<
@@ -10904,9 +10448,9 @@ __Pyx_RefNannySetupContext("PyInit_navier_stokes_spectral_pyfftw_algo_optim_vort
  *     cnp.ndarray[complex128_t, ndim=2] f_hat,
 */
   __pyx_t_6 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_profile); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 93, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_profile); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 91, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_8 = __Pyx_CyFunction_New(&__pyx_mdef_60navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real_9apply_dealias, 0, __pyx_mstate_global->__pyx_n_u_apply_dealias, NULL, __pyx_mstate_global->__pyx_n_u_navier_stokes_spectral_pyfftw_al, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[4])); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 93, __pyx_L1_error)
+  __pyx_t_8 = __Pyx_CyFunction_New(&__pyx_mdef_60navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real_9apply_dealias, 0, __pyx_mstate_global->__pyx_n_u_apply_dealias, NULL, __pyx_mstate_global->__pyx_n_u_navier_stokes_spectral_pyfftw_al, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[4])); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 91, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_8);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_8);
@@ -10918,13 +10462,13 @@ __Pyx_RefNannySetupContext("PyInit_navier_stokes_spectral_pyfftw_algo_optim_vort
     __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
     __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 93, __pyx_L1_error)
+    if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 91, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_7);
   }
-  if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_apply_dealias, __pyx_t_7) < (0)) __PYX_ERR(0, 93, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_apply_dealias, __pyx_t_7) < (0)) __PYX_ERR(0, 91, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
 
-  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":105
+  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":103
  * 
  * 
  * @profile             # <<<<<<<<<<<<<<
@@ -10932,30 +10476,30 @@ __Pyx_RefNannySetupContext("PyInit_navier_stokes_spectral_pyfftw_algo_optim_vort
  *     """Navier-Stokes Simulation"""
 */
   __pyx_t_2 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_8, __pyx_mstate_global->__pyx_n_u_profile); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 105, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_8, __pyx_mstate_global->__pyx_n_u_profile); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 103, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_8);
 
-  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":106
+  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":104
  * 
  * @profile
  * def main(int N=400):             # <<<<<<<<<<<<<<
  *     """Navier-Stokes Simulation"""
  *     cdef double t = 0.0  # current time of the simulation
 */
-  __pyx_t_6 = __Pyx_PyLong_From_int(((int)0x190)); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 106, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyLong_From_int(((int)0x190)); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 104, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
 
-  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":105
+  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":103
  * 
  * 
  * @profile             # <<<<<<<<<<<<<<
  * def main(int N=400):
  *     """Navier-Stokes Simulation"""
 */
-  __pyx_t_10 = PyTuple_Pack(1, __pyx_t_6); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 105, __pyx_L1_error)
+  __pyx_t_10 = PyTuple_Pack(1, __pyx_t_6); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 103, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_10);
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-  __pyx_t_6 = __Pyx_CyFunction_New(&__pyx_mdef_60navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real_11main, 0, __pyx_mstate_global->__pyx_n_u_main_2, NULL, __pyx_mstate_global->__pyx_n_u_navier_stokes_spectral_pyfftw_al, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[5])); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 105, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_CyFunction_New(&__pyx_mdef_60navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real_11main, 0, __pyx_mstate_global->__pyx_n_u_main_2, NULL, __pyx_mstate_global->__pyx_n_u_navier_stokes_spectral_pyfftw_al, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[5])); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 103, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_6);
@@ -10969,31 +10513,31 @@ __Pyx_RefNannySetupContext("PyInit_navier_stokes_spectral_pyfftw_algo_optim_vort
     __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
     __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-    if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 105, __pyx_L1_error)
+    if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 103, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_7);
   }
-  if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_main_2, __pyx_t_7) < (0)) __PYX_ERR(0, 105, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_main_2, __pyx_t_7) < (0)) __PYX_ERR(0, 103, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
 
-  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":321
+  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":311
  * 
  * 
  * if __name__ == "__main__":             # <<<<<<<<<<<<<<
  *     main()
 */
-  __Pyx_GetModuleGlobalName(__pyx_t_7, __pyx_mstate_global->__pyx_n_u_name); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 321, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_7, __pyx_mstate_global->__pyx_n_u_name); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 311, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
-  __pyx_t_11 = (__Pyx_PyUnicode_Equals(__pyx_t_7, __pyx_mstate_global->__pyx_n_u_main, Py_EQ)); if (unlikely((__pyx_t_11 < 0))) __PYX_ERR(0, 321, __pyx_L1_error)
+  __pyx_t_11 = (__Pyx_PyUnicode_Equals(__pyx_t_7, __pyx_mstate_global->__pyx_n_u_main, Py_EQ)); if (unlikely((__pyx_t_11 < 0))) __PYX_ERR(0, 311, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
   if (__pyx_t_11) {
 
-    /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":322
+    /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":312
  * 
  * if __name__ == "__main__":
  *     main()             # <<<<<<<<<<<<<<
 */
     __pyx_t_8 = NULL;
-    __Pyx_GetModuleGlobalName(__pyx_t_6, __pyx_mstate_global->__pyx_n_u_main_2); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 322, __pyx_L1_error)
+    __Pyx_GetModuleGlobalName(__pyx_t_6, __pyx_mstate_global->__pyx_n_u_main_2); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 312, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     __pyx_t_9 = 1;
     {
@@ -11001,12 +10545,12 @@ __Pyx_RefNannySetupContext("PyInit_navier_stokes_spectral_pyfftw_algo_optim_vort
       __pyx_t_7 = __Pyx_PyObject_FastCall((PyObject*)__pyx_t_6, __pyx_callargs+__pyx_t_9, (1-__pyx_t_9) | (__pyx_t_9*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
       __Pyx_XDECREF(__pyx_t_8); __pyx_t_8 = 0;
       __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-      if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 322, __pyx_L1_error)
+      if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 312, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_7);
     }
     __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
 
-    /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":321
+    /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":311
  * 
  * 
  * if __name__ == "__main__":             # <<<<<<<<<<<<<<
@@ -11081,47 +10625,47 @@ static int __Pyx_InitCachedConstants(__pyx_mstatetype *__pyx_mstate) {
   CYTHON_UNUSED_VAR(__pyx_mstate);
   __Pyx_RefNannySetupContext("__Pyx_InitCachedConstants", 0);
 
-  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":160
+  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":86
+ * ):
+ *     """return curl of (vx,vy)"""
+ *     diff_hat[:] = ikx * vy_hat - iky * vx_hat             # <<<<<<<<<<<<<<
+ *     ifft_wz()
+ *     return wz.real
+*/
+  __pyx_mstate_global->__pyx_slice[0] = PySlice_New(Py_None, Py_None, Py_None); if (unlikely(!__pyx_mstate_global->__pyx_slice[0])) __PYX_ERR(0, 86, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_mstate_global->__pyx_slice[0]);
+  __Pyx_GIVEREF(__pyx_mstate_global->__pyx_slice[0]);
+
+  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":158
  *     )
  * 
  *     cdef object fft_vx = pyfftw.FFTW(vx, vx_hat, axes=(0, 1), direction="FFTW_FORWARD")             # <<<<<<<<<<<<<<
  *     cdef object fft_vy = pyfftw.FFTW(vy, vy_hat, axes=(0, 1), direction="FFTW_FORWARD")
  *     cdef object fft_rhs_x = pyfftw.FFTW(
 */
-  __pyx_mstate_global->__pyx_tuple[0] = PyTuple_Pack(2, __pyx_mstate_global->__pyx_int_0, __pyx_mstate_global->__pyx_int_1); if (unlikely(!__pyx_mstate_global->__pyx_tuple[0])) __PYX_ERR(0, 160, __pyx_L1_error)
+  __pyx_mstate_global->__pyx_tuple[0] = PyTuple_Pack(2, __pyx_mstate_global->__pyx_int_0, __pyx_mstate_global->__pyx_int_1); if (unlikely(!__pyx_mstate_global->__pyx_tuple[0])) __PYX_ERR(0, 158, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_mstate_global->__pyx_tuple[0]);
   __Pyx_GIVEREF(__pyx_mstate_global->__pyx_tuple[0]);
 
-  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":210
- * 
- *     # Initial Condition (vortex)
- *     vx[:] = -np.sin(2 * np.pi * yy)             # <<<<<<<<<<<<<<
- *     vy[:] = np.sin(2 * np.pi * xx * 2)
- * 
-*/
-  __pyx_mstate_global->__pyx_slice[0] = PySlice_New(Py_None, Py_None, Py_None); if (unlikely(!__pyx_mstate_global->__pyx_slice[0])) __PYX_ERR(0, 210, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_mstate_global->__pyx_slice[0]);
-  __Pyx_GIVEREF(__pyx_mstate_global->__pyx_slice[0]);
-
-  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":215
+  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":213
  *     # Fourier Space Variables (half-spectrum on axis 1)
  *     dx = L / N
  *     kx = 2.0 * np.pi * np.fft.rfftfreq(N, d=dx)[None, :]             # <<<<<<<<<<<<<<
  *     ky = 2.0 * np.pi * np.fft.fftfreq(N, d=dx)[:, None]
  *     kmax = np.max(np.abs(2.0 * np.pi * np.fft.fftfreq(N, d=dx)))
 */
-  __pyx_mstate_global->__pyx_tuple[1] = PyTuple_Pack(2, Py_None, __pyx_mstate_global->__pyx_slice[0]); if (unlikely(!__pyx_mstate_global->__pyx_tuple[1])) __PYX_ERR(0, 215, __pyx_L1_error)
+  __pyx_mstate_global->__pyx_tuple[1] = PyTuple_Pack(2, Py_None, __pyx_mstate_global->__pyx_slice[0]); if (unlikely(!__pyx_mstate_global->__pyx_tuple[1])) __PYX_ERR(0, 213, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_mstate_global->__pyx_tuple[1]);
   __Pyx_GIVEREF(__pyx_mstate_global->__pyx_tuple[1]);
 
-  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":216
+  /* "navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyx":214
  *     dx = L / N
  *     kx = 2.0 * np.pi * np.fft.rfftfreq(N, d=dx)[None, :]
  *     ky = 2.0 * np.pi * np.fft.fftfreq(N, d=dx)[:, None]             # <<<<<<<<<<<<<<
  *     kmax = np.max(np.abs(2.0 * np.pi * np.fft.fftfreq(N, d=dx)))
  * 
 */
-  __pyx_mstate_global->__pyx_tuple[2] = PyTuple_Pack(2, __pyx_mstate_global->__pyx_slice[0], Py_None); if (unlikely(!__pyx_mstate_global->__pyx_tuple[2])) __PYX_ERR(0, 216, __pyx_L1_error)
+  __pyx_mstate_global->__pyx_tuple[2] = PyTuple_Pack(2, __pyx_mstate_global->__pyx_slice[0], Py_None); if (unlikely(!__pyx_mstate_global->__pyx_tuple[2])) __PYX_ERR(0, 214, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_mstate_global->__pyx_tuple[2]);
   __Pyx_GIVEREF(__pyx_mstate_global->__pyx_tuple[2]);
   #if CYTHON_IMMORTAL_CONSTANTS
@@ -11173,39 +10717,39 @@ static int __Pyx_InitCachedConstants(__pyx_mstatetype *__pyx_mstate) {
 static int __Pyx_InitConstants(__pyx_mstatetype *__pyx_mstate) {
   CYTHON_UNUSED_VAR(__pyx_mstate);
   {
-    const struct { const unsigned int length: 11; } index[] = {{1},{179},{1},{8},{71},{39},{34},{4},{13},{12},{1},{1},{6},{2},{5},{20},{3},{3},{13},{18},{4},{4},{17},{18},{10},{4},{1},{7},{8},{13},{9},{3},{11},{2},{5},{2},{13},{5},{3},{5},{9},{9},{6},{6},{7},{7},{4},{8},{1},{7},{7},{7},{3},{3},{13},{5},{3},{7},{4},{2},{2},{8},{8},{4},{4},{17},{3},{8},{10},{8},{8},{60},{14},{2},{2},{3},{5},{3},{11},{2},{12},{12},{3},{13},{3},{7},{6},{6},{12},{4},{8},{7},{5},{9},{5},{9},{12},{10},{3},{8},{1},{4},{4},{8},{6},{2},{6},{11},{2},{6},{11},{8},{2},{4},{2},{2},{10},{15},{21},{7},{1296},{19},{61}};
-    #if (CYTHON_COMPRESS_STRINGS) == 3 && __PYX_LIMITED_VERSION_HEX >= 0x030e0000 /* compression: zstd (1463 bytes) */
-const char* const cstring = "(\265/\375`\354\010m-\000\312Hl\017D\000\221\270\001\374?\337\273\377\345\373\337S\t\375\352\327}\357{\337~\327\231\221\024\264)\331\224\311\014\244\221\222$1\313\023\367/\254\177T\013\360\216~\242\n}\033\334\346\372\006\270\315\nww\177\021\350\013<\240\351\324\000\314\000\372\000\224\253'\036V\225\211\022\212+s\362\025\256\302]\252\232**&N(RPN\245\025%NJ&s\005*%E\305i\367y\235\275\226r\231H\265\246\226\337\257\023U\235\265)\022\275\356\303\241\350\211.\255zn\365z3\254\\gpv\226{y\346\226K\247\013\3478\321\233\227jo\317]W\231\357\251\253\005)\316\240\325\271m\024\204\250\356KS*h\265\335\262\t-\330N\234-\247<cL'd\274\356\014\327M\275,\363l\253\025g_\0263nD&\332\325\023y\206-\277\366Ke\\\316v\335\233^-\365\355ls\255\276\250:\3330\315H\035H\030VB\254dXW\256Y\315w&\336\312\251\256){\353\226m\233\341\254\342\342I\306\251\212g\225g\025Q\225\177(\370\206Cp\316\261\335\224\253\033\257[\314*\255/\375Xs\326k\271\254=/{\025\274yO\234\367\266\331\343\327\303\372Cm\253B\325\316\242N\326\343\370\313'\374\363\272\017\177\330\303\234\333\354\254\333^\332\351\214;\212\347\375\266\274Y\335\242\332\265\343\371z|\323\016[\332\315\351mq\025\256B\332\255@V\212\325\236\333Nqe\303\225}q\021\255\235S\303\037G*\3414_\216U5\027\202b\310M\216k\231\"\367\272\032n[\245'h7\234\273\214\353\3768\316n\333\325\237\326ad\024\326\353uY[i4U5\252\371\304vv\225[^[\346\234\327Vm\327\220\356\212-\377\262([\r\213\233nj/\255\333\024\257\347\321\235\n\240\276\215&\035\243\316K#\007\023 \343\305\3614r\214\033\315Fg=\210eL\272\246\247\030\005\264\024\224\232\324\260\201\201\272g\003\353tm\034\300\331\300L\237cAL\247|\371\244\017\340K\3600X?\302O\361\r\024h^\264DZ\273\014)\023\220\250_\372\237\017\361\013X\256\007\255\222\222\304\364\222\321\niy\000\275TZ\\Y2z\271h\201%\207\221g\351#F\220\227\250\225R\22241\250\0243X^\237\227\3462q\341\262\243\324\200ae\206\204\327\346\"qy\\\037J\026R\304\241\321\021\033\371\006\034\032\0361\177\362#\036\200O\365\020\357\300\324\017h`\254\216@\003+\365\217&\306\203\003\313\300""\260F\002\033X\t&\363S^\304ox\004]\217\244\002\264\233t\021\343h\004\341\320\000\211e`\352\312\336\271\263\256/\242\030\206\341\213\313Jg\027P\004'\030\202\273~\227\202;\246qd\374\320\300,x\217\016\026\235\303&\370\020\240\201u\006\204\030\200\300@\177\343\233\330=\201\311\200/\351\037P7\300\321\330\304D\320/\3627O\242\3645\037\301\210\354\004\364\002\344\366I\370\030\031\022\3453\360!>8\032\035\261\317\177\351\341HG\021\322\347\276D\205\321c\023\003\243e\013\362\302\357\374\023\375\263\211\351x\335OH:K\311\245q\275(I\220\037\005Oa\000G\303\023\033\251\340\034\000\201J>\344U\364R\377\014\320\227\311\353s\235\\\037\227\326i\241\312\221\022@)\201\334 7|\317Gm\335T\200\005a\364\320\300\2507y\010(}\227\374\310\177\020\010\245B\343G\313\323\322JS\311\202\374\220\372\237\376\347k\224\036\352\235\216\372(7\222\204\364\220\3327}\026\231\222E\236\220!r\177\372[|\272\376\214\234qd\364\214\036\245\037\372\373\343u?\365\221\036\200\337\250\021-\202\010\021\315\210\244$)H\032\0030\204 tT\346\001\202\343\2425#\201P\224\024\024\224\024\327Y\346\331\340`\241%\004Cz4\301\235\350\330\355DP3\264\361/%\263\246\330\300w\360FB76X\033\356F\240F\000\225qR\210\303j\234\0256\307\340\025\222\356\233\177\023T\313U\273\236\310\006\"\250\244\343\022\003)c\244\220F\006J\036\211\331\241,\232p\017D1IiX\247\225\014\0130k{bi\375\210 O;\211\311\205\230\324;\031\207\3446\334\352\014\236@\272'\017\337\352$c \211T\225\223\334\004\214KSN\3627\214\030y\307}\310[tZ\227O\225)\202H\244|IX\365\031\001\356!@\316\264)B\312\227\230v\231\255\324\326\366\267\260\253r\363*\210~\177\351\001\016u\277\303\200\355\207\330\201\273\273\205\322\030+\255\231\254\235'\254\300\3378\022.0>\320\005\320\236)\"6\354P\201\372&\354\234k\372r\216\023\224\321\335\222f\246\t.\260\260\031\260\314\250\201\336Xt\316\324\246\225!\342\030\002\301G%sS\307\331\225E\002\013\244\021!Q\242\013\030`7\311L\203)\317D\320\376M\rf\211\2165q[\307\020\2529\302o\016k\340\353\0107D\222'i\365o\320b\213\302\254Y\302n)^\272\310bxQ\254>\020H-b\ty\271\234""\251Q\010\224\234G\031\230w+\004hO\357\301Y\216S\216C\013\243\252\366\336\2366\260P\355\215u\004\245H\205\036\031t\376\276\367\007\263\343En\376\205\n\030sf.\024VB\237\205\306\321\377\352\324i\242\332\0226>\360\025\275]\000:U\314\370PP\251\204\206T\r";
-    PyObject *data = __Pyx_DecompressString(cstring, 1463, 3);
+    const struct { const unsigned int length: 11; } index[] = {{1},{179},{1},{8},{71},{39},{34},{4},{13},{12},{1},{1},{6},{2},{5},{20},{3},{13},{18},{4},{4},{17},{18},{10},{4},{1},{7},{8},{13},{9},{3},{11},{2},{5},{2},{13},{5},{3},{5},{9},{9},{6},{6},{7},{7},{4},{8},{1},{7},{7},{7},{3},{3},{13},{5},{3},{7},{4},{2},{2},{8},{8},{4},{4},{17},{3},{8},{10},{8},{60},{14},{2},{2},{3},{5},{11},{2},{12},{12},{3},{13},{3},{7},{6},{6},{12},{4},{8},{7},{5},{9},{5},{9},{12},{10},{3},{1},{4},{4},{8},{6},{2},{6},{11},{2},{6},{11},{8},{2},{4},{2},{2},{10},{15},{21},{7},{1164},{35},{19}};
+    #if (CYTHON_COMPRESS_STRINGS) == 3 && __PYX_LIMITED_VERSION_HEX >= 0x030e0000 /* compression: zstd (1404 bytes) */
+const char* const cstring = "(\265/\375`8\010\225+\000\332F\004\017; \225\033\000\\0\3040\324X\243\026g\224\241\r3J\257C\304\277EvFlo\256\204\331\331\\)\355\230\314\002~m\000\300c\377G\363\235[\004\210\003\374?5\370\375h\004\347\004\322\000\314\000\362\0008\370%Uu0\366:\036G\034\263\r\343\340\330\314rb^f0\237\032\027X\014\373\320bbl>\223\250I\356qg\361S\363y\346\355G\224l\351\263\004qK5I\224\247\252\331\032\263>q\250G\023\247\332\237e\016\223\333\233%.\205\306\214\211\274(\252&\036\363iv\334\365\255\364\035\237z\3472\037\0015\016\303\334\322\322}\3141:\267\317\035~\036B|c^n\237}\311y\366\370\274\356\037\327=\233_\351\277Pk\376\241\245\372\2113_\253kS\365\037\337~\334h\355\023\313\257\353\336\363\010\326\320\376u\017\352!}~!\317\337K\345%\242\003\243\363\361S{p\237\276\177\352\250}>um\217:\374\372\376xi\363\252\313\347\263\315\177\332\2278\255\3479f\024\207\261\036\267X\236\246Y\232:7\226\035\363\262\367]\232~4\371\211\322\372\266\3214\271i\263mz\216\226.\0365I\224\243\334\344^\0147\326}\217\231<KNf\216\365\210\206e\270O![\327dm\217\276\034M\3373\311w&1\326`6;\337\243zKoi&o9\334\316\255\343\276\261z\333\351m\027\021\251{c\014rT|\241\370\\\216\"N\237b\232SS\021\213\242\020V\275I\3524\354\266\023\347v\310K\262\344\272\243\242\270\303p<QP\245\304\225\352\321$K\360\006\346\232\006\363\3511\337\230\324~{-\2041\036\267\006\273Ns\327|{\264l\225\033\344j\317=\3571\353\020\253\243i\346^\313\242\236\371T\007\177g]\320Q\274\247Kr\352\255~\352\324C}pe88\365d-A\205\022\352-j_\355@\333\301\032\341Z\2166\206\275\2400\r\3516t\375\215x'\\Z\013kQ6\202\255\300\3552t(\257\211\214w\244\213\320\255\254x8:\361Eq\361\202t\2717\305\305\366\374\231U\201\327\322\305\274/\223\022m'\251\207\247\342\201\273\330\216\277\005/\211\210NR\007/\334\231\354R;\226\267\307m\021\000\024,\271\330\013\002\000\204%v\306\226\260\003l\355G\260\030\262\017a\352\341\276\204\251\007\373*\223\022\302A/\000\t\2676\234z0\244\200\266\306n\260\002\254\304?\327\227C\376\261/\263\272V\005\002\000\205\245\000$}\333#\356\345\251\213T5M\323\"\242\333Y""\022\345\324\034\316\245\271\256\3211\347\272\366h\216\0179\214\367|w?\242Y\324\241\327]-m\001\2565\301\324\223\255\013\246\036\212A\2063\210Y\027\010\000&X\026\n\275U+\320\332\364?!{X\235\226\n6\376\203\313%\027\276\303\253\010\345\253\016b,\210R/\277@nH\213jo\276\352\244\204b\317\357b\362{`;\323n\350\245q\321\017\366\203\341\000 \265\344\3429\200X\255\034\226`,\213\345\371\260\217>d^\214\207\356f;\325\016D\351ho\311;\360v\270\002\356I\233ji\341\2279\3404V\004S/\2632V\343\345w\030\353b\023\032X5\326\232\240K\351\300W\366\376\270*\367lg\255\252=_>\353\243>-\341\r]\0237\345\202\255\254\375\txq\256\213\313r{\233[ \325?U\353\301Z\262\246V\004X\313j\273\212=\377\354\227\374\325\017\327X\201\353{\330*\"\031\004\260\352:[\t\326\223I\340\3432\226\002b\337\024\200\316\250\0011\222\306\020\215\210\210\322$I\032\0030\204 de\266\001B\343\246U3\201P\224\024\024\224\224\353l\007S\310\264b\357\271\004\306|\367\351g\225TbI8O\tn\003;\373\233U\220\0212\033\035\024}\021T\364\337\354\002j\310\312\237\027\370o\251\265\375\2314v\000\344\025\304\002\226X]\331\001C\372\245Fvw\267T\204&\320\216UK1<}\313\260Ys\330\203\223\306G\3449\355Hf\027\352&t$\254\354\226\030\274\205<\223.n\301\334c@\214\034\314)\311\224\216#+i\222\263\327\030\345#/d|:\035e\260J\214\2048\022\017/D?\025\200\007\020\266\313[SD\234\253\270\3062C\350*\203\273K\\\357F\210 \013\372\333\017x\030\231\035\306l\177\270-\274\036/\302\033[x\005o-2\201X\020\332!\332\237M\216\376{ \374\211f\r\001\255\272\262P9\302j\3000LPN\307\221\224\206\006\273\326\002\344\303\301\257D\014\013\311Y\306V\034\235q\315\330\030)qP\240\204\\\037%\361\332\252\002\216p0\316\340E(P\374\213KC\016%\217\2676!\274\303c{*&#Us\270\314\270\253B\002\316\360\r\354\2065i\365\030\357K\205K \315\366<\210j\274q\026mb\236Z\022v\235\343\203\201\334\260~O'\214\341\354\335:\232z\202\205\033\353\210\306\225\202\211\234\004;\016\326\3565\337\234\353\014`\367\275ni\205ZtY1\256\377\327D\317Aj\243\031I\220\030\352\220\340\035\252\030r\242\240R\t\345\272\032";
+    PyObject *data = __Pyx_DecompressString(cstring, 1404, 3);
     if (unlikely(!data)) __PYX_ERR(0, 1, __pyx_L1_error)
     const char* const bytes = __Pyx_PyBytes_AsString(data);
     #if !CYTHON_ASSUME_SAFE_MACROS
     if (likely(bytes)); else { Py_DECREF(data); __PYX_ERR(0, 1, __pyx_L1_error) }
     #endif
-    #elif (CYTHON_COMPRESS_STRINGS) == 2 /* compression: bz2 (1564 bytes) */
-const char* const cstring = "BZh91AY&SY\247\230\330\253\000\000\366\177\377\377\377\377\377\177\373\377\341\277\177\377\341\277\377\377\373@@@@@@@@@@@@@\000@\000P\005\236;\273s\226\316\216\203\240\267\000\300\224$\232I\352m!\241\2650\302y5\032 2h\323\302\232i\264A\246\206\215\0324=OPi\351=#\324z\232i\352m\032@\224A\030\206\200\223ja\032M\023i=@\000\365\r\000\000\000\000\000\000\000\007\251\2404\320$*x\243\322=G\251\246\200\332@\017\325\000\3204\000\000\000\000\000\000\000\000 \300\000\000\000\000\000\000\000\000\000\000\000\000\000\000\000\t\024&\252{*h\374\250l\232\217Q\345\000h\000\0004\000\0324\r\000\000\000\320\003\324\320hN\353\255\232'\252\263\004\244\0264[\262\017\016\021\346\346\376\306K\361\021\204?#\t\321\010\023\316\000\376\264\23011\023\221\235\212\220\177\t\022_\344\226\231R^\"T\222\251\244\r\205\016\221\210h\242%b\234TTR)\324Hd\202Lx\244\201!\004JL\270d\202\201\202\253\213\007\364\213\227\235\r\320jz\0019\272\255G\325C\006V4\251$\021H\302\362\310%\taZ4\222I\345\225\324Q\010\2614\3229\311\036G\323~\335Kul\357\323\373\335\276#\334}\326\236\214\361rL\2273\350\377&Rc.\024\254\025pb\031\022\317\201\2310\300\207\014\205\010aD(\250\036\211\357\336\325\025\004\006\203\303\216/\337\361`.G\343\366\205\375\031r\025\037\252\302\300VCHA\005\246b\321\016\234\3021\306\205\024\353Wc+.\225t&;\364\221*f\263\255\005\025\256\356\346\025\026\252,\204\n\366\320#/\224\310\204\313~\355\335\007\350\372\215\315J\323\216\226\202\333\360O\342J\2562/\"9\202\014\034\223\370ZES\347\372j\323\313\270\235\337%\277\3626\005\325\334e\203\206\270\311\036\031\242\2773\353\220\320)H\005\032\261\014$\354V\266;Y\024\252J\363\tb1\210\274\254=\330=\352\202\251\266]0\025\354\256\302\377\333\350-\267n\272\223BI\037\240\325\214\221\241i\230|Zy\274qA\332\270}-\226\013\027\363\025\271\007\254\342D\300s\205\347\240a|\016a\255\027!\350<Ky\351\356\327\360{\312K\307\235Y\r\025\335V\2359\315)\354/<\014?\264\253\007\245\320\320\242\\\264d\254C\013\n\\Q\006Je\317S,\312\215\313\302\2245\326\302\220>\022\014\001\363\001\233\017\024Y""\252\220_\222P~\233_\245\367\364\373\"\312\022;\030,\215v7VM\242\234\037\235\034\025\0166B\375:LS\251\202m\215S\330rez8\271\374\272\006\024\251\270\347\252F1G\254c\026\305\260:K6\331:\351(\322p\377\227\226\356':\343\305Jxv8\345\216\317\331\375v:xE\307uT]\327\275\2129\273\315`\252\265\362\274\245#>\321\221T8F\300\306\225V\032z\244\306\t\22776Di9\207\006$\357\225\325\216/\035\006.\327\350\3441\3312\334\306>Ri\300\346\340\366n\240\241fC*i\325D\351\031\2327>\241\256y\333#K\263f\362\256#\024\304\245!\241\350\347\241l\331\2043\223\223L\020a)+U\263\223\205y\"\275P\332N2HWD^\342NE\345\177$)},UU~k\367\254K\341G4-8\366\264(J\353\242\254/\244\260\275\275\034\236k\034\014\340\264\256\233j\214\rS\337\220\332\212-\036v\364\260v\261eb?\244\2544\367\317\031;-Q\250\333\013\255\320\367\256i\356\253\304\214\376\031!\240\212\304\2566\210e\2711j\r\201\322Z-\005\224Z\301\335M)X.\211\222L\r\034f}\027\356Yf\306\0342\342U\316m7\324.\013\303\014\264c\n\365\260h\315\322p\301;\032\332.V\302\006\366\0055l\213\250\332\301\241\nZA\036\327\340^_\320\034\365\262\315\\\234Yj^81a\206\326\2251\021\354i\026\214\304\2065\220z\213\210l7\265\2131\361m\214\254\214\244\023#\275)6\314\352\036R\3121c\212\220Y\337\\\264\351.\333bY8\357\225\356\300-$\313\272\216\277\232\200\272\343g\026\254\224\302\322n7\265\260\320\335l\027F\010\nr\037)\313\0146;\215[\035r\322)7.c\n^\3007\013x\331X\272\253)\306\313\362\317&O\036\365\252\250\320Y\241x\346\274\272Il\326\256\337\"\333\313\355e6d\344\365\023;pj\202\250\252&\263*\246\272\214-\017o\241\257\310\302\032\246\326\315\202\260\367\210\363>\347\334\343q<\265\243#6\236bw\234\253\264\303\302\246(\257\r.\236\223#G\244tS@?\271\365\263\245\315\007Wys\270-\010n\215}3MK\221mD3\266\334 \350\310\342\026'\353\210D@o)b\276\341aSG!;g\247B!\207\330\370\020\321T[6vC&#%K\303\351n\225(\204-Z\265>{\304\\kR\247\346\205\007\227\210f!\3208F\207!R\310\3069\366\375\223\305N\"\232z\314\214zD&\351\0052\2318\251D\242@\177\"&g\244\304\242^\234M\234\232\205\302\rFq\331K\265e\3151\222\\\315\274N\206&""\336\361+\200\322\321\273\253\224\305\002\251\315\301\213\221\332L2\034\330\014~\351\006\301\232p\223gq$z\275XL\302\r\202\271\322I)n\362I\216\235{\004Z\3062^\315\220e\222\013D\t\306t\377\311p\\\326\246P\347c\216\242\344\256^\305\231\371+\272\244\244\261\220@\304S\270\220\036\206\261A1\020\362\206\250HT&\212\223C[\025Yp\274\31283a\000T\317Xg-F\njV\013\025\202`\203\377\027rE8P\220\247\230\330\253";
-    PyObject *data = __Pyx_DecompressString(cstring, 1564, 2);
+    #elif (CYTHON_COMPRESS_STRINGS) == 2 /* compression: bz2 (1493 bytes) */
+const char* const cstring = "BZh91AY&SY\251\002b\241\000\000\342\177\377\377\377\377\377\177\333\377\341\277\177\377\341\277\377\377\371@@@@@@@@@@@@@\000@\000P\0058hM\230PP\324\003\004\241\024\324\217S\001<\202{Q\351\224\312\033B\030d\217S\010h\310i\352di\246\2324\3204\323\324=M4i\3513H\032\020\004\304\2314d\004\322'\223\323*b\000\017P\000\003 \000b\000\321\352\032\031\r\000I\010)\212f)\246Rm=S\323D\365\001\2434\200\365\r\250\000\0004b\003@\000\320i\352z\217\"c\200\000\000\000\000\000\000\001\240\000\000\000\000\000\000\000\003\200\000\000\000\000\000\000\001\240\000\000\000\000\000\000\000\n\031\230\301\271\227\362\345\2630\301\226\214\0357O\203\200n\036\"#\202\007p\216\021\202?\327r\235\241.\333$\300\302a\024\355hH8\312\257\375%\312\264\264\324\362.\001\\\3030Q\222,J\220`*B\205\264\343\204\230\313:\314(!\247EJL\2056D\016\362.;yu\262\315;\215\222UJ\267\231/S\270\243\216k\020\\Q!\001\007\330&\362iLH\224\"Q\234\252\014t\020\263\"\023a\366v\373\\\275\257C\263\333\345\346\356\344+\303H\354Jr8r\345\207\242\245\332V\246\321\213\206\311\252q\260\356\271R92!I1U4\350\235W\361\277Y\261C\354\3311\307\332\320i\217\337\373}\254M/i\237\211\225\346\017\234t\031\030\330\233\337@\210\322\363\263\274_\027\271\323\261r\n\324~\356\305\005\254s~\007P\267>O\330\270\311i\203\341\342H\211s\350@ACG\313\2072\232\377\221\267\013\233B\377\2437][}\346\300\344\030!>\263\344__\333U\373\266\nb\372)\377\022\236+\225\2035\253\nX\270\230X\0230\037|B\200\016'\220p\317!\334\r\304O\344\357V!\001_\342\027#\006\010h,C\263\301\314Qa\230\300\276\210\273\244\341\227\"\366\317\020\356\276c[*\252\234\247S\236b\030.\202\tO\241\034\027+BR\345\274\177.\333K_\212vIM\263XXk\222\220\334t\034\307!\274D\r\260M\023\025\374u\362\273\022*bL\351Z@\322\351A\337\346\314\253\341\342o\341\304\256\306jU\320\302\275\251\235\235\030\3109a\274{\271\343p\332\265Wv@\235\333\267\007\0218\n\006\n\"a\234\037\001\227:\2412\036I\310\254\263\241\322\023i?b\nh\232\363\334\246\272\326`\335u\005\215/\262\376LE\251\320\226\221f\332\311b\214\337\214 i\215\203\373\252""\"\310\023\016\020\202\240\247\216#\242\247I87 \327\376X+\340\024\244\241\302\342\363f\261\276\031\377vq\343\277P<z\352n-\314C\013VU 39o`q\020\271\221\277k\371\207zr%n\006\253d\303\002cOG\010\031&\240ypSh\276\334\371\346\026\364=L\311\3061\351\240\257\000\214\214T5\255V\261646\201\3679\331\335G\004K\372\003D\357\244\006U\336\231\014\355\010b\320\342}\314%\260\205(\226>\370\254\262\274\202\010\305H\252Ef\301\021,\317\324)\010\223\344\3301b+#\335\275\355[P\314\317\324\302\034\307\021l\035\344C\020\3575(\006\224\344\332\261\332\351\231\332\256,\214\032B\300Mu\211:\272\240\361\242\231\342\025Pma\203\302r\005\351\007\031\2238\315\005\374\254\t*\314!W1\212\274\214a\3253R\3322\340\326\"lXQ\365\365\033\322f\237@\347\266\356\336\352\2107`\224\235\252\265\223h\314Z\263\2327\006\034L\330q\301\020pG\204\317\n(f01\001`\026\213\262\014o\226\204\n\t\262+\010\013\245%\003\272\267\274e\264:\2550[u P\017r\203\311\027h\260Y\316\013a\316y\366\360\335\234\371\357C}\272\224*B&\"\204\024\022\320\373d\036\303\007h\032F]\000\350\031\t\234\204#\020(2\2761\234B\303Q\215X\201\003\225q\206Y\352\220\2533\363U\262\200PE+\305}\335X\022\352\022\030\360f){t\\\274\206s\023]9\303a\n\014\260\276\213\325\306\004\267\274\344Q\357G1\315\224\233<\203\305\232\240\361$F\221\252\275kq\030n\335\017\213%]\347\264a\200y\216\221\315\2637Kc\323[WWY\024\332eQk\n\232\3520\275_f\313m\334\020\010V\035\265\276{G\3266 t\016q\257\270\364f\360j2\256\333\016\024\034CW\274\260v\212I\236\034u72\372P\203\267^\367\353\275\214\317\355q`\234i)fM\271\006w\305\245#\023\330\217\314!\021\372S{\356\231;\346\362\246\215\024\331\316\2401)\220\367\222TVQ\253\327\243@\242\2471)?4\344\020\261b\304\221\360\222\214\332\234\024(=ES\0162y\240:)4Y\030\\0\372\360\241\310T\214\302\246S0\251\223\212yD'.\202`\031%\253\371\274B\351\267p\343\317\332\276\277/\257\367f\035\031\233\274$\313'n\255\347\036\234l^^\231\343T\212^ZK'\344DET\265\216c\034\204S\371R\333;\027\020\306$\254z\314\244\270N\013Iql\236\037\201G4\205-d\313)\022\312\344\211\314d\177""\222\334\267\244\224MMe\304j\235g9\3757\336\333\222\2345F\r\306]e:\316\222MY\246\t\316\310hQV\262\031\336\222\037\255Y\rKX\014\221+\010\223E`q\236,\262\2163M\206\356\013\271\"\234(HT\2011P\200";
+    PyObject *data = __Pyx_DecompressString(cstring, 1493, 2);
     if (unlikely(!data)) __PYX_ERR(0, 1, __pyx_L1_error)
     const char* const bytes = __Pyx_PyBytes_AsString(data);
     #if !CYTHON_ASSUME_SAFE_MACROS
     if (likely(bytes)); else { Py_DECREF(data); __PYX_ERR(0, 1, __pyx_L1_error) }
     #endif
-    #elif (CYTHON_COMPRESS_STRINGS) != 0 /* compression: zlib (1438 bytes) */
-const char* const cstring = "x\332\245TKs\3336\020\266\0359\225\037q\"Gq\236\315\320\212\233\244\355D\215l\327M/\355\310v<y\325\261\024\305I.\305@$h!\342K\004(\213\356\264\343#\2178\362\310#\217<\352\250\243\2169\352\350\237\340\237\320\005eg4M\352\311\264#\n\304.\276\005v\277\375\300\342\266\315\211\302\033\230+\033>o\330\226B\231\242\021\203\326\211\21391|\205q\227\252\234\270\022d);\217w\036\254>ZU\260\245).yOT\316\024\346\325U\0033F\230b\353J\335\243\006\247\226\302}\207\260\242\362TW|\333S,B4\205\333\212\003\270\321\000\336 \226\302\010\227\023\345\036\266,\233cNm\013A8\265\366\356)\032u\341\020\332&2z\013\033\214\024\177\305\232\206\000H\3244\343\037,\334\246\304E\214\333M\302\020s\000\357b\0039\276\256\363}\204\215=\033\331\016\247&j\333.'\035\344\030p\016\321\220K\260Qt\374\216\345\231\216_D\252\355\222\242\351A\362\330u\261\257\350\230\032\303\244\251\351@\344(\31431o|\202\330\332\252\275\221\177\264^\336x\376\246\\\335L\215\255\227U9\177\261\275\215\032\330\320\267\371\016\2749B;~\007\376\233@.\332&\035^%:\2563(\r;\216\341#\r\222\243\230a\346[*\265\213p\252\355\001\255\204\341\016a*\241\006B)\207h\217p\312\211)MXF\024\250s\261J\352Xm\252\266\351\030\244SZ~\244z\256\241\235l\251Q]\227\031\310\267\307\010\234d\331\346\t\315\266\245\3216<\310m\260\024\003?\350\243\326!\246\303}\340\222\356\001si8\220\013\017\322\345 \321\235\323\211\244\035\265S\263-\347\272KZ\272ac\276\266\252{\226\212\320p\244t\210\033\276\374\364\265\177@\233\035\332\364\021e\350c\305\262:\326|\325\202\007\252k7M\334iv\232>T\313\034(\024!\023C\321\351hb\006\313\3341l\016\n\206\336\312\031\340M\302\032{.\325\000ek\236!cd\237%\317\310\302&\221\343\177\327\220e\273&0\003TRM\347\226cy \225T-P\000<\216\3077l\317\342\016\225\351T!\242FM\"\347\265\006e5\317\265\034\203;6e\014t\317l\243M\034\333q\\[\007u\r\023\030\026\202P\313\203\323\322|\345\271\356\t\271n\303\226\rI\233\220\016\247\226\237\016C\265\301\035;)\025f\032h\r\010`@\241W\227r\341\234?\2664\376\322\003$'\014\30666<\302\332\235v\272\333pD\262Im\277\235n9\034S\327""\276\3556\245\261\177\320\201\256t:\276\177@\\\233!\2036\311\341\370\361\354\330\344lP\n\236\210u\201\301\274$\315\325\300\025W\303\211p)\254G\343\207\345A\366b\320:\034\037LM\037e\362\242<\310\\\025\255A\346\212\250\214\316\276\016aX\020\365\360\\\270\034VCp\003\364xzl\362VX:>?6Y\214w\223_z\363\275\225\236\326\277\373a\007\300\017\276\300\36309\237X\275\365\236\332\317\367w?\274\252}\3529\312\254&[\335b\037\322\233\r\236\212\335\260\3649\317OI\273\373{\277t\246g-\321\273\333\375\3053=?w\027\272\177\365+#\236\225d\255{\273\327:\023\363O\217\344\343F\270\020zQ9\252\305\327\222\205\204u\227\272\357!\343\314\365\317\273o\205[\3217QKv\342\217\360nt.Z\215\016\222\334\321\277\372o\2001\031U\006\331\251\364\231\013T\221\033d\347\305\342 \013-\373\277\3532\377\207\261\233\\\357\202}!x%2\240\236z8~|{\250\236\226\230\000d&\033L\006\325\300\017\307\241\2464\346\253C=(\203\213\213R\032p\242\260A\346<,\254\007\232X\024\313\242*\3340\017\nbQ!*\313\250\351`>X\016@\014SA\036\202]\221?\301\274\213p\304\342B\274\021\267\222\361O\227\337F\225H\215\347\343\225XK \233\031\330\244&r\242 6!#y\202\033\345\243j\344\306\371\370mRI\324\356|7\355\314LP\200d\352PCA^\n\351\272\010\346LX\n\313r\233\325\200\211t?yk6\241\210;a%\304\203\314tp\007\316o}\234\310\300Ki>\025\241\001\250\026\315G?\306\023\361\335\344\\\262\234\324\2729h\256\332\313\367\252=\257\277\336\307\303R/\247\004y\242,^\207\205\260,\357\343L\260(\367\\\224\200+'\007\216\3203\005,\277\006\346J\307\363cSsi\211\367\303\373\240\n/~\226\274\357eze\331\243]\261\";4\234\226\304\0060\224;\312\346\305oQ.\372>~\227\340\301\250q\224\235\016\276\005\330\363\220\203\242@^\323\301R\200\203\2168\000\312*\2033W!\247\251\231t\375qx3\332\214\307O\341#\246\204\377\031>\213\264\030\004tI\\\000\002\315\2704\032y5\312D\345\323\310g\241\026-E\370\324|r\0329\375\345\340\343\354\330\324e)_\320\260<'/\326BP\364\345\341\013\276o\351 W\346\202\212\004_\203/[Vj\246\n\355.\210\027\321D\2648\230\275\t\227\267\220~1\341[9'\033\226\033d.Hq\316\244\256kR\344\024.""\300\244x\013\r\317Ii\177\306\234\016\277K\251\220QCeV\376\006G\273\340\345";
-    PyObject *data = __Pyx_DecompressString(cstring, 1438, 1);
+    #elif (CYTHON_COMPRESS_STRINGS) != 0 /* compression: zlib (1377 bytes) */
+const char* const cstring = "x\332\245T\315s\323F\024O\202\023\234/ \301\204\217RF1\024\230vpq\342\246\364\322\216\223\220)-\r\2611\001.\335YK\253x\261\276\254]9R:\323\311Q\307=\352\250\243\216:\372\350\243\217\034}\314\237\220?\241oe\207\311\024\312t\332\261\374\264\357\355\357\355{\357\367\336\252\264ks\242\360\026\346\312V\300[\266\245P\246h\304\240M\342bN\214@a\334\245*'\256\004Y\312\336\323\275G\225'\025\005[\232\342\222wD\345La^S50c\204)\266\2564=jpj)<p\010+)\317t%\260=\305\"DS\270\2558\200;\357\300[\304R\030\341r\241<\300\226es\314\251m!p\247\326\301\003E\243.\004\241]\"\275w\260\301H\351'\254i\010\200D\3152\376\326\302]J\\\304\270\335&\0141\007\360.6\220\023\350:?D\3308\260\221\355pj\242\256\355r\342#\307\2008DC.\301F\311\t|\3133\235\240\204T\333%%\323\203\344\261\353\342@\32115FIS\323\001\317\3630\317\304\274\365\021bg\247\361Z\376\321fu\353\327\327\325\372v\246\354\274\250\313\365\363\335]\324\302\206\276\313\367\340\315\021\332\013|\370o\003\271h\227\370\274Nt\334d\330q\214\000i\220\031\305\014\263\300R\251]\202\220\266\007\234\022\206}\302TB\r\2042\002\321\001\341\224\023S\252\260\215(\360\346b\2254\261\332Vm\3231\210_^{\242z\256\241\215\217\324\250\256\313\360\362\3551\002\221,\333\034sl[\032\355\302\203\334\026\3130\360\203&j>1\035\036\000\221\364\000h\313\334\201Yx\220.\205D\373g\013\3119\352fjW\256u\227tt\303\306|\243\242{\226\212\320HR:\302\215^A\366:<\242m\237\266\003D\031\372P\261\254\216\265_v\340\201\352\272m\023\373m\277\035@\265\314\201B\02121\024\235I\0233\330\346\216as\030_h\254\\\001\336$\254u\340R\rP\266\346\031\340\203\220\205M\"\345\177\037\034\313vM`\004(\244\232\316-\307\362`>\262\021\201\304\035\217o\331\236\305\035*s\250\003\274AM\"\327\215\026e\r\317\265\034\203;6e\014&\235\331F\2278\266\343\270\266\016\3634\212>\312\036\241\216\007\241\262dePw\314\250\333\262e\0272\3463q\246\005\231\030\315\027\334\252q\235\260\322`\272`\264\031\2658\177ji\374\205\007\010N\030\310.6<\302\272~7;e$\221\354H7\350fG\215df:\264\335\266T\016\217|h\201\357\007\301\021qm\206\014\332&""\307\223\247\013\023\323\013a9\374Yl\n\014\352\025\251VBW\\\217\246\242{Q3\236<\256\016\363\227\303\316\361\344pv\356$W\020\325a\356\272\350\014s\327D\355\374\352\313\010\304\212hF\027\242\265\250\036\201\031\240\247s\023\323\267\243\362\351\314\304t)\331O\177\354/\367\327\373\332\340\376\373=\000?\372\027\226\307\351Lj\3657\373\352\2400\330\177\377\262\361\261\345$WIwz\245\001\244\267\020>\023\373Q\371S\226\357\323n\357\367A\371\263\226\215T\357\355\016V?k\371\241\267\322\373sP;gYO7zw\372\235\317b\376n\221|\334\212V\"/\256\306\215\344F\272\222\262\336\275\336;\3108w\363\323\346\333\321N\374U\334\221\235\370#\272\037_\210+\361Q\272t\362\217\366[\240L\307\265a~6{.\205\252X\032\346\227\305\3520\017-\373\277\3732\377\307\211\233\336\354\201\276\030\276\0249\230\236f4yzg4=\0351\005\310\\>\234\016\353a\020MBM\231\317\305c=\254\202\211\213r\3460\236\260an\00666CM\254\2125Q\027nT\200\tbq1\256J\257\271p9\\\013a\030f\303\0028\273\2420\306\274\215q\314\222b\262\225t\322\311\217\267\337\304\265XM\226\223\365DK!\233y8\244!\226DQlCF2\202\033\027\342z\354&\205\344MZK\325\336r/\353\314|X\204d\232PCQ^\ni\272\014\352|T\216\252\362\230J\310Dv\236\2745\333P\304\335\250\026\341an.\274\013\361;\037\026\322\361J\226OMh\000j\304\313\361w\311Tr?\275\220\256\245\215\336\0224W\355\027\372\365\2767\330\034\340Q\251W3\202<Q\025\257\242bT\225\367q>\\\225g\256J\300\265q\300s\364\314\002\313\257\200\271\362\351\362\304\354\245\254\304\207\321C\230\n/\371%}\327\317\365\253\262G\373b]vh\264,\213-`h\351$_\020\277\305K\3617\311\333\024\017\317+'\320\352\257\243M\250\352l\001\221f\013b#\343\355\010H\255@\373a\"\256\210E(\336L$q\263W\305=\2101\223\265\024\374>(\247y\271\267\232\315\317\3319\340{u\364\202oK&\344\316\245\260&\3017\340\253\222\227\375\252\003\325E\361<\236\212W\207\013_\300\305)f_+\370N\335\230\230^\014w\262\030\027\307\215\354d=\0315\272\006\220K\222\317\245anQ\316\016\354\374\005\220\267\232\002";
+    PyObject *data = __Pyx_DecompressString(cstring, 1377, 1);
     if (unlikely(!data)) __PYX_ERR(0, 1, __pyx_L1_error)
     const char* const bytes = __Pyx_PyBytes_AsString(data);
     #if !CYTHON_ASSUME_SAFE_MACROS
     if (likely(bytes)); else { Py_DECREF(data); __PYX_ERR(0, 1, __pyx_L1_error) }
     #endif
-    #else /* compression: none (2540 bytes) */
-const char* const bytes = ".Note that Cython is deliberately stricter than PEP-484 and rejects subclasses of builtin types. If you need to pass subclasses then set the 'annotation_typing' directive to False.?add_notecython/navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyxnumpy._core.multiarray failed to importnumpy._core.umath failed to importFFTWFFTW_BACKWARDFFTW_FORWARDLNN_halfNtP_hat__Pyx_PyDict_NextRefabsaddapply_dealiasasyncio.coroutinesaxesceil__class_getitem__cline_in_tracebackcomplex128curlddealiasdiff_hatdiffuse_denomdirectiondivdiv_rhs_hatdtdtypedxempty_alignedf_hatfftfft_ffft_rhs_xfft_rhs_yfft_vxfft_vyfftfreqfloat64func__func__iifft_vxifft_vyifft_wzikxiky_is_coroutineitemskSqkSq_invkmaxkxkylinspace__main__mainmaskmatplotlib.pyplotmaxmeshgrid__module__multiply__name__navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_realnormalise_idftnpnunumnumpyoutoutputCountpiplotRealTimeplotThisTurnpltpoisson_solvepopprofilepyfftwpyplot__qualname__realrfftfreqrho_hatrhs_xrhs_x_hatrhs_yrhs_y_hat__set_name__setdefaultsinsubtractttEndtOut__test__valuesvxvx_hatvx_hat_ifftvyvy_hatvy_hat_ifftwork_hatwzxlinxxyyzeros_like\200\001\360\014\000\005\014\2101\210H\220B\220a\200\001\360\020\000\005\014\2104\210r\220\027\230\002\230$\230b\240\001\200A\330\010\017\210q\200\001\330\t\n\340\004\024\220A\330\004\027\220q\330\004\025\220Q\330\004\027\220q\330\004\025\220Q\330\004\035\230Q\330\004\026\220b\230\003\2302\230R\230q\330\004\024\220A\360\n\000\005\034\2301\360\006\000\005.\250V\260>\300\022\3003\300d\310&\320PQ\330\004-\250V\260>\300\022\3003\300d\310&\320PQ\330\004-\250V\260>\300\022\3003\300d\310&\320PQ\330\0040\260\006\260n\300B\300c\310\024\310V\320ST\330\0040\260\006\260n\300B\300c\310\024\310V\320ST\340\0044\260F\270.\310\001\330\t\014\210I\220V\2301\340\0044\260F\270.\310\001\330\t\014\210I\220V\2301\340\0047\260v\270^\3101\330\t\014\210I\220V\2301\340\0047\260v\270^\3101\330\t\014\210I\220V\2301\340\0046\260f\270N\310!\330\t\014\210I\220V\2301\340\0046\260f\270N\310!\330\t""\014\210I\220V\2301\340\0049\270\026\270~\310Q\330\t\014\210I\220V\2301\340\0043\2606\270\036\300q\330\t\014\210I\220V\2301\340\0049\270\026\270~\310Q\330\t\014\210I\220V\2301\340\0049\270\026\270~\310Q\330\t\014\210I\220V\2301\360\006\000\005\032\230\026\230u\240A\240T\250\030\260\026\260s\270$\270j\310\001\330\004\031\230\026\230u\240A\240T\250\030\260\026\260s\270$\270j\310\001\330\004\034\230F\240%\240q\330\010\017\210{\230&\240\003\2404\240z\260\021\340\004\034\230F\240%\240q\330\010\017\210{\230&\240\003\2404\240z\260\021\340\004\032\230&\240\005\240Q\330\010\t\330\010\t\330\010\016\210c\220\021\330\010\022\220!\330\010\027\220q\340\004\032\230&\240\005\240Q\330\010\t\330\010\t\330\010\016\210c\220\021\330\010\022\220!\330\010\027\220q\340\004\032\230&\240\005\240Q\330\010\t\330\010\t\330\010\016\210c\220\021\330\010\022\220!\330\010\027\220q\360\006\000\0050\250r\260\031\270!\330\010\r\210S\220\004\220B\220b\230\001\360\036\000\005\014\2104\210q\220\002\220!\330\004\010\210\005\210R\210y\230\001\230\026\230q\360\006\000\005\007\200f\210A\210R\210t\2201\220B\220b\230\002\230$\230b\240\001\330\004\006\200f\210B\210d\220!\2202\220R\220r\230\024\230R\230s\240\"\240A\360\006\000\005\n\210\022\2102\210Q\330\004\t\210\024\210R\210r\220\024\220R\220r\230\024\230Y\240a\240s\250\"\250C\250q\260\001\330\004\t\210\024\210R\210r\220\024\220R\220r\230\024\230X\240Q\240c\250\022\2503\250d\260!\330\004\013\2102\210T\220\021\220\"\220D\230\001\230\024\230R\230r\240\024\240R\240r\250\024\250X\260Q\260c\270\022\2701\360\006\000\005\013\210\"\210B\210b\220\002\220\"\220B\220a\360\006\000\005\017\210b\220\013\2301\230A\330\004\013\2104\210s\220!\330\004\013\2101\210H\220D\230\002\230#\230Q\230a\330\004\n\210#\210R\210q\330\004\n\210#\210R\210q\360\006\000\005\020\210r\220\024\220Q\220d\230#\230T\240\022\2405\250\002\250&\260\003\2602\260T\270\021\270$\270c\300\024\300R\300u\310B\310a\360\006\000\005\n\210\023\210A\210R\210u\220A\220U\230\"\230A\360\020\000\005\013\210!\330\004""\n\210!\360\006\000\005\025\220D\230\002\230#\230R\230s\240\"\240A\360\006\000\005\t\210\005\210U\220!\2201\360\022\000\t\016\210T\220\021\220(\230(\240%\240u\250J\260j\300\004\300A\330\010\r\210V\2203\220b\230\001\330\010\r\210V\2201\220C\220r\230\021\340\010\024\220M\240\021\240+\250Y\260a\330\010\024\220M\240\021\240+\250Y\260a\340\010\n\210)\2201\220K\230t\2404\240q\330\010\n\210$\210a\210x\220z\240\024\240Q\330\010\n\210)\2201\220K\230t\2404\240q\330\010\n\210$\210a\210x\220z\240\024\240Q\360\006\000\t\013\210)\2201\220E\230\033\240D\250\001\330\010\n\210)\2201\220E\230\033\240D\250\001\330\010\n\210$\210a\210}\230J\240d\250!\330\010\020\220\r\230Q\230m\2501\360\006\000\t\013\210)\2201\220E\230\027\240\004\240A\330\010\n\210)\2201\220J\230d\240$\240a\330\010\n\210)\2201\220H\230J\240d\250!\330\010\n\210)\2201\220E\230\027\240\004\240A\330\010\n\210)\2201\220J\230d\240$\240a\330\010\n\210)\2201\220H\230J\240d\250!\360\010\000\t\023\220!\330\010\022\220!\360\006\000\t\024\2206\230\021\330\010\023\2206\230\021\330\010\017\210q\330\010\017\210q\360\006\000\t\016\210Q\360\010\000\t\030\220q\330\010\013\2102\210R\210s\220\"\220L\240\002\240!\330\014\033\2301\360\"\000\005\014\2101\200\001\360\016\000\005\n\210\021\330\004\r\210Q\330\004\013\2101\200\001\360\030\000\005\007\200i\210q\220\005\220X\230T\240\021\330\004\006\200i\210q\220\005\220X\230T\240\021\330\004\006\200i\210q\220\n\230*\240D\250\001\330\004\013\2101\330\004\013\2102\210Q";
+    #else /* compression: none (2360 bytes) */
+const char* const bytes = ".Note that Cython is deliberately stricter than PEP-484 and rejects subclasses of builtin types. If you need to pass subclasses then set the 'annotation_typing' directive to False.?add_notecython/navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_real.pyxnumpy._core.multiarray failed to importnumpy._core.umath failed to importFFTWFFTW_BACKWARDFFTW_FORWARDLNN_halfNtP_hat__Pyx_PyDict_NextRefabsapply_dealiasasyncio.coroutinesaxesceil__class_getitem__cline_in_tracebackcomplex128curlddealiasdiff_hatdiffuse_denomdirectiondivdiv_rhs_hatdtdtypedxempty_alignedf_hatfftfft_ffft_rhs_xfft_rhs_yfft_vxfft_vyfftfreqfloat64func__func__iifft_vxifft_vyifft_wzikxiky_is_coroutineitemskSqkSq_invkmaxkxkylinspace__main__mainmaskmatplotlib.pyplotmaxmeshgrid__module____name__navier_stokes_spectral_pyfftw_algo_optim_vortex_planned_realnormalise_idftnpnunumnumpyoutputCountpiplotRealTimeplotThisTurnpltpoisson_solvepopprofilepyfftwpyplot__qualname__realrfftfreqrho_hatrhs_xrhs_x_hatrhs_yrhs_y_hat__set_name__setdefaultsinttEndtOut__test__valuesvxvx_hatvx_hat_ifftvyvy_hatvy_hat_ifftwork_hatwzxlinxxyyzeros_like\200\001\360\014\000\005\014\2101\210H\220B\220a\200\001\360\020\000\005\014\2104\210r\220\027\230\002\230$\230b\240\001\200A\330\010\017\210q\200\001\330\t\n\340\004\024\220A\330\004\027\220q\330\004\025\220Q\330\004\027\220q\330\004\025\220Q\330\004\035\230Q\330\004\026\220b\230\003\2302\230R\230q\330\004\024\220A\360\n\000\005\034\2301\360\006\000\005.\250V\260>\300\022\3003\300d\310&\320PQ\330\004-\250V\260>\300\022\3003\300d\310&\320PQ\330\004-\250V\260>\300\022\3003\300d\310&\320PQ\330\0040\260\006\260n\300B\300c\310\024\310V\320ST\330\0040\260\006\260n\300B\300c\310\024\310V\320ST\340\0044\260F\270.\310\001\330\t\014\210I\220V\2301\340\0044\260F\270.\310\001\330\t\014\210I\220V\2301\340\0047\260v\270^\3101\330\t\014\210I\220V\2301\340\0047\260v\270^\3101\330\t\014\210I\220V\2301\340\0046\260f\270N\310!\330\t\014\210I\220V\2301\340\0046\260f\270N\310!\330\t\014\210I\220V\2301\340""\0049\270\026\270~\310Q\330\t\014\210I\220V\2301\340\0043\2606\270\036\300q\330\t\014\210I\220V\2301\340\0049\270\026\270~\310Q\330\t\014\210I\220V\2301\340\0049\270\026\270~\310Q\330\t\014\210I\220V\2301\360\006\000\005\032\230\026\230u\240A\240T\250\030\260\026\260s\270$\270j\310\001\330\004\031\230\026\230u\240A\240T\250\030\260\026\260s\270$\270j\310\001\330\004\034\230F\240%\240q\330\010\017\210{\230&\240\003\2404\240z\260\021\340\004\034\230F\240%\240q\330\010\017\210{\230&\240\003\2404\240z\260\021\340\004\032\230&\240\005\240Q\330\010\t\330\010\t\330\010\016\210c\220\021\330\010\022\220!\330\010\027\220q\340\004\032\230&\240\005\240Q\330\010\t\330\010\t\330\010\016\210c\220\021\330\010\022\220!\330\010\027\220q\340\004\032\230&\240\005\240Q\330\010\t\330\010\t\330\010\016\210c\220\021\330\010\022\220!\330\010\027\220q\360\006\000\0050\250r\260\031\270!\330\010\r\210S\220\004\220B\220b\230\001\360\036\000\005\014\2104\210q\220\002\220!\330\004\010\210\005\210R\210y\230\001\230\026\230q\360\006\000\005\007\200f\210A\210R\210t\2201\220B\220b\230\002\230$\230b\240\001\330\004\006\200f\210B\210d\220!\2202\220R\220r\230\024\230R\230s\240\"\240A\360\006\000\005\n\210\022\2102\210Q\330\004\t\210\024\210R\210r\220\024\220R\220r\230\024\230Y\240a\240s\250\"\250C\250q\260\001\330\004\t\210\024\210R\210r\220\024\220R\220r\230\024\230X\240Q\240c\250\022\2503\250d\260!\330\004\013\2102\210T\220\021\220\"\220D\230\001\230\024\230R\230r\240\024\240R\240r\250\024\250X\260Q\260c\270\022\2701\360\006\000\005\013\210\"\210B\210b\220\002\220\"\220B\220a\360\006\000\005\017\210b\220\013\2301\230A\330\004\013\2104\210s\220!\330\004\013\2101\210H\220D\230\002\230#\230Q\230a\330\004\n\210#\210R\210q\330\004\n\210#\210R\210q\360\006\000\005\020\210r\220\024\220Q\220d\230#\230T\240\022\2405\250\002\250&\260\003\2602\260T\270\021\270$\270c\300\024\300R\300u\310B\310a\360\006\000\005\n\210\023\210A\210R\210u\220A\220U\230\"\230A\360\020\000\005\013\210!\330\004\n\210!\360\006\000\005""\025\220D\230\002\230#\230R\230s\240\"\240A\360\006\000\005\t\210\005\210U\220!\2201\360\022\000\t\016\210T\220\021\220(\230(\240%\240u\250J\260j\300\004\300A\330\010\r\210V\2203\220b\230\001\330\010\r\210V\2201\220C\220r\230\021\340\010\024\220M\240\021\240+\250Y\260a\330\010\024\220M\240\021\240+\250Y\260a\340\010\022\220*\230B\230a\330\010\022\220*\230B\230a\360\006\000\t\024\2206\230\024\230R\230z\250\022\2504\250r\260\021\330\010\020\220\r\230Q\230m\2501\360\006\000\t\023\220$\220b\230\006\230b\240\001\330\010\022\220$\220b\230\006\230b\240\001\360\010\000\t\023\220!\330\010\022\220!\360\006\000\t\024\2206\230\021\330\010\023\2206\230\021\330\010\017\210q\330\010\017\210q\360\006\000\t\016\210Q\360\010\000\t\030\220q\330\010\013\2102\210R\210s\220\"\220L\240\002\240!\330\014\033\2301\360\"\000\005\014\2101\200\001\360\030\000\005\r\210F\220$\220b\230\007\230r\240\024\240R\240q\330\004\013\2101\330\004\013\2102\210Q\200\001\360\016\000\005\n\210\021\330\004\r\210Q\330\004\013\2101";
     PyObject *data = NULL;
     CYTHON_UNUSED_VAR(__Pyx_DecompressString);
     #endif
     PyObject **stringtab = __pyx_mstate->__pyx_string_tab;
     Py_ssize_t pos = 0;
-    for (int i = 0; i < 117; i++) {
+    for (int i = 0; i < 113; i++) {
       Py_ssize_t bytes_length = index[i].length;
       PyObject *string = PyUnicode_DecodeUTF8(bytes + pos, bytes_length, NULL);
       if (likely(string) && i >= 7) PyUnicode_InternInPlace(&string);
@@ -11216,7 +10760,7 @@ const char* const bytes = ".Note that Cython is deliberately stricter than PEP-4
       stringtab[i] = string;
       pos += bytes_length;
     }
-    for (int i = 117; i < 123; i++) {
+    for (int i = 113; i < 119; i++) {
       Py_ssize_t bytes_length = index[i].length;
       PyObject *string = PyBytes_FromStringAndSize(bytes + pos, bytes_length);
       stringtab[i] = string;
@@ -11227,14 +10771,14 @@ const char* const bytes = ".Note that Cython is deliberately stricter than PEP-4
       }
     }
     Py_XDECREF(data);
-    for (Py_ssize_t i = 0; i < 123; i++) {
+    for (Py_ssize_t i = 0; i < 119; i++) {
       if (unlikely(PyObject_Hash(stringtab[i]) == -1)) {
         __PYX_ERR(0, 1, __pyx_L1_error)
       }
     }
     #if CYTHON_IMMORTAL_CONSTANTS
     {
-      PyObject **table = stringtab + 117;
+      PyObject **table = stringtab + 113;
       for (Py_ssize_t i=0; i<6; ++i) {
         #if CYTHON_COMPILING_IN_CPYTHON_FREETHREADING
         #if PY_VERSION_HEX < 0x030E0000
@@ -11332,15 +10876,15 @@ static int __Pyx_CreateCodeObjects(__pyx_mstatetype *__pyx_mstate) {
   {
     const __Pyx_PyCode_New_function_description descr = {8, 0, 0, 8, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 74};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_vx_hat, __pyx_mstate->__pyx_n_u_vy_hat, __pyx_mstate->__pyx_n_u_ikx, __pyx_mstate->__pyx_n_u_iky, __pyx_mstate->__pyx_n_u_diff_hat, __pyx_mstate->__pyx_n_u_work_hat, __pyx_mstate->__pyx_n_u_wz, __pyx_mstate->__pyx_n_u_ifft_wz};
-    __pyx_mstate_global->__pyx_codeobj_tab[3] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_cython_navier_stokes_spectral_py, __pyx_mstate->__pyx_n_u_curl, __pyx_mstate->__pyx_kp_b_iso88591_iq_XT_iq_XT_iq_D_1_2Q, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[3])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[3] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_cython_navier_stokes_spectral_py, __pyx_mstate->__pyx_n_u_curl, __pyx_mstate->__pyx_kp_b_iso88591_F_b_r_Rq_1_2Q, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[3])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {3, 0, 0, 3, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 93};
+    const __Pyx_PyCode_New_function_description descr = {3, 0, 0, 3, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 91};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_f_hat, __pyx_mstate->__pyx_n_u_dealias, __pyx_mstate->__pyx_n_u_fft_f};
     __pyx_mstate_global->__pyx_codeobj_tab[4] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_cython_navier_stokes_spectral_py, __pyx_mstate->__pyx_n_u_apply_dealias, __pyx_mstate->__pyx_kp_b_iso88591_Q_1, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[4])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 49, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 105};
+    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 49, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 103};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_N, __pyx_mstate->__pyx_n_u_t, __pyx_mstate->__pyx_n_u_tEnd, __pyx_mstate->__pyx_n_u_dt, __pyx_mstate->__pyx_n_u_tOut, __pyx_mstate->__pyx_n_u_nu, __pyx_mstate->__pyx_n_u_plotRealTime, __pyx_mstate->__pyx_n_u_N_half, __pyx_mstate->__pyx_n_u_L, __pyx_mstate->__pyx_n_u_dx, __pyx_mstate->__pyx_n_u_kmax, __pyx_mstate->__pyx_n_u_Nt, __pyx_mstate->__pyx_n_u_i, __pyx_mstate->__pyx_n_u_outputCount, __pyx_mstate->__pyx_n_u_plotThisTurn, __pyx_mstate->__pyx_n_u_vx, __pyx_mstate->__pyx_n_u_vy, __pyx_mstate->__pyx_n_u_wz, __pyx_mstate->__pyx_n_u_rhs_x, __pyx_mstate->__pyx_n_u_rhs_y, __pyx_mstate->__pyx_n_u_vx_hat, __pyx_mstate->__pyx_n_u_vy_hat, __pyx_mstate->__pyx_n_u_rhs_x_hat, __pyx_mstate->__pyx_n_u_rhs_y_hat, __pyx_mstate->__pyx_n_u_diff_hat, __pyx_mstate->__pyx_n_u_work_hat, __pyx_mstate->__pyx_n_u_div_rhs_hat, __pyx_mstate->__pyx_n_u_P_hat, __pyx_mstate->__pyx_n_u_vx_hat_ifft, __pyx_mstate->__pyx_n_u_vy_hat_ifft, __pyx_mstate->__pyx_n_u_fft_vx, __pyx_mstate->__pyx_n_u_fft_vy, __pyx_mstate->__pyx_n_u_fft_rhs_x, __pyx_mstate->__pyx_n_u_fft_rhs_y, __pyx_mstate->__pyx_n_u_ifft_wz, __pyx_mstate->__pyx_n_u_ifft_vx, __pyx_mstate->__pyx_n_u_ifft_vy, __pyx_mstate->__pyx_n_u_xlin, __pyx_mstate->__pyx_n_u_xx, __pyx_mstate->__pyx_n_u_yy, __pyx_mstate->__pyx_n_u_kx, __pyx_mstate->__pyx_n_u_ky, __pyx_mstate->__pyx_n_u_kSq, __pyx_mstate->__pyx_n_u_kSq_inv, __pyx_mstate->__pyx_n_u_mask, __pyx_mstate->__pyx_n_u_ikx, __pyx_mstate->__pyx_n_u_iky, __pyx_mstate->__pyx_n_u_dealias, __pyx_mstate->__pyx_n_u_diffuse_denom};
     __pyx_mstate_global->__pyx_codeobj_tab[5] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_cython_navier_stokes_spectral_py, __pyx_mstate->__pyx_n_u_main_2, __pyx_mstate->__pyx_kp_b_iso88591_A_q_Q_q_Q_Q_b_2Rq_A_1_V_3d_PQ_V, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[5])) goto bad;
   }
@@ -13478,6 +13022,32 @@ static const char* __Pyx_BufFmt_CheckString(__Pyx_BufFmt_Context* ctx, const cha
     return -1;
   }
   
+/* ExtTypeTest */
+  static CYTHON_INLINE int __Pyx_TypeTest(PyObject *obj, PyTypeObject *type) {
+      __Pyx_TypeName obj_type_name;
+      __Pyx_TypeName type_name;
+      if (unlikely(!type)) {
+          PyErr_SetString(PyExc_SystemError, "Missing type object");
+          return 0;
+      }
+      if (likely(__Pyx_TypeCheck(obj, type)))
+          return 1;
+      obj_type_name = __Pyx_PyType_GetFullyQualifiedName(Py_TYPE(obj));
+      type_name = __Pyx_PyType_GetFullyQualifiedName(type);
+      PyErr_Format(PyExc_TypeError,
+                   "Cannot convert " __Pyx_FMT_TYPENAME " to " __Pyx_FMT_TYPENAME,
+                   obj_type_name, type_name);
+      __Pyx_DECREF_TypeName(obj_type_name);
+      __Pyx_DECREF_TypeName(type_name);
+      return 0;
+  }
+  
+/* BufferFallbackError */
+  static void __Pyx_RaiseBufferFallbackError(void) {
+    PyErr_SetString(PyExc_ValueError,
+       "Buffer acquisition failed on assignment; and then reacquiring the old buffer failed too!");
+  }
+  
 /* PyObjectGetAttrStrNoError (used by GetBuiltinName) */
   #if __PYX_LIMITED_VERSION_HEX < 0x030d0000
   static void __Pyx_PyObject_GetAttrStr_ClearAttributeError(void) {
@@ -13610,32 +13180,6 @@ static const char* __Pyx_BufFmt_CheckString(__Pyx_BufFmt_Context* ctx, const cha
       return PyDict_SetItem(builder, key, value);
   }
   #endif
-  
-/* ExtTypeTest */
-  static CYTHON_INLINE int __Pyx_TypeTest(PyObject *obj, PyTypeObject *type) {
-      __Pyx_TypeName obj_type_name;
-      __Pyx_TypeName type_name;
-      if (unlikely(!type)) {
-          PyErr_SetString(PyExc_SystemError, "Missing type object");
-          return 0;
-      }
-      if (likely(__Pyx_TypeCheck(obj, type)))
-          return 1;
-      obj_type_name = __Pyx_PyType_GetFullyQualifiedName(Py_TYPE(obj));
-      type_name = __Pyx_PyType_GetFullyQualifiedName(type);
-      PyErr_Format(PyExc_TypeError,
-                   "Cannot convert " __Pyx_FMT_TYPENAME " to " __Pyx_FMT_TYPENAME,
-                   obj_type_name, type_name);
-      __Pyx_DECREF_TypeName(obj_type_name);
-      __Pyx_DECREF_TypeName(type_name);
-      return 0;
-  }
-  
-/* BufferFallbackError */
-  static void __Pyx_RaiseBufferFallbackError(void) {
-    PyErr_SetString(PyExc_ValueError,
-       "Buffer acquisition failed on assignment; and then reacquiring the old buffer failed too!");
-  }
   
 /* GetItemInt */
   static PyObject *__Pyx_GetItemInt_Generic(PyObject *o, PyObject* j) {

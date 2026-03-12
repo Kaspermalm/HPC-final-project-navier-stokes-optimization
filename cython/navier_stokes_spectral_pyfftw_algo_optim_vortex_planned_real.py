@@ -218,17 +218,17 @@ def main(N=400):
         plotThisTurn = False
         if t + dt > outputCount * tOut:
             plotThisTurn = True
-        # if (plotRealTime and plotThisTurn) or (i == Nt - 1):
-        #     plt.cla()
-        #     plt.imshow(wz, cmap="RdBu")
-        #     plt.clim(-20, 20)
-        #     ax = plt.gca()
-        #     ax.invert_yaxis()
-        #     ax.get_xaxis().set_visible(False)
-        #     ax.get_yaxis().set_visible(False)
-        #     ax.set_aspect("equal")
-        #     plt.pause(0.001)
-        #     outputCount += 1
+        if (plotRealTime and plotThisTurn) or (i == Nt - 1):
+            plt.cla()
+            plt.imshow(wz, cmap="RdBu")
+            plt.clim(-20, 20)
+            ax = plt.gca()
+            ax.invert_yaxis()
+            ax.get_xaxis().set_visible(False)
+            ax.get_yaxis().set_visible(False)
+            ax.set_aspect("equal")
+            plt.pause(0.001)
+            outputCount += 1
 
     # Save figure
     # plt.savefig("navier_stokes_spectral.png", dpi=240)
