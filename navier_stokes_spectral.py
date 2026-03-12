@@ -56,11 +56,11 @@ def apply_dealias(f, dealias):
     return np.real(np.fft.ifftn(f_hat))
 
 
-def main():
+def main(N=400):
     """Navier-Stokes Simulation"""
 
     # Simulation parameters
-    N = 400  # Spatial resolution
+    #N = 400  # Spatial resolution
     t = 0  # current time of the simulation
     tEnd = 1  # time at which simulation ends
     dt = 0.001  # timestep
@@ -95,7 +95,7 @@ def main():
     Nt = int(np.ceil(tEnd / dt))
 
     # prep figure
-    fig = plt.figure(figsize=(4, 4), dpi=80)
+    #fig = plt.figure(figsize=(4, 4), dpi=80)
     outputCount = 1
 
     # Main Loop
@@ -134,24 +134,25 @@ def main():
         # print(t)
 
         # plot in real time
-        plotThisTurn = False
-        if t + dt > outputCount * tOut:
-            plotThisTurn = True
-        if (plotRealTime and plotThisTurn) or (i == Nt - 1):
-            plt.cla()
-            plt.imshow(wz, cmap="RdBu")
-            plt.clim(-20, 20)
-            ax = plt.gca()
-            ax.invert_yaxis()
-            ax.get_xaxis().set_visible(False)
-            ax.get_yaxis().set_visible(False)
-            ax.set_aspect("equal")
-            plt.pause(0.001)
-            outputCount += 1
+        if False:
+            plotThisTurn = False
+            if t + dt > outputCount * tOut:
+                plotThisTurn = True
+            if (plotRealTime and plotThisTurn) or (i == Nt - 1):
+                plt.cla()
+                plt.imshow(wz, cmap="RdBu")
+                plt.clim(-20, 20)
+                ax = plt.gca()
+                ax.invert_yaxis()
+                ax.get_xaxis().set_visible(False)
+                ax.get_yaxis().set_visible(False)
+                ax.set_aspect("equal")
+                plt.pause(0.001)
+                outputCount += 1
 
     # Save figure
-    plt.savefig("navier_stokes_spectral.png", dpi=240)
-    plt.show()
+    #plt.savefig("navier_stokes_spectral.png", dpi=240)
+    #plt.show()
 
     return 0
 
