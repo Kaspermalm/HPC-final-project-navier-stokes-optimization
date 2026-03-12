@@ -13,7 +13,7 @@ __pycache__/
 *.dat
 
 # Images
-*.png
+#*.png
 
 # pytest
 .pytest_cache/
@@ -24,3 +24,4 @@ Thumbs.db
 
 # Exclude test folder
 tests_implementerade_med_hjälp/
+navier_stokes_spectral.png

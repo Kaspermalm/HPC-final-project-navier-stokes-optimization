@@ -72,8 +72,8 @@ def main():
     t = 0  # current time of the simulation
 
     # Changed for testing:
-    # tEnd = 1  # time at which simulation ends
-    tEnd = 0.01  # time at which simulation ends
+    tEnd = 1  # time at which simulation ends
+    # tEnd = 0.01  # time at which simulation ends
 
     dt = 0.001  # timestep
     tOut = 0.01  # draw frequency
@@ -111,7 +111,6 @@ def main():
     # prep figure (disabled for profiling) ###
     # fig = plt.figure(figsize=(4, 4), dpi=80)
     outputCount = 1
-
     # Main Loop
     for i in range(Nt):
         # Advection: rhs = -(v.grad)v
@@ -145,7 +144,8 @@ def main():
 
         # update time
         t += dt
-        print(t)
+        if t % 0.1 == 0:
+            print(t)
 
         # plot in real time (disabled for profiling) ###
         """
